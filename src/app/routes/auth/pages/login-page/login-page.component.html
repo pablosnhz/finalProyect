@@ -1,0 +1,52 @@
+
+  <header id="header">
+    <nav class="navbar navbar-expand-md bg-white">
+      <div class="container">
+        <a routerLink="['/']">
+          <img src="./../../../../../assets/images/logoprincipal.png" class="navbar-brand img-fluid" style="max-width: 50px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a [routerLink]="['/home']" class="btn btn-dark">Inicio</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="d-flex justify-content-center">
+    <hr class="w-75 border-secondary m-0" />
+  </div>
+
+  <section class="gradient-custom">
+    <div class="container py-5" style="height: 80vh;">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-6 col-lg-5">
+          <img src="./../../../../../assets/images/login.png" class="img-fluid d-none d-md-block" alt="">
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-7">
+          <div class="px-4 py-5 my-5 text-center">
+            <img class="d-block mx-auto mb-4" src="./../../../../../assets/images/logocaribe.png" alt="" width="72" height="70">
+            <h1 class="display-5 fw-bold text-body-emphasis">Login con Auth0</h1>
+            <div class="col-lg-6 mx-auto">
+              <p class="lead mb-4">Comprobando sistema de login</p>
+              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button type="button" class="btn btn-primary btn-sm px-4 gap-3" (click)="login()">Acceder</button>
+                <button [routerLink]="['/home']" type="button" class="btn btn-primary btn-sm px-4 gap-3">Volver al inicio</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
