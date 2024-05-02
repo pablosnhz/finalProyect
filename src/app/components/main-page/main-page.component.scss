@@ -24,7 +24,7 @@
 .box-style {
   border-radius: 20px;
   padding: 10px;
-  margin-top: 4rem;
+  margin-top: 3rem;
   border: 2px solid black;
 }
 
@@ -48,10 +48,17 @@
 
 .caja h1{
   text-align:center;
-  margin-top: 1rem;
   font-size: 1.3rem;
   color: rgb(51, 52, 54);
   font-weight: bold;
+  white-space: nowrap;
+}
+
+
+
+.caja a {
+  text-decoration: none;
+  color:#474747
 }
 
 .container-image {

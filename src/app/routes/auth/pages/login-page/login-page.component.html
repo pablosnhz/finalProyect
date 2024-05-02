@@ -2,8 +2,8 @@
   <header id="header">
     <nav class="navbar navbar-expand-md bg-white">
       <div class="container">
-        <a routerLink="['/']">
-          <img src="./../../../../../assets/images/logoprincipal.png" class="navbar-brand img-fluid" style="max-width: 50px;">
+        <a [routerLink]="['/home']">
+          <img src="./../../../../../assets/images/logoprincipal.png" class="navbar-brand img-fluid" style="max-width: 60px;">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a [routerLink]="['/home']" class="btn btn-dark">Inicio</a>
+              <a [routerLink]="['/home']" class="btn btn-dark">Proyecto Genius</a>
             </li>
           </ul>
         </div>
