@@ -1,16 +1,16 @@
-
+<!--
 <div *ngIf="imagesLoaded">
   <div *ngFor="let item of data">
-    <img *ngIf="item.grafico_e_imagen" [src]="item.grafico_e_imagen" alt="Imagen">
-    <p *ngIf="item.pregunta">{{ item.pregunta }}</p>
+    <img *ngIf="item.imagen" [src]="item.imagen" alt="Imagen">
+    <p>{{ item.pregunta }}</p>
   </div>
 </div>
 
-<button (click)="getImages()">Cargar Imágenes</button>
+<button (click)="getImages()">Cargar Imágenes</button> -->
 
 <div *ngFor="let datos of data">
-  <p>{{ datos.enunciado }}</p>
-  <img [src]="datos.grafico_e_imagen" alt="" srcset="">
+  <p>{{ datos.pregunta }}</p>
+  <img [src]="datos.imagen" alt="" srcset="">
 </div>
 
     <header id="header">
@@ -23,7 +23,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto" style="gap: 10px;">
                         <li class="nav-item">
-                            <a [routerLink]="['/materias']" class="btn btn-dark">Volver</a>
+                            <a [routerLink]="['/materias']" class="btn btn-warning"><strong>Volver</strong></a>
                         </li>
                     </ul>
                 </div>
@@ -41,6 +41,7 @@
             <!-- SEGUNDA COLUMNA -->
             <div class="col-md-6 col-sm-12 order-md-2">
                 <h1 class="text-center fw-bold fs-1">Álgebra</h1>
+                <div class="overflow-auto" style="max-height: 400px;">
                 <p class="me-2 mt-3 text-center"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione
                     sunt, ad
                     voluptatem iure
@@ -87,23 +88,21 @@
                       doloribus
                       sequi error!</p>
                 </div>
+                </div>
+                <style>
+                  .overflow-auto::-webkit-scrollbar {
+                      width: 8px;
+                  }
+                  .overflow-auto::-webkit-scrollbar-thumb {
+                      background-color: #888;
+                      border-radius: 4px;
+                  }
+                  .overflow-auto::-webkit-scrollbar-thumb:hover {
+                      background-color: #555;
+                  }
+              </style>
             </div>
 
-            <div class="col-md-6 col-sm-12 order-md-2">
-              <h1 class="text-center fw-bold fs-1">Álgebra: Conceptos Básicos</h1><div class="overflow-auto" style="max-height: 400px;"><p class="me-2 mt-3">El álgebra es una rama de las matemáticas que utiliza símbolos y letras para representar relaciones y resolver problemas. Aquí tienes una breve introducción:<br>El término “álgebra” proviene del árabe “al-Jabr”, que significa “reintegración” o “recomposición”.<br>El matemático persa Al-Khwarizmi escribió un libro llamado “The Compendious Book on Calculation by Completion and Balancing”, donde se utilizó por primera vez la palabra “álgebra”.<br>El álgebra nos ayuda a modelar ideas mediante ecuaciones matemáticas para resolver problemas del mundo real.<br><br>Tipos de Álgebra:<br>Álgebra Elemental: Aquí se realizan operaciones básicas como suma, resta, multiplicación y división, pero utilizando símbolos (como x, y, z) en lugar de números.<br>Álgebra Abstracta: También conocida como álgebra moderna, estudia estructuras algebraicas como espacios vectoriales, anillos, campos y grupos.<br><br>Operaciones Básicas:<br>Suma y Resta: Combina términos semejantes en expresiones algebraicas.<br>Multiplicación y División: Multiplica y divide términos algebraicos.<br>Ecuaciones: Resuelve ecuaciones lineales y cuadráticas.<br>Funciones: Comprende conceptos como pendiente, gráficas y modelos lineales.<br><br>Ejemplos de Operaciones Algebraicas:<br>Suma y Resta:<br>Suma: (3x + 2y)<br>Resta: (5a - 4b)<br>Multiplicación y División:<br>Multiplicación: (2x \cdot 3y)<br><br>Ecuaciones:<br>Ecuación lineal: (2x + 3 = 7)<br>Ecuación cuadrática: (x^2 - 5x + 6 = 0)<br>Funciones:<br>Función lineal: (f(x) = 2x + 1)<br>Función exponencial: (g(x) = 3^x)<br></p><div class="d-flex justify-content-center"><img src="https://caribeensena.org/images/47a636fe418869ea70f20e29c39b1222.png" class="img-fluid" alt="Imagen de ayuda para el contenido teorico"></div></div><style>
-
-                .overflow-auto::-webkit-scrollbar {
-                    width: 8px;
-                }
-                .overflow-auto::-webkit-scrollbar-thumb {
-                    background-color: #888;
-                    border-radius: 4px;
-                }
-                .overflow-auto::-webkit-scrollbar-thumb:hover {
-                    background-color: #555;
-                }
-            </style>
-            </div>
 
             <div id="temporizador" class="text-center display-4">00:00:00</div>
 

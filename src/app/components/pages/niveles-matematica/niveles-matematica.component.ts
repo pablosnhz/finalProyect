@@ -28,8 +28,8 @@ export class NivelesMatematicaComponent {
   getImages() {
     this.sheetsDatesService.getSheets().subscribe(
       (data) => {
-        this.data = data;
         this.imagesLoaded = true;
+        this.data = data;
         console.log(data)
       },
       (error) => {

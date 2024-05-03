@@ -15,8 +15,8 @@ export class SheetsDatesService {
         map((response: string) => {
           const contenido = response.split(/\r?\n/).slice(1).map((row) => {
             const values = row.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
-            const [pregunta, enunciado, opcion_a, opcion_b, opcion_c, opcion_d, respuestas, explicacion, tema_relacionado_con_la_respuesta, grafico_e_imagen] = values.map((value) => value.replace(/^"(.*)"$/, '$1').trim());
-            return { pregunta, enunciado, opcion_a, opcion_b, opcion_c, opcion_d, respuestas, explicacion, tema_relacionado_con_la_respuesta, grafico_e_imagen };
+            const [pregunta, enunciado, opcion_a, opcion_b, opcion_c, opcion_d, respuestas, explicacion, tema_relacionado_con_la_respuesta, contenido, imagen] = values.map((value) => value.replace(/^"(.*)"$/, '$1').trim());
+            return { pregunta, enunciado, opcion_a, opcion_b, opcion_c, opcion_d, respuestas, explicacion, tema_relacionado_con_la_respuesta, contenido, imagen };
           });
           localStorage.setItem('datosSheets', JSON.stringify(contenido));
           return contenido;

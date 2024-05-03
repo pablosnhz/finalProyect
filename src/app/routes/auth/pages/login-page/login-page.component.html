@@ -1,4 +1,3 @@
-
   <header id="header">
     <nav class="navbar navbar-expand-md bg-white">
       <div class="container">
@@ -11,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a [routerLink]="['/home']" class="btn btn-dark">Proyecto Genius</a>
+              <a [routerLink]="['/home']" class="btn btn-warning"><strong>Proyecto Genius</strong></a>
             </li>
           </ul>
         </div>
@@ -35,9 +34,8 @@
             <h1 class="display-5 fw-bold text-body-emphasis">Login con Auth0</h1>
             <div class="col-lg-6 mx-auto">
               <p class="lead mb-4">Comprobando sistema de login</p>
-              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <button type="button" class="btn btn-primary btn-sm px-4 gap-3" (click)="login()">Acceder</button>
-                <button [routerLink]="['/home']" type="button" class="btn btn-primary btn-sm px-4 gap-3">Volver al inicio</button>
+              <div class="d-grid gap-4 d-sm-flex justify-content-sm-center">
+                <button type="button" class="btn btn-warning" (click)="login()"><strong>Acceder</strong></button>
               </div>
             </div>
           </div>

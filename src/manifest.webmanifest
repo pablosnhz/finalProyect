@@ -1,8 +1,8 @@
 {
-  "name": "caribeEnsena",
-  "short_name": "caribeEnsena",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "ProyectoGenius",
+  "short_name": "Genius",
+  "theme_color": "#FFFFFF",
+  "background_color": "#303134",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

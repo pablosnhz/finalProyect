@@ -12,9 +12,9 @@ export class HomeComponent implements OnInit{
       const goTopContainer = document.querySelector(".go-top-container");
       if (goTopContainer) {
         if (document.documentElement.scrollTop > 200) {
-          goTopContainer.classList.add("show");
+          goTopContainer.classList.add("deslizar");
         } else {
-          goTopContainer.classList.remove("show");
+          goTopContainer.classList.remove("deslizar");
         }
       }
     });

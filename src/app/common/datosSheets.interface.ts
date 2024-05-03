@@ -8,5 +8,6 @@ export interface datosSheets {
   respuestas: string;
   explicacion: string;
   tema_relacionado_con_la_respuesta: string;
+  contenido: string,
   grafico_e_imagen: string;
 }

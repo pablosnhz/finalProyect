@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginPageComponent } from './routes/auth/pages/login-page/login-page.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
-import { MatematicasComponent } from './components/pages/matematicas/matematicas.component';
 import { NivelesMatematicaComponent } from './components/pages/niveles-matematica/niveles-matematica.component';
+import { MatematicaComponent } from './components/pages/matematica/matematica.component';
 
 const routes: Routes = [
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'materias/matematica',
-    component: MatematicasComponent,
+    component: MatematicaComponent,
     loadChildren: () => import('./components/pages/matematica.module').then(m => m.MatematicaModule),
   },
   {

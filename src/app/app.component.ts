@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { SheetsDatesService } from './services/sheets-dates.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +6,7 @@ import { SheetsDatesService } from './services/sheets-dates.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'caribeEnsena';
+  title = 'ProyectoGenius';
 
 }
 

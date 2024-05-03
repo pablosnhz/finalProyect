@@ -31,18 +31,18 @@
   transition: .2s;
 }
 
-.show {
+.deslizar {
   z-index: 10;
 }
 
-.show .go-top-button {
+.deslizar .go-top-button {
   margin-left: 120px;
   animation: popup .3s ease-in-out;
   width: 3.3rem;
   height: 3.3rem;
   z-index: 11;
 }
-.show i {
+.deslizar i {
   transform: translate(-50%, -50%) scale(1);
 }
 
