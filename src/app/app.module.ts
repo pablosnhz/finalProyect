@@ -29,13 +29,11 @@ import { provideAuth0 } from '@auth0/auth0-angular';
   ],
   providers: [
     provideAuth0({
-      // domain: 'dev-dyyp1d0unr027i6u.us.auth0.com',
       domain: 'dev-dyyp1d0unr027i6u.us.auth0.com',
       clientId: 'BivuSrxGygi0ctlzcBxQvvRYfTweDpPW',
       cacheLocation: 'localstorage',
       authorizationParams: {
-        // redirect_uri: "https://makete.netlify.app/",
-        redirect_uri: "http://localhost:4200/",
+        redirect_uri: "https://makete.netlify.app/",
         // redirect_uri: window.location.origin
 
       },
