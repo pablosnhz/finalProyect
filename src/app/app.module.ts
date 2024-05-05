@@ -33,7 +33,7 @@ import { provideAuth0 } from '@auth0/auth0-angular';
       clientId: 'BivuSrxGygi0ctlzcBxQvvRYfTweDpPW',
       cacheLocation: 'localstorage',
       authorizationParams: {
-        redirect_uri: "https://makete.netlify.app/",
+        redirect_uri: "http://localhost:4200/",
         // redirect_uri: window.location.origin
 
       },

@@ -12,10 +12,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto" style="gap: 10px;">
                       <li class="nav-item">
-                        <a class="btn btn-warning" [routerLink]="['/materias']"><strong>Ver mi progreso</strong></a>
+                        <a class="btn btn-warning" (click)="logout()"><strong><small>Cerrar sesion</small></strong></a>
                       </li>
                       <li class="nav-item">
-                        <a class="btn btn-warning" (click)="logout()"><strong>Cerrar Sesion</strong></a>
+                        <a class="btn btn-warning" [routerLink]="['/materias']"><strong><small>Ver mi progreso</small></strong></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="btn btn-warning" [routerLink]="['/home']"><strong><small>Volver</small></strong></a>
                       </li>
                       <li class="nav-item">
                         <!-- <a class="navbar-brand text-white radius-inicio" [routerLink]="['/home']">Volver</a> -->
@@ -231,7 +234,7 @@
         </div>
 
         <div class="mt-5 px-2">
-            <p class="fs-3 text-center estilo-letra">Estas son las áreas que vas a explorar, subdivididas por 5 niveles.
+            <p class="fs-3 text-center estilo-letra">Estas son las áreas que vas a explorar, subdivididas por 4 niveles.
                 <br>
                 ¡El aprendizaje con diversión va empezar!</p>
         </div>
