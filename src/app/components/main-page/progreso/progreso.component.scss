@@ -1,0 +1,33 @@
+/* boxStyleProgreso */
+.box-styles {
+  border-radius: 20px;
+  padding: 5px;
+  margin-top: 5rem;
+  border: 2px solid black;
+}
+
+.img-fluid {
+  max-width: 80%;
+  height: auto;
+}
+
+/* container progreso */
+.container-images {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.3rem;
+  text-align: center;
+  align-items: flex-end;
+}
+
+.container-images a {
+  font-size: 0.7em;
+  display: block;
+}
+
+.container-images img {
+  max-width: 60%;
+  height: auto;
+}
+
+

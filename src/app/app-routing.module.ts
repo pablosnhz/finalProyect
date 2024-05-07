@@ -5,6 +5,7 @@ import { LoginPageComponent } from './routes/auth/pages/login-page/login-page.co
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { NivelesMatematicaComponent } from './components/pages/niveles-matematica/niveles-matematica.component';
 import { MatematicaComponent } from './components/pages/matematica/matematica.component';
+import { ProgresoComponent } from './components/main-page/progreso/progreso.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'materias',
     component: MainPageComponent,
+  },
+  {
+    path: 'progreso',
+    component: ProgresoComponent
   },
   {
     path: 'materias/matematica',

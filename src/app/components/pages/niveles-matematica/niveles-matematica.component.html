@@ -1,11 +1,3 @@
-
-
-<div *ngFor="let data of datos">
-  <p>{{ data.enunciado }}</p>
-  <p>{{ data.explicacion }}</p>
-  <img [src]="data.imagen" alt="" srcset="">
-</div>
-
     <header id="header">
         <nav class="navbar navbar-expand-md bg-white">
             <div class="container">
@@ -36,6 +28,7 @@
                 <h1 class="text-center fw-bold fs-1">{{ pregunta.titulo }}</h1>
                 <div class="overflow-auto" style="max-height: 400px;">
                   <p class="me-2 mt-3" style="white-space: pre-line;"> {{ pregunta.teoria }}</p>
+                  <img [src]="pregunta.imagen" alt="">
                 </div>
                 <style>
                   .overflow-auto::-webkit-scrollbar {
@@ -61,44 +54,44 @@
                 <div class="col-sm-12 py-3" id="questions-container">
 
                   <div *ngFor="let pregunta of questionsData; let index = index" class="question ml-sm-5 pl-sm-5 pt-2" [class.d-none]="index !== currentQuestionIndex">
+                    <!-- Pregunta -->
                     <div class="py-2 h5 mb-4"><b>Pregunta {{ pregunta.pregunta }}: {{ pregunta.enunciado }}</b></div>
+
+                    <!-- Opciones -->
                     <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options{{ index }}">
                         <div class="option mb-3" *ngFor="let opcion of ['a', 'b', 'c', 'd']">
-                            <input type="radio" id="option_{{ opcion }}" name="options{{ index }}" value="{{ opcion }}" (change)="selectedOption = opcion">
-                            <label for="option_{{ opcion }}"> {{ opcion.toUpperCase() }}) {{ pregunta[opcion] }}</label>
+                          <input type="radio" id="option_{{ opcion }}" name="options{{ index }}" value="{{ opcion }}" (change)="onOptionSelected(index, opcion)" [disabled]="selectedOption !== null">
+                          <label for="option_{{ opcion }}"> {{ opcion.toUpperCase() }}) {{ pregunta[opcion] }}</label>
                         </div>
                     </div>
 
-                    <div class="alert alert-danger alert-dismissible fade show text-center" [class.d-none]="isAnswerCorrect(index, selectedOption)" id="alertIncorrect{{ index }}" role="alert">
-                        <strong>La respuesta correcta era: {{ pregunta.respuestas }}</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        <a href="#" class="bg-transparent border-0 justification-link" data-bs-toggle="modal" data-bs-target="#static${index}">
-                            <strong>Conocé la justificación. Haz Click aquí.</strong>
-                        </a>
-                    </div>
+                    <div class="alert alert-success alert-dismissible fade show text-center" [class.d-none]="!isAnswerCorrect(index) || selectedOption === null" id="alertCorrect{{ index }}" role="alert">
+                      <strong>¡Respuesta correcta!</strong>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
 
-                    <div class="alert alert-success alert-dismissible fade show text-center" [class.d-none]="!isAnswerCorrect(index, selectedOption)" id="alertCorrect{{ index }}" role="alert">
-                        <strong>¡Respuesta correcta!</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-
-                    <!-- Modal -->
-                    <div class="modal fade" [id]="modalIds[index]" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    {{ pregunta.explicacion }}
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-gray border border-dark text-black" data-bs-dismiss="modal">Ok! Gracias.</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="alert alert-danger alert-dismissible fade show text-center" [class.d-none]="isAnswerCorrect(index) || selectedOption === null" id="alertIncorrect{{ index }}" role="alert">
+                    <strong>La respuesta correcta era: {{ pregunta.respuestas }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <a href="#" class="bg-transparent border-0 justification-link" data-bs-toggle="modal" [attr.data-bs-target]="'#' + modalIds[index]" *ngIf="!isAnswerCorrect(index)">
+                      <strong>Conocé la justificación. Haz Click aquí.</strong>
+                    </a>
                 </div>
 
-
-
+                <!-- Modal -->
+                <div class="modal fade" [id]="modalIds[index]" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        {{ pregunta.explicacion }}
+                      </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-gray border border-dark text-black" data-bs-dismiss="modal">Ok! Gracias.</button>
+                </div>
+              </div>
+            </div>
+          </div>
+                </div>
                 </div>
                 <div class="col-md-6 col-sm-12 py-3 d-flex justify-content-around">
                   <button type="button" class="btn btn-primary" id="prevButton" (click)="prevQuestion()">Anterior</button>
@@ -116,18 +109,18 @@
         <div class="d-flex justify-content-around align-items-center mt-5 mb-3 me-2 ms-2">
             <a [routerLink]="['/materias']" class="btn btn-danger"><i class="bi bi-box-arrow-left"></i></a>
             <div class="d-flex justify-content-center">
-                <div class="d-flex justify-content-center">
-                    <button id="levelLockButton1" type="button" class="btn btn-secondary me-2"><i class="bi bi-lock"></i></button>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <button id="levelLockButton2" type="button" class="btn btn-secondary me-2"><i class="bi bi-lock"></i></button>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <button id="levelLockButton3" type="button" class="btn btn-secondary me-2"><i class="bi bi-lock"></i></button>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <button id="levelLockButton4" type="button" class="btn btn-secondary me-2"><i class="bi bi-lock"></i></button>
-                </div>
+              <div class="d-flex justify-content-center">
+                <button id="levelLockButton1" type="button" class="btn btn-success me-2" (click)="prevLevel()"><i class="bi bi-check-lg"></i></button>
+              </div>
+              <div class="d-flex justify-content-center">
+                <button id="levelLockButton2" type="button" class="btn btn-secondary me-2" (click)="nextLevel()"><i class="bi bi-lock"></i></button>
+              </div>
+              <div class="d-flex justify-content-center">
+                <button id="levelLockButton3" type="button" class="btn btn-secondary me-2" (click)="nextLevel()"><i class="bi bi-lock"></i></button>
+              </div>
+              <div class="d-flex justify-content-center">
+                <button id="levelLockButton4" type="button" class="btn btn-secondary me-2" (click)="nextLevel()"><i class="bi bi-lock"></i></button>
+              </div>
             </div>
             <a href="./../../linguistica/linguistica.html" class="btn btn-primary"><i class="bi bi-arrow-right"></i></a>
         </div>

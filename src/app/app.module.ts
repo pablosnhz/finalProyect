@@ -10,14 +10,16 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 
 // Auth0
 import { provideAuth0 } from '@auth0/auth0-angular';
+import { ProgresoComponent } from './components/main-page/progreso/progreso.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     MainPageComponent,
+    ProgresoComponent,
   ],
-  imports: [
+imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
