@@ -1,17 +1,10 @@
-<!--
-<div *ngIf="imagesLoaded">
-  <div *ngFor="let item of data">
-    <img *ngIf="item.imagen" [src]="item.imagen" alt="Imagen">
-    <p>{{ item.pregunta }}</p>
-  </div>
+
+
+<div *ngFor="let data of datos">
+  <p>{{ data.enunciado }}</p>
+  <p>{{ data.explicacion }}</p>
+  <img [src]="data.imagen" alt="" srcset="">
 </div>
-
-<button (click)="getImages()">Cargar Imágenes</button>
-
-<div *ngFor="let datos of data">
-  <p>{{ datos.contenido }}</p>
-  <img [src]="datos.imagen" alt="" srcset="">
-</div> -->
 
     <header id="header">
         <nav class="navbar navbar-expand-md bg-white">
@@ -39,55 +32,10 @@
         <div class="row justify-content-center px-0" style="margin-top: 50px;">
 
             <!-- SEGUNDA COLUMNA -->
-            <div class="col-md-6 col-sm-12 order-md-2">
-                <h1 class="text-center fw-bold fs-1">Álgebra</h1>
+            <div class="col-md-6 col-sm-12 order-md-2" *ngFor="let pregunta of questionsData; let index = index"  [class.d-none]="index !== currentQuestionIndex">
+                <h1 class="text-center fw-bold fs-1">{{ pregunta.titulo }}</h1>
                 <div class="overflow-auto" style="max-height: 400px;">
-                <p class="me-2 mt-3 text-center"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione
-                    sunt, ad
-                    voluptatem iure
-                    consequuntur provident? Sequi in, eveniet mollitia, fugiat ratione delectus facilis officia aperiam
-                    odit
-                    expedita explicabo laudantium neque?.Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem,
-                    repudiandae nisi commodi laboriosam architecto in nemo odit! Accusamus modi id, ipsam qui non optio
-                    aliquid
-                    vero, possimus quo nihil aut!</p>
-                <h4>Ejemplos de problemas de álgebra</h4>
-                <div class="mt-3">
-                    <h6><strong>1. Resolución de ecuaciones :</strong><small class="text-body-secondary"> Resolver la
-                            ecuación</small>
-                    </h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa architecto nulla nisi perspiciatis
-                        a atque
-                        laboriosam repellat, maiores sint ipsam quasi quidem laudantium totam et sunt at voluptatibus
-                        vel
-                        labore.</p>
-                    <h6><strong>2. Factorización :</strong><small class="text-body-secondary"> Es el proceso de
-                            descomponer una
-                            expresión algebraica en un producto de factores. Por ejemplo, la expresión x^2-9</small>
-                    </h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, natus, voluptate minima
-                        explicabo,
-                        repellat consequatur voluptas ipsum alias ad debitis totam magni ex quos. Dolore totam fugit
-                        doloribus
-                        sequi error!</p>
-                        <h6><strong>1. Resolución de ecuaciones :</strong><small class="text-body-secondary"> Resolver la
-                          ecuación</small>
-                  </h6>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa architecto nulla nisi perspiciatis
-                      a atque
-                      laboriosam repellat, maiores sint ipsam quasi quidem laudantium totam et sunt at voluptatibus
-                      vel
-                      labore.</p>
-                  <h6><strong>2. Factorización :</strong><small class="text-body-secondary"> Es el proceso de
-                          descomponer una
-                          expresión algebraica en un producto de factores. Por ejemplo, la expresión x^2-9</small>
-                  </h6>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, natus, voluptate minima
-                      explicabo,
-                      repellat consequatur voluptas ipsum alias ad debitis totam magni ex quos. Dolore totam fugit
-                      doloribus
-                      sequi error!</p>
-                </div>
+                  <p class="me-2 mt-3" style="white-space: pre-line;"> {{ pregunta.teoria }}</p>
                 </div>
                 <style>
                   .overflow-auto::-webkit-scrollbar {
@@ -104,16 +52,59 @@
             </div>
 
 
-            <div id="temporizador" class="text-center display-4">00:00:00</div>
+            <div id="temporizador" class="text-center display-5"><small>00:00:00</small></div>
+
+
 
             <!-- PRIMERA COLUMNA -->
             <div class="col-md-6 col-sm-12 py-5 order-md-1">
                 <div class="col-sm-12 py-3" id="questions-container">
+
+                  <div *ngFor="let pregunta of questionsData; let index = index" class="question ml-sm-5 pl-sm-5 pt-2" [class.d-none]="index !== currentQuestionIndex">
+                    <div class="py-2 h5 mb-4"><b>Pregunta {{ pregunta.pregunta }}: {{ pregunta.enunciado }}</b></div>
+                    <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options{{ index }}">
+                        <div class="option mb-3" *ngFor="let opcion of ['a', 'b', 'c', 'd']">
+                            <input type="radio" id="option_{{ opcion }}" name="options{{ index }}" value="{{ opcion }}" (change)="selectedOption = opcion">
+                            <label for="option_{{ opcion }}"> {{ opcion.toUpperCase() }}) {{ pregunta[opcion] }}</label>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger alert-dismissible fade show text-center" [class.d-none]="isAnswerCorrect(index, selectedOption)" id="alertIncorrect{{ index }}" role="alert">
+                        <strong>La respuesta correcta era: {{ pregunta.respuestas }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <a href="#" class="bg-transparent border-0 justification-link" data-bs-toggle="modal" data-bs-target="#static${index}">
+                            <strong>Conocé la justificación. Haz Click aquí.</strong>
+                        </a>
+                    </div>
+
+                    <div class="alert alert-success alert-dismissible fade show text-center" [class.d-none]="!isAnswerCorrect(index, selectedOption)" id="alertCorrect{{ index }}" role="alert">
+                        <strong>¡Respuesta correcta!</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" [id]="modalIds[index]" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    {{ pregunta.explicacion }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-gray border border-dark text-black" data-bs-dismiss="modal">Ok! Gracias.</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 </div>
                 <div class="col-md-6 col-sm-12 py-3 d-flex justify-content-around">
-                    <button type="button" class="btn btn-primary" id="prevButton">Anterior</button>
-                    <button type="button" class="btn btn-primary" id="nextButton">Siguiente</button>
-                    <button id="resetButton" class="btn btn-danger">Resetear Niveles</button>
+                  <button type="button" class="btn btn-primary" id="prevButton" (click)="prevQuestion()">Anterior</button>
+                  <button type="button" class="btn btn-primary" id="nextButton" (click)="nextQuestion()">Siguiente</button>
+                  <button id="resetButton" class="btn btn-danger">Resetear Niveles</button>
+
                 </div>
             </div>
         </div>
