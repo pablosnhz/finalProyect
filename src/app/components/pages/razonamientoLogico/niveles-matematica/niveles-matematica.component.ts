@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SheetsDatesService } from 'src/app/services/sheets-dates.service';
 
 
@@ -7,11 +7,11 @@ import { SheetsDatesService } from 'src/app/services/sheets-dates.service';
   templateUrl: './niveles-matematica.component.html',
   styleUrls: ['./niveles-matematica.component.scss']
 })
-export class NivelesMatematicaComponent {
+export class NivelesMatematicaComponent implements OnInit {
 
 datos: any[] = [];
 
-selectedOption: string | null = null;
+  selectedOption: string | null = null;
   questionsData: any[] = [];
   levels: any[] = [];
   currentLevelIndex: number = 0;
@@ -19,8 +19,8 @@ selectedOption: string | null = null;
   modalIds: string[] = [];
   selectedOptions: (string | null)[] = [];
 
-
 constructor(private sheetsService: SheetsDatesService) { }
+
 
 ngOnInit(): void {
   this.sheetsService.getSheets().subscribe(data => {
@@ -49,6 +49,12 @@ nextLevel() {
     this.currentQuestionIndex = 0;
   }
 }
+
+selectLevel(levelIndex: number) {
+  this.currentLevelIndex = levelIndex;
+  this.currentQuestionIndex = 0;
+}
+
 
 prevQuestion() {
   if (this.currentQuestionIndex !== null && this.currentQuestionIndex > 0) {
