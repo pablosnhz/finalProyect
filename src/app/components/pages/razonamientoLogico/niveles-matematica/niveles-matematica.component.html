@@ -59,46 +59,46 @@
 
                     <!-- Opciones -->
                     <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options{{ index }}">
-                        <div class="option mb-3" *ngFor="let opcion of ['a', 'b', 'c', 'd']">
-                          <input type="radio" id="option_{{ opcion }}" name="options{{ index }}" value="{{ opcion }}" (change)="onOptionSelected(index, opcion)" [disabled]="selectedOption !== null">
-                          <label for="option_{{ opcion }}"> {{ opcion.toUpperCase() }}) {{ pregunta[opcion] }}</label>
-                        </div>
+                      <div class="option mb-3" *ngFor="let opcion of ['a', 'b', 'c', 'd']">
+                        <input type="radio" id="option_{{ opcion }}" name="options{{ index }}" value="{{ opcion }}" (change)="onOptionSelected(currentLevelIndex, index, opcion)" [disabled]="selectedOptions[currentLevelIndex][index] !== null">
+                        <label for="option_{{ opcion }}"> {{ opcion.toUpperCase() }}) {{ pregunta[opcion] }}</label>
+                      </div>
                     </div>
 
-                    <div class="alert alert-success alert-dismissible fade show text-center" [class.d-none]="!isAnswerCorrect(index) || selectedOption === null" id="alertCorrect{{ index }}" role="alert">
+                    <div class="alert alert-success alert-dismissible fade show text-center" [class.d-none]="!isAnswerCorrect(currentLevelIndex, index) || selectedOptions[currentLevelIndex][index] === null" id="alertCorrect{{ index }}" role="alert">
                       <strong>¡Respuesta correcta!</strong>
                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
 
-                    <div class="alert alert-danger alert-dismissible fade show text-center" [class.d-none]="isAnswerCorrect(index) || selectedOption === null" id="alertIncorrect{{ index }}" role="alert">
+                    <div class="alert alert-danger alert-dismissible fade show text-center" [class.d-none]="isAnswerCorrect(currentLevelIndex, index) || selectedOptions[currentLevelIndex][index] === null" id="alertIncorrect{{ index }}" role="alert">
                       <strong>La respuesta correcta era: {{ pregunta.respuestas }}</strong>
                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      <a href="#" class="bg-transparent border-0 justification-link" data-bs-toggle="modal" [attr.data-bs-target]="'#' + modalIds[index]" *ngIf="!isAnswerCorrect(index)">
+                      <a href="#" class="bg-transparent border-0 justification-link" data-bs-toggle="modal" [attr.data-bs-target]="'#' + modalIds[index]" *ngIf="!isAnswerCorrect(currentLevelIndex, index)">
                         <strong>Conocé la justificación. Haz Click aquí.</strong>
                       </a>
                     </div>
 
 
-                <!-- Modal -->
-                <div class="modal fade" [id]="modalIds[index]" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-body">
-                        {{ pregunta.explicacion }}
+                    <!-- Modal -->
+                    <div class="modal fade" [id]="modalIds[index]" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-body">
+                            {{ pregunta.explicacion }}
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-gray border border-dark text-black" data-bs-dismiss="modal">Ok! Gracias.</button>
+                          </div>
+                        </div>
                       </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-gray border border-dark text-black" data-bs-dismiss="modal">Ok! Gracias.</button>
-                </div>
-              </div>
-            </div>
-          </div>
+                    </div>
+
                 </div>
                 </div>
                 <div class="col-md-6 col-sm-12 py-3 d-flex justify-content-around">
                   <button type="button" class="btn btn-primary" id="prevButton" (click)="prevQuestion()">Anterior</button>
                   <button type="button" class="btn btn-primary" id="nextButton" (click)="nextQuestion()">Siguiente</button>
-                  <button id="resetButton" class="btn btn-danger">Resetear Niveles</button>
-
+                  <button id="resetButton{{ currentLevelIndex }}" class="btn btn-danger" hidden>Resetear Nivel</button>
                 </div>
             </div>
         </div>
