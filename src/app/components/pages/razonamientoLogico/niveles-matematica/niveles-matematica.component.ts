@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SheetsDatesService } from 'src/app/services/sheets-dates.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { SheetsDatesService } from 'src/app/services/sheets-dates.service';
   templateUrl: './niveles-matematica.component.html',
   styleUrls: ['./niveles-matematica.component.scss']
 })
-export class NivelesMatematicaComponent implements OnInit {
+export class NivelesMatematicaComponent implements OnInit, OnDestroy {
 
   datos: any[] = [];
   selectedOption: string | null = null;
@@ -17,6 +17,9 @@ export class NivelesMatematicaComponent implements OnInit {
   modalIds: string[] = [];
   selectedOptions: (string | null)[][] = [];
   answeredQuestionsCounts: number[] = [];
+
+  private temporizadorInterval: any;
+  private segundosTranscurridos: number = 0;
 
   constructor(private sheetsService: SheetsDatesService) { }
 
@@ -30,8 +33,9 @@ export class NivelesMatematicaComponent implements OnInit {
       }
       this.selectedOptions = this.levels.map(() => new Array(5).fill(null));
       this.modalIds = this.questionsData.map((_, index) => 'modal_' + index);
-      this.iniciarTemporizador();
     });
+    this.segundosTranscurridos = parseInt(localStorage.getItem('segundosTranscurridos') || '0', 10);
+    this.iniciarTemporizador();
   }
 
   prevLevel() {
@@ -84,18 +88,29 @@ export class NivelesMatematicaComponent implements OnInit {
     this.levels[levelIndex][questionIndex].answered = true;
   }
 
-  iniciarTemporizador() {
-    let segundos = 0;
-    setInterval(() => {
-      segundos++;
-      const horas = Math.floor(segundos / 3600);
-      const minutos = Math.floor((segundos % 3600) / 60);
-      const segundosRestantes = segundos % 60;
-      const temporizadorElement = document.getElementById('temporizador');
-      if (temporizadorElement) {
-        temporizadorElement.innerText = `${horas < 10 ? '0' : ''}${horas}:${minutos < 10 ? '0' : ''}${minutos}:${segundosRestantes < 10 ? '0' : ''}${segundosRestantes}`;
-      }
+  ngOnDestroy(): void {
+    clearInterval(this.temporizadorInterval);
+    localStorage.setItem('segundosTranscurridos', this.segundosTranscurridos.toString());
+  }
+
+  private iniciarTemporizador(): void {
+    this.temporizadorInterval = setInterval(() => {
+      this.segundosTranscurridos++;
+      this.actualizarTemporizador();
     }, 1000);
+
+    this.actualizarTemporizador(); // Actualizar el temporizador inmediatamente
+  }
+
+  private actualizarTemporizador(): void {
+    const horas = Math.floor(this.segundosTranscurridos / 3600);
+    const minutos = Math.floor((this.segundosTranscurridos % 3600) / 60);
+    const segundosRestantes = this.segundosTranscurridos % 60;
+
+    const temporizadorElement = document.getElementById('temporizador');
+    if (temporizadorElement) {
+      temporizadorElement.innerText = `${horas < 10 ? '0' : ''}${horas}:${minutos < 10 ? '0' : ''}${minutos}:${segundosRestantes < 10 ? '0' : ''}${segundosRestantes}`;
+    }
   }
 
   resetQuestions(levelIndex: number) {
