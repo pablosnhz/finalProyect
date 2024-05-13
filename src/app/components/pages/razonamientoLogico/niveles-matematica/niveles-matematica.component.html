@@ -20,11 +20,14 @@
     </header>
 
 
-    <div class="container d-flex align-items-center justify-content-center">
+    <div id="temporizador" class="text-center display-5"><small>{{ formatClock() }}</small></div>
+
+
+    <div class="container d-flex align-items-center justify-content-center" >
         <div class="row justify-content-center px-0" style="margin-top: 50px;">
 
             <!-- SEGUNDA COLUMNA -->
-            <div class="col-md-6 col-sm-12 order-md-2" *ngFor="let pregunta of questionsData; let index = index"  [class.d-none]="index !== currentQuestionIndex">
+            <div class="col-md-6 col-sm-12 order-md-2 order-2" *ngFor="let pregunta of questionsData; let index = index"  [class.d-none]="index !== currentQuestionIndex">
                 <h1 class="text-center fw-bold fs-1">{{ pregunta.titulo }}</h1>
                 <div class="overflow-auto" style="max-height: 400px;">
                   <p class="me-2 mt-3" style="white-space: pre-line;"> {{ pregunta.teoria }}</p>
@@ -45,12 +48,10 @@
             </div>
 
 
-            <div id="temporizador" class="text-center display-5"><small>00:00:00</small></div>
-
 
 
             <!-- PRIMERA COLUMNA -->
-            <div class="col-md-6 col-sm-12 py-5 order-md-1">
+            <div class="col-md-6 col-sm-12 py-5 order-md-1 order-1">
                 <div class="col-sm-12 py-3" id="questions-container">
 
                   <div *ngFor="let pregunta of questionsData; let index = index" class="question ml-sm-5 pl-sm-5 pt-2" [class.d-none]="index !== currentQuestionIndex">
@@ -60,7 +61,9 @@
                     <!-- Opciones -->
                     <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options{{ index }}">
                       <div class="option mb-3" *ngFor="let opcion of ['a', 'b', 'c', 'd']">
-                        <input type="radio" id="option_{{ opcion }}" name="options{{ index }}" value="{{ opcion }}" (change)="onOptionSelected(currentLevelIndex, index, opcion)" [disabled]="selectedOptions[currentLevelIndex][index] !== null">
+                        <input type="radio" id="option_{{ opcion }}" name="options{{ index }}" value="{{ opcion }}"
+                              (change)="onOptionSelected(currentLevelIndex, index, opcion)"
+                              [disabled]="selectedOptions[currentLevelIndex][index] !== null">
                         <label for="option_{{ opcion }}"> {{ opcion.toUpperCase() }}) {{ pregunta[opcion] }}</label>
                       </div>
                     </div>
@@ -93,12 +96,13 @@
                       </div>
                     </div>
 
+                    <div class="col-md-6 col-sm-12 py-3 d-flex justify-content-around">
+                      <button type="button" class="btn btn-primary" id="prevButton" (click)="prevQuestion()">Anterior</button>
+                      <button type="button" class="btn btn-primary" id="nextButton" (click)="nextQuestion()">Siguiente</button>
+                    </div>
+                    <button class="btn btn-danger" (click)="resetLevel(currentLevelIndex)" [hidden]="answeredQuestionsCounts[currentLevelIndex] !== 4">Resetear Nivel</button>
+                    <button class="btn btn-danger" (click)="resetGame()" [hidden]="allQuestionsAnswered()">Resetear Todo</button>
                 </div>
-                </div>
-                <div class="col-md-6 col-sm-12 py-3 d-flex justify-content-around">
-                  <button type="button" class="btn btn-primary" id="prevButton" (click)="prevQuestion()">Anterior</button>
-                  <button type="button" class="btn btn-primary" id="nextButton" (click)="nextQuestion()">Siguiente</button>
-                  <button id="resetButton{{ currentLevelIndex }}" class="btn btn-danger" hidden>Resetear Nivel</button>
                 </div>
             </div>
         </div>

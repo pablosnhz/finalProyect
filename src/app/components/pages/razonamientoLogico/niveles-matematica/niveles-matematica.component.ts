@@ -1,5 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SheetsDatesService } from 'src/app/services/sheets-dates.service';
+import { Subscription, timer } from 'rxjs';
+
+const counter = timer(0, 1000);
 
 @Component({
   selector: 'app-niveles-matematica',
@@ -18,8 +21,10 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   selectedOptions: (string | null)[][] = [];
   answeredQuestionsCounts: number[] = [];
 
-  private temporizadorInterval: any;
-  private segundosTranscurridos: number = 0;
+
+  clock: number = 0;
+  private timerSubscription: Subscription | undefined;
+  private startTime: number = 0;
 
   constructor(private sheetsService: SheetsDatesService) { }
 
@@ -34,8 +39,21 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
       this.selectedOptions = this.levels.map(() => new Array(5).fill(null));
       this.modalIds = this.questionsData.map((_, index) => 'modal_' + index);
     });
-    this.segundosTranscurridos = parseInt(localStorage.getItem('segundosTranscurridos') || '0', 10);
-    this.iniciarTemporizador();
+    const storedStartTime = localStorage.getItem('startTime');
+  if (storedStartTime) {
+    this.startTime = parseInt(storedStartTime, 10);
+    this.startTimer();
+  } else {
+    this.startTime = Date.now();
+    localStorage.setItem('startTime', this.startTime.toString());
+    this.startTimer();
+  }
+  }
+
+  resetTimer() {
+    this.clock = 0;
+    this.startTime = Date.now();
+    localStorage.setItem('startTime', this.startTime.toString());
   }
 
   prevLevel() {
@@ -65,14 +83,22 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
 
   nextQuestion() {
     if (this.currentQuestionIndex < this.levels[this.currentLevelIndex].length - 1) {
-      this.currentQuestionIndex++;
+        this.currentQuestionIndex++;
     } else {
-      this.answeredQuestionsCounts[this.currentLevelIndex]++;
-      if (this.answeredQuestionsCounts[this.currentLevelIndex] === 5) {
-        document.getElementById('resetButton' + this.currentLevelIndex)!.removeAttribute('hidden');
-      }
+        if (this.answeredQuestionsCounts[this.currentLevelIndex] === 6) {
+            document.getElementById('resetButton' + this.currentLevelIndex)!.removeAttribute('hidden');
+        }
+
+        this.answeredQuestionsCounts[this.currentLevelIndex]++;
+
+        const allQuestionsAnswered = this.allQuestionsAnswered();
+        if (allQuestionsAnswered) {
+            document.getElementById('resetGameButton')!.removeAttribute('hidden');
+            this.stopTimer();
+        }
     }
-  }
+}
+
 
   isAnswerCorrect(levelIndex: number, questionIndex: number): boolean {
     const pregunta = this.questionsData[levelIndex * 5 + questionIndex];
@@ -88,40 +114,78 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     this.levels[levelIndex][questionIndex].answered = true;
   }
 
-  ngOnDestroy(): void {
-    clearInterval(this.temporizadorInterval);
-    localStorage.setItem('segundosTranscurridos', this.segundosTranscurridos.toString());
-  }
 
-  private iniciarTemporizador(): void {
-    this.temporizadorInterval = setInterval(() => {
-      this.segundosTranscurridos++;
-      this.actualizarTemporizador();
-    }, 1000);
+  startTimer() {
+  this.clock = 0;
+  this.timerSubscription = timer(0, 1000).subscribe(() => {
+    const elapsedTime = Date.now() - this.startTime;
+    this.clock = Math.floor(elapsedTime / 1000);
+  });
+}
 
-    this.actualizarTemporizador(); // Actualizar el temporizador inmediatamente
-  }
 
-  private actualizarTemporizador(): void {
-    const horas = Math.floor(this.segundosTranscurridos / 3600);
-    const minutos = Math.floor((this.segundosTranscurridos % 3600) / 60);
-    const segundosRestantes = this.segundosTranscurridos % 60;
-
-    const temporizadorElement = document.getElementById('temporizador');
-    if (temporizadorElement) {
-      temporizadorElement.innerText = `${horas < 10 ? '0' : ''}${horas}:${minutos < 10 ? '0' : ''}${minutos}:${segundosRestantes < 10 ? '0' : ''}${segundosRestantes}`;
+  stopTimer() {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
     }
   }
 
-  resetQuestions(levelIndex: number) {
-    this.selectedOptions[levelIndex] = new Array(5).fill(null);
+  ngOnDestroy(): void {
+    this.stopTimer();
+  }
+
+  // Timer
+  formatClock(): string {
+    const hours = Math.floor(this.clock / 3600);
+    const minutes = Math.floor((this.clock % 3600) / 60);
+    const seconds = this.clock % 60;
+
+    const formattedHours = this.padZero(hours);
+    const formattedMinutes = this.padZero(minutes);
+    const formattedSeconds = this.padZero(seconds);
+
+    return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+  }
+
+  padZero(value: number): string {
+    return value < 10 ? `0${value}` : `${value}`;
+  }
+
+
+
+  resetLevel(levelIndex: number) {
+    this.selectedOptions[levelIndex].fill(null);
     this.answeredQuestionsCounts[levelIndex] = 0;
 
-    const options = document.querySelectorAll('input[name="options' + levelIndex + '"]');
-    options.forEach((option: any) => {
-      option.checked = false;
+    const radioInputs = document.querySelectorAll('input[name="options' + levelIndex + '"]');
+    radioInputs.forEach((input: any) => {
+      input.checked = false;
     });
 
     document.getElementById('resetButton' + levelIndex)!.setAttribute('hidden', 'true');
   }
+
+
+  resetGame() {
+    this.resetTimer();
+    for (let i = 0; i < this.levels.length; i++) {
+      this.resetLevel(i);
+    }
+
+    document.getElementById('resetGameButton')!.setAttribute('hidden', 'true');
+
+    for (let i = 0; i < this.levels.length; i++) {
+      document.getElementById('resetButton' + i)!.setAttribute('hidden', 'true');
+    }
+  }
+
+  isResetGameButtonVisible(): boolean {
+    return !this.allQuestionsAnswered();
+  }
+
+  allQuestionsAnswered(): boolean {
+    return this.answeredQuestionsCounts.every(count => count === 5);
+  }
+
+
 }
