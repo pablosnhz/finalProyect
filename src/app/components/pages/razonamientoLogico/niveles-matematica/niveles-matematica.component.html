@@ -100,7 +100,7 @@
                       <button type="button" class="btn btn-primary" id="prevButton" (click)="prevQuestion()">Anterior</button>
                       <button type="button" class="btn btn-primary" id="nextButton" (click)="nextQuestion()">Siguiente</button>
                     </div>
-                    <button class="btn btn-danger" (click)="resetLevel(currentLevelIndex)" [hidden]="answeredQuestionsCounts[currentLevelIndex] !== 4">Resetear Nivel</button>
+                    <button class="btn btn-danger" (click)="resetLevel(currentLevelIndex)" [hidden]="answeredQuestionsCounts[currentLevelIndex] !== 0">Resetear Nivel</button>
                     <button class="btn btn-danger" (click)="resetGame()" [hidden]="allQuestionsAnswered()">Resetear Todo</button>
                 </div>
                 </div>

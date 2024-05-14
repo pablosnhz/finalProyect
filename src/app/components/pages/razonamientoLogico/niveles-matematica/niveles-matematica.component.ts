@@ -2,8 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SheetsDatesService } from 'src/app/services/sheets-dates.service';
 import { Subscription, timer } from 'rxjs';
 
-const counter = timer(0, 1000);
-
 @Component({
   selector: 'app-niveles-matematica',
   templateUrl: './niveles-matematica.component.html',
@@ -152,18 +150,25 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   }
 
 
-
   resetLevel(levelIndex: number) {
-    this.selectedOptions[levelIndex].fill(null);
-    this.answeredQuestionsCounts[levelIndex] = 0;
+    this.selectedOptions[levelIndex].fill(null); // Restablecer todas las opciones seleccionadas a null
+    this.answeredQuestionsCounts[levelIndex] = 0; // Restablecer el contador de preguntas respondidas
 
     const radioInputs = document.querySelectorAll('input[name="options' + levelIndex + '"]');
     radioInputs.forEach((input: any) => {
-      input.checked = false;
+      input.checked = false; // Desmarcar todas las opciones
+      input.disabled = false; // Habilitar el input radio
     });
 
-    document.getElementById('resetButton' + levelIndex)!.setAttribute('hidden', 'true');
+    // Restablecer solo la última pregunta
+    const lastQuestionIndex = this.levels[levelIndex].length - 1;
+    this.selectedOptions[levelIndex][lastQuestionIndex] = null;
+
+    console.log('Preguntas después de restablecer:', this.selectedOptions[levelIndex]);
   }
+
+
+
 
 
   resetGame() {
