@@ -38,14 +38,14 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
       this.modalIds = this.questionsData.map((_, index) => 'modal_' + index);
     });
     const storedStartTime = localStorage.getItem('startTime');
-  if (storedStartTime) {
-    this.startTime = parseInt(storedStartTime, 10);
-    this.startTimer();
-  } else {
-    this.startTime = Date.now();
-    localStorage.setItem('startTime', this.startTime.toString());
-    this.startTimer();
-  }
+      if (storedStartTime) {
+      this.startTime = parseInt(storedStartTime, 10);
+      this.startTimer();
+    } else {
+      this.startTime = Date.now();
+      localStorage.setItem('startTime', this.startTime.toString());
+      this.startTimer();
+    }
   }
 
   resetTimer() {
@@ -81,21 +81,18 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
 
   nextQuestion() {
     if (this.currentQuestionIndex < this.levels[this.currentLevelIndex].length - 1) {
-        this.currentQuestionIndex++;
-    } else {
-        if (this.answeredQuestionsCounts[this.currentLevelIndex] === 6) {
-            document.getElementById('resetButton' + this.currentLevelIndex)!.removeAttribute('hidden');
-        }
+      this.currentQuestionIndex++;
+  } else {
+      this.answeredQuestionsCounts[this.currentLevelIndex]++;
 
-        this.answeredQuestionsCounts[this.currentLevelIndex]++;
-
-        const allQuestionsAnswered = this.allQuestionsAnswered();
-        if (allQuestionsAnswered) {
-            document.getElementById('resetGameButton')!.removeAttribute('hidden');
-            this.stopTimer();
-        }
+      const allQuestionsAnswered = this.allQuestionsAnswered();
+      if (allQuestionsAnswered) {
+        document.getElementById('resetGameButton')!.removeAttribute('hidden');
+        this.stopTimer();
+      }
     }
-}
+  }
+
 
 
   isAnswerCorrect(levelIndex: number, questionIndex: number): boolean {
@@ -150,47 +147,62 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   }
 
 
-  resetLevel(levelIndex: number) {
-    this.selectedOptions[levelIndex].fill(null); // Restablecer todas las opciones seleccionadas a null
-    this.answeredQuestionsCounts[levelIndex] = 0; // Restablecer el contador de preguntas respondidas
-
-    const radioInputs = document.querySelectorAll('input[name="options' + levelIndex + '"]');
-    radioInputs.forEach((input: any) => {
-      input.checked = false; // Desmarcar todas las opciones
-      input.disabled = false; // Habilitar el input radio
-    });
-
-    // Restablecer solo la última pregunta
-    const lastQuestionIndex = this.levels[levelIndex].length - 1;
-    this.selectedOptions[levelIndex][lastQuestionIndex] = null;
-
-    console.log('Preguntas después de restablecer:', this.selectedOptions[levelIndex]);
-  }
-
-
-
-
-
   resetGame() {
     this.resetTimer();
     for (let i = 0; i < this.levels.length; i++) {
-      this.resetLevel(i);
+        this.resetLevel(i);
     }
 
     document.getElementById('resetGameButton')!.setAttribute('hidden', 'true');
 
+    if (this.allQuestionsAnswered()) {
+        document.getElementById('resetButton' + (this.levels.length - 1))!.removeAttribute('hidden');
+    }
+
     for (let i = 0; i < this.levels.length; i++) {
-      document.getElementById('resetButton' + i)!.setAttribute('hidden', 'true');
+        document.getElementById('resetButton' + i)!.setAttribute('hidden', 'true');
+    }
+}
+
+resetLevel(levelIndex: number) {
+  if (!this.selectedOptions[levelIndex]) {
+    return;
+  }
+
+  this.selectedOptions[levelIndex].fill(null);
+
+  const radioInputs = document.querySelectorAll<HTMLInputElement>('input[name="options' + levelIndex + '"]');
+  radioInputs.forEach((input: HTMLInputElement) => {
+    input.checked = false;
+    input.disabled = false;
+  });
+
+  this.answeredQuestionsCounts[levelIndex] = 0;
+
+  const resetButton = document.getElementById('resetButton' + levelIndex);
+  if (resetButton) {
+    resetButton.setAttribute('hidden', 'true');
+  }
+
+  if (levelIndex === this.levels.length - 1 && this.allQuestionsAnswered()) {
+    const resetGameButton = document.getElementById('resetGameButton');
+    if (resetGameButton) {
+      resetGameButton.removeAttribute('hidden');
     }
   }
+}
 
-  isResetGameButtonVisible(): boolean {
-    return !this.allQuestionsAnswered();
-  }
 
-  allQuestionsAnswered(): boolean {
-    return this.answeredQuestionsCounts.every(count => count === 5);
-  }
+
+isResetGameButtonVisible(): boolean {
+  return !this.allQuestionsAnswered();
+}
+
+allQuestionsAnswered(): boolean {
+  return this.answeredQuestionsCounts.every(count => count === 5);
+}
+
+
 
 
 }

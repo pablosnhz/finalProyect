@@ -59,14 +59,15 @@
                     <div class="py-2 h5 mb-4"><b>Pregunta {{ pregunta.pregunta }}: {{ pregunta.enunciado }}</b></div>
 
                     <!-- Opciones -->
-                    <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options{{ index }}">
-                      <div class="option mb-3" *ngFor="let opcion of ['a', 'b', 'c', 'd']">
-                        <input type="radio" id="option_{{ opcion }}" name="options{{ index }}" value="{{ opcion }}"
-                              (change)="onOptionSelected(currentLevelIndex, index, opcion)"
-                              [disabled]="selectedOptions[currentLevelIndex][index] !== null">
-                        <label for="option_{{ opcion }}"> {{ opcion.toUpperCase() }}) {{ pregunta[opcion] }}</label>
-                      </div>
+                    <div class="option mb-3" *ngFor="let opcion of ['a', 'b', 'c', 'd']">
+                      <input type="radio" id="option_{{ opcion }}" name="options{{ index }}" value="{{ opcion }}"
+                             (change)="onOptionSelected(currentLevelIndex, index, opcion)"
+                             [checked]="selectedOptions[currentLevelIndex][index] === opcion"
+                             [disabled]="selectedOptions[currentLevelIndex][index] !== null && selectedOptions[currentLevelIndex][index] !== opcion">
+                      <label for="option_{{ opcion }}"> {{ opcion.toUpperCase() }}) {{ pregunta[opcion] }}</label>
                     </div>
+
+
 
                     <div class="alert alert-success alert-dismissible fade show text-center" [class.d-none]="!isAnswerCorrect(currentLevelIndex, index) || selectedOptions[currentLevelIndex][index] === null" id="alertCorrect{{ index }}" role="alert">
                       <strong>¡Respuesta correcta!</strong>
@@ -99,10 +100,9 @@
                     <div class="col-md-6 col-sm-12 py-3 d-flex justify-content-around">
                       <button type="button" class="btn btn-primary" id="prevButton" (click)="prevQuestion()">Anterior</button>
                       <button type="button" class="btn btn-primary" id="nextButton" (click)="nextQuestion()">Siguiente</button>
-                    </div>
-                    <button class="btn btn-danger" (click)="resetLevel(currentLevelIndex)" [hidden]="answeredQuestionsCounts[currentLevelIndex] !== 0">Resetear Nivel</button>
-                    <button class="btn btn-danger" (click)="resetGame()" [hidden]="allQuestionsAnswered()">Resetear Todo</button>
-                </div>
+                  </div>
+                  <button class="btn btn-danger" (click)="resetLevel(currentLevelIndex)" [hidden]="allQuestionsAnswered()">Resetear Nivel</button>
+                  <button class="btn btn-danger" (click)="resetGame()" [hidden]="!isResetGameButtonVisible()">Resetear Todo</button></div>
                 </div>
             </div>
         </div>
