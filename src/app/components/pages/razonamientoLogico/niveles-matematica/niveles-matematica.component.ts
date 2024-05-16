@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { SheetsDatesService } from 'src/app/services/sheets-dates.service';
+import { SheetsDatesService } from 'src/app/core/services/common/sheets-dates.service';
 import { Subscription, timer } from 'rxjs';
 
 @Component({
@@ -81,18 +81,17 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
 
   nextQuestion() {
     if (this.currentQuestionIndex < this.levels[this.currentLevelIndex].length - 1) {
-      this.currentQuestionIndex++;
-  } else {
-      this.answeredQuestionsCounts[this.currentLevelIndex]++;
+        this.currentQuestionIndex++;
+    } else {
+        this.answeredQuestionsCounts[this.currentLevelIndex]++;
 
-      const allQuestionsAnswered = this.allQuestionsAnswered();
-      if (allQuestionsAnswered) {
-        document.getElementById('resetGameButton')!.removeAttribute('hidden');
-        this.stopTimer();
-      }
+        const allQuestionsAnswered = this.allQuestionsAnswered();
+        if (allQuestionsAnswered) {
+            document.getElementById('resetGameButton')!.removeAttribute('hidden');
+            this.stopTimer();
+        }
     }
-  }
-
+}
 
 
   isAnswerCorrect(levelIndex: number, questionIndex: number): boolean {
@@ -107,7 +106,11 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   onOptionSelected(levelIndex: number, questionIndex: number, option: string) {
     this.selectedOptions[levelIndex][questionIndex] = option;
     this.levels[levelIndex][questionIndex].answered = true;
+
+    this.isResetLevelButtonVisible();
+
   }
+
 
 
   startTimer() {
@@ -154,15 +157,10 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     }
 
     document.getElementById('resetGameButton')!.setAttribute('hidden', 'true');
-
-    if (this.allQuestionsAnswered()) {
-        document.getElementById('resetButton' + (this.levels.length - 1))!.removeAttribute('hidden');
-    }
-
-    for (let i = 0; i < this.levels.length; i++) {
-        document.getElementById('resetButton' + i)!.setAttribute('hidden', 'true');
-    }
 }
+
+
+resetLevelButtonVisible: boolean = true;
 
 resetLevel(levelIndex: number) {
   if (!this.selectedOptions[levelIndex]) {
@@ -179,18 +177,11 @@ resetLevel(levelIndex: number) {
 
   this.answeredQuestionsCounts[levelIndex] = 0;
 
-  const resetButton = document.getElementById('resetButton' + levelIndex);
-  if (resetButton) {
-    resetButton.setAttribute('hidden', 'true');
-  }
+  this.resetLevelButtonVisible = false;
 
-  if (levelIndex === this.levels.length - 1 && this.allQuestionsAnswered()) {
-    const resetGameButton = document.getElementById('resetGameButton');
-    if (resetGameButton) {
-      resetGameButton.removeAttribute('hidden');
-    }
-  }
+  this.updateLevelButtonsState();
 }
+
 
 
 
@@ -199,10 +190,39 @@ isResetGameButtonVisible(): boolean {
 }
 
 allQuestionsAnswered(): boolean {
-  return this.answeredQuestionsCounts.every(count => count === 5);
+  const lastLevelIndex = this.levels.length - 1;
+  return this.answeredQuestionsCounts[lastLevelIndex] === this.levels[lastLevelIndex].length;
 }
 
-
-
-
+isResetLevelButtonVisible(): boolean {
+  return this.resetLevelButtonVisible && this.isLevelCompleted(this.currentLevelIndex);
 }
+
+// para hacer que aparezca el resetLevel luego de responder las 5 preguntas por nivel
+isLevelCompleted(levelIndex: number): boolean {
+  const questions = this.levels[levelIndex];
+  for (const question of questions) {
+    if (!question.answered) {
+      return false;
+    }
+  }
+  return true;
+}
+
+updateLevelButtonsState() {
+  for (let i = 0; i < this.levels.length; i++) {
+    const buttonId = 'levelLockButton' + (i + 1);
+    const buttonElement = document.getElementById(buttonId);
+    if (buttonElement) {
+      if (this.isLevelCompleted(i)) {
+        buttonElement.classList.remove('btn-secondary');
+        buttonElement.classList.add('btn-success');
+      } else {
+        buttonElement.classList.remove('btn-success');
+        buttonElement.classList.add('btn-secondary');
+      }
+    }
+  }
+}
+}
+

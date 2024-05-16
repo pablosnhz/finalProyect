@@ -10,6 +10,7 @@ import { MainLecturaComponent } from './components/pages/lecturaCritica/main-lec
 import { MainSocialesComponent } from './components/pages/socialesCiudadanas/main-sociales/main-sociales.component';
 import { MainNaturalesComponent } from './components/pages/cienciasNaturales/main-naturales/main-naturales.component';
 import { MainInglesComponent } from './components/pages/ingles/main-ingles/main-ingles.component';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
   {
@@ -19,11 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'materias',
+    // canActivate: [AuthGuard],
     component: MainPageComponent,
-  },
-  {
-    path: 'progreso',
-    component: ProgresoComponent
   },
   {
     path: 'materias/matematica',
@@ -62,6 +60,10 @@ const routes: Routes = [
     path: 'home',
     pathMatch: 'full',
     component: HomeComponent,
+  },
+  {
+    path: 'progreso',
+    component: ProgresoComponent
   },
   {
     path: '**',

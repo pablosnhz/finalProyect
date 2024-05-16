@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { ProgresoComponent } from './components/main-page/progreso/progreso.component';
 
 // Auth0
 import { provideAuth0 } from '@auth0/auth0-angular';
-import { ProgresoComponent } from './components/main-page/progreso/progreso.component';
+
 
 @NgModule({
   declarations: [
