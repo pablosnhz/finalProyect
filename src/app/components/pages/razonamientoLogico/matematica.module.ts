@@ -4,18 +4,19 @@ import { NivelesMatematicaComponent } from './niveles-matematica/niveles-matemat
 import { RouterLink } from '@angular/router';
 import { MatematicaComponent } from './matematica/matematica.component';
 import { FormsModule } from '@angular/forms';
-
+import { SpinnerComponent } from 'src/app/shared/spinner/spinner.component';
 
 
 @NgModule({
   declarations: [
     NivelesMatematicaComponent,
-    MatematicaComponent
+    MatematicaComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
     RouterLink,
-    FormsModule
-  ]
+    FormsModule,
+  ],
 })
 export class MatematicaModule { }

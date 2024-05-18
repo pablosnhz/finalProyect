@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Signal } from '@angular/core';
 import { SheetsDatesService } from 'src/app/core/services/common/sheets-dates.service';
 import { Subscription, timer } from 'rxjs';
 
@@ -22,6 +22,8 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   clock: number = 0;
   private timerSubscription: Subscription | undefined;
   private startTime: number = 0;
+
+  $loading: Signal<boolean> = this.sheetsService.$loading;
 
   constructor(private sheetsService: SheetsDatesService) { }
 
@@ -48,9 +50,11 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   }
 
   resetTimer() {
+    this.stopTimer();
     this.clock = 0;
     this.startTime = Date.now();
     localStorage.setItem('startTime', this.startTime.toString());
+    this.startTimer();
   }
 
   prevLevel() {
@@ -64,6 +68,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     if (this.currentLevelIndex < this.levels.length - 1) {
       this.currentLevelIndex++;
       this.currentQuestionIndex = 0;
+      this.checkAllLevelsCompleted();
     }
   }
 
@@ -80,16 +85,16 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
 
   nextQuestion() {
     if (this.currentQuestionIndex < this.levels[this.currentLevelIndex].length - 1) {
-        this.currentQuestionIndex++;
+      this.currentQuestionIndex++;
     } else {
-        this.answeredQuestionsCounts[this.currentLevelIndex]++;
-        const allQuestionsAnswered = this.allQuestionsAnswered();
-        if (allQuestionsAnswered) {
-            document.getElementById('resetGameButton')!.removeAttribute('hidden');
-            this.stopTimer();
-        }
+      this.answeredQuestionsCounts[this.currentLevelIndex]++;
+      this.checkAllLevelsCompleted();
+      if (this.allQuestionsAnswered()) {
+        document.getElementById('resetGameButton')!.removeAttribute('hidden');
+        this.stopTimer();
+      }
     }
-}
+  }
 
   isAnswerCorrect(levelIndex: number, questionIndex: number): boolean {
     const pregunta = this.questionsData[levelIndex * 5 + questionIndex];
@@ -103,16 +108,19 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   onOptionSelected(levelIndex: number, questionIndex: number, option: string) {
     this.selectedOptions[levelIndex][questionIndex] = option;
     this.levels[levelIndex][questionIndex].answered = true;
-
+    this.checkAllLevelsCompleted();
   }
 
   startTimer() {
-    this.clock = 0;
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
     this.timerSubscription = timer(0, 1000).subscribe(() => {
       const elapsedTime = Date.now() - this.startTime;
       this.clock = Math.floor(elapsedTime / 1000);
     });
   }
+
 
   stopTimer() {
     if (this.timerSubscription) {
@@ -146,11 +154,8 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     for (let i = 0; i < this.levels.length; i++) {
       this.resetLevel(i);
     }
-
     document.getElementById('resetGameButton')!.setAttribute('hidden', 'true');
   }
-
-  resetLevelButtonVisible: boolean = true;
 
   resetLevel(levelIndex: number) {
     if (!this.selectedOptions[levelIndex]) {
@@ -166,7 +171,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     });
 
     this.answeredQuestionsCounts[levelIndex] = 0;
-    this.levels[levelIndex].forEach((question:any) => question.answered = false);
+    this.levels[levelIndex].forEach((question: any) => question.answered = false);
 
     const lockButton = document.getElementById('levelLockButton' + (levelIndex + 1)) as HTMLElement;
     if (lockButton) {
@@ -182,19 +187,22 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
         lockIcon.style.display = 'inline-block';
       }
     }
-    this.resetLevelButtonVisible = false;
   }
 
-
   isResetGameButtonVisible(): boolean {
-    return !this.allQuestionsAnswered();
+    return this.allLevelsCompleted();
   }
 
   allQuestionsAnswered(): boolean {
     return this.answeredQuestionsCounts.every(count => count === 5);
   }
 
-  // si se completan las 5 preguntas aparece el boton de resetear level
+  // verificamo que todos los niveles hayan sido resueltos
+  allLevelsCompleted(): boolean {
+    return this.levels.every((_, index) => this.isLevelCompleted(index));
+  }
+
+  // verificamos los niveles que fueron resueltos
   isLevelCompleted(levelIndex: number): boolean {
     const questions = this.levels[levelIndex];
     for (const question of questions) {
@@ -209,5 +217,10 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     return this.isLevelCompleted(this.currentLevelIndex);
   }
 
-
+  // checkeamos de que todos los niveles se hayan completado para parar el timer
+  private checkAllLevelsCompleted() {
+    if (this.allLevelsCompleted()) {
+      this.stopTimer();
+    }
+  }
 }

@@ -1,6 +1,8 @@
+// sheets-dates.service.ts
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, map, catchError } from 'rxjs';
+import { Injectable, WritableSignal, signal } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { parse } from 'papaparse';
 
 @Injectable({
@@ -8,9 +10,12 @@ import { parse } from 'papaparse';
 })
 export class SheetsDatesService {
 
+  public $loading: WritableSignal<boolean> = signal(false);
+
   constructor(private httpClient: HttpClient) {}
 
   getSheets(): Observable<any[]> {
+    this.$loading.set(true);
     return this.httpClient.get('https://docs.google.com/spreadsheets/d/e/2PACX-1vRgkcYFvN0hy7HemFKxjnV3TiRzX15UE0BE5VyBetsdm87fOo1U76UsGIrNUPA-7P3eKD_n_Iqsmcrv/pub?output=csv', { responseType: 'text' }).pipe(
       map((csvData: string) => {
         const jsonData = parse(csvData, { header: true });
@@ -30,13 +35,14 @@ export class SheetsDatesService {
           };
         });
         localStorage.setItem('datosSheets', JSON.stringify(data));
+        this.$loading.set(false);
         return data;
       }),
       catchError((error) => {
         console.error('Error fetching data:', error);
-        return [];
+        this.$loading.set(false);
+        return of([]);
       })
     );
   }
-
 }

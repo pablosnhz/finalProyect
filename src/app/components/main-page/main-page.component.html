@@ -1,250 +1,246 @@
-
-
-    <header id="header">
-        <nav class="navbar navbar-expand-md bg-white">
-            <div class="container">
-                <a [routerLink]="['/']">
-                    <img src="./../../assets/images/logoprincipal.png" class="navbar-brand img-fluid" style="max-width: 60px;">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto" style="gap: 10px;">
-                      <li class="nav-item">
-                        <a class="btn btn-warning" (click)="logout()"><strong><small>Cerrar sesion</small></strong></a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="btn btn-warning" [routerLink]="['/progreso']"><strong><small>Ver mi progreso</small></strong></a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="btn btn-warning" [routerLink]="['/home']"><strong><small>Volver</small></strong></a>
-                      </li>
-                      <li class="nav-item">
-                        <!-- <a class="navbar-brand text-white radius-inicio" [routerLink]="['/home']">Volver</a> -->
-                      </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-
-        <div id="inicio" class="container">
-          <div *ngIf="auth.user$ | async as user">
-            <h1 class="display-5 font-weight-bold">{{ user.name }} Empieza la prueba!</h1>
+<header id="header">
+  <nav class="navbar navbar-expand-md bg-white">
+      <div class="container">
+          <a [routerLink]="['/']">
+              <img src="./../../assets/images/logoprincipal.png" class="navbar-brand img-fluid" style="max-width: 60px;">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto" style="gap: 10px;">
+                <li class="nav-item">
+                  <a class="btn btn-warning" (click)="logout()"><strong><small>Cerrar sesion</small></strong></a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-warning" [routerLink]="['/progreso']"><strong><small>Ver mi progreso</small></strong></a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-warning" [routerLink]="['/home']"><strong><small>Volver</small></strong></a>
+                </li>
+                <li class="nav-item">
+                  <!-- <a class="navbar-brand text-white radius-inicio" [routerLink]="['/home']">Volver</a> -->
+                </li>
+              </ul>
           </div>
-            <div class="row gap-4 px-2 col-lg-12 col-md-12 col-sm-12 mx-auto">
-                <div class="col box-style">
-                    <div class="caja">
-                        <h1>Razonamiento Logico</h1>
-                        <div class="mt-5 text-center">
-                            <a [routerLink]="['/materias/matematica']">
-                                <img src="./../../../assets/images/matematica.png" class="img-fluid" >
-                            </a>
-                        </div>
-                        <div class="container-image">
-                            <a [routerLink]="['/materias/matematica/niveles']" class="cursor-pointer">
-                                <div id="nivel1">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <p>Nivel 1</p>
-                                </div>
-                            </a>
-                            <a [routerLink]="['/materias/matematica/niveles']" class="cursor-pointer">
-                                <div id="nivel2">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <p>Nivel 2</p>
-                                </div>
-                            </a>
-                            <a [routerLink]="['/materias/matematica/niveles']" class="cursor-pointer">
-                                <div id="nivel3">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <p>Nivel 3</p>
-                                </div>
-                            </a>
-                            <a [routerLink]="['/materias/matematica/niveles']" class="cursor-pointer">
-                                <div id="nivel4">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                    class="img-fluid">
-                                    <p>Nivel 4</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+      </div>
+  </nav>
+</header>
+
+
+<div id="inicio" class="container">
+  <div *ngIf="auth.user$ | async as user">
+    <h1 class="display-5 font-weight-bold">{{ user.name }} Empieza la prueba!</h1>
+  </div>
+    <div class="row gap-4 px-2 col-lg-12 col-md-12 col-sm-12 mx-auto">
+        <div class="col box-style">
+            <div class="caja">
+                <h1>Razonamiento Logico</h1>
+                <div class="mt-5 text-center">
+                    <a [routerLink]="['/materias/matematica']">
+                        <img src="./../../../assets/images/matematica.png" class="img-fluid" >
+                    </a>
                 </div>
-                <div class="col box-style">
-                    <div class="caja">
-                        <h1>Lectura Critica</h1>
-                        <div class="mt-5 text-center">
-                          <a [routerLink]="['/materias/lecturacritica']">
-                                <img src="./../../../assets/images/lecturacritica.png"
-                                    class="img-fluid">
-                            </a>
+                <div class="container-image">
+                    <a [routerLink]="['/materias/matematica/niveles']" class="cursor-pointer">
+                        <div id="nivel1">
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
+                            <p>Nivel 1</p>
                         </div>
-                        <div class="container-image">
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivelUnoLin">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                        class="img-fluid">
-                                    <p>Nivel 1</p>
-                                </div>
-                            </a>
-                            <a href="" class="cursor-pointer">
-                                <div id="nivelDosLin" >
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                        class="img-fluid">
-                                    <p>Nivel 2</p>
-                                </div>
-                            </a>
-                            <a href="" class="cursor-pointer">
-                                <div id="nivelTresLin" >
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                        class="img-fluid">
-                                    <p>Nivel 3</p>
-                                </div>
-                            </a>
-                            <a href="" class="cursor-pointer">
-                                <div>
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                    class="img-fluid">
-                                    <p>Nivel 4</p>
-                                </div>
-                            </a>
+                    </a>
+                    <a [routerLink]="['/materias/matematica/niveles']" class="cursor-pointer">
+                        <div id="nivel2">
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
+                            <p>Nivel 2</p>
                         </div>
-                    </div>
-                </div>
-                <div class="col box-style">
-                    <div class="caja">
-                        <h1>Sociales y ciudadanas</h1>
-                        <div class="mt-5 text-center">
-                          <a [routerLink]="['/materias/socialesciudadanas']">
-                            <img src="./../../../assets/images/socialesyciudadanas.png"
+                    </a>
+                    <a [routerLink]="['/materias/matematica/niveles']" class="cursor-pointer">
+                        <div id="nivel3">
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
+                            <p>Nivel 3</p>
+                        </div>
+                    </a>
+                    <a [routerLink]="['/materias/matematica/niveles']" class="cursor-pointer">
+                        <div id="nivel4">
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
                             class="img-fluid">
-                          </a>
+                            <p>Nivel 4</p>
                         </div>
-                        <div class="container-image">
-                            <a href="" class="cursor-pointer">
-                                <div>
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                    class="img-fluid">
-                                    <p>Nivel 1</p>
-                                </div>
-                            </a>
-                            <a href="" class="cursor-pointer">
-                                <div>
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                    class="img-fluid">
-                                    <p>Nivel 2</p>
-                                </div>
-                            </a>
-                            <a href="" class="cursor-pointer">
-                                <div>
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                    class="img-fluid">
-                                    <p>Nivel 3</p>
-                                </div>
-                            </a>
-                            <a href="" class="cursor-pointer">
-                                <div>
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                    class="img-fluid">
-                                    <p>Nivel 4</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col box-style">
-                    <div class="caja">
-                        <h1>Ciencias naturales</h1>
-                        <div class="mt-5 text-center">
-                          <a [routerLink]="['/materias/cienciasnaturales']">
-                            <img src="./../../../assets/images/cienciasnaturales.png"
-                            class="img-fluid">
-                          </a>
-                        </div>
-                        <div class="container-image">
-                            <a href="" class="cursor-pointer">
-                                <div>
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                    class="img-fluid">
-                                    <p>Nivel 1</p>
-                                </div>
-                            </a>
-                            <a href="" class="cursor-pointer">
-                                <div>
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                    class="img-fluid">
-                                    <p>Nivel 2</p>
-                                </div>
-                            </a>
-                            <a href="" class="cursor-pointer">
-                                <div>
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                    class="img-fluid">
-                                    <p>Nivel 3</p>
-                                </div>
-                            </a>
-                            <a href="" class="cursor-pointer">
-                                <div>
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                    class="img-fluid">
-                                    <p>Nivel 4</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col box-style">
-                    <div class="caja">
-                        <h1>Ingles</h1>
-                        <div class="mt-5 text-center">
-                          <a [routerLink]="['/materias/ingles']">
-                            <img src="./../../../assets/images/ingles.png"
-                            class="img-fluid">
-                          </a>
-                        </div>
-                        <div class="container-image">
-                            <a href="" class="cursor-pointer">
-                                <div>
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                    class="img-fluid">
-                                    <p>Nivel 1</p>
-                                </div>
-                            </a>
-                            <a href="" class="cursor-pointer">
-                                <div>
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                    class="img-fluid">
-                                    <p>Nivel 2</p>
-                                </div>
-                            </a>
-                            <a href="" class="cursor-pointer">
-                                <div>
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                    class="img-fluid">
-                                    <p>Nivel 3</p>
-                                </div>
-                            </a>
-                            <a href="" class="cursor-pointer">
-                                <div>
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
-                                    class="img-fluid">
-                                    <p>Nivel 4</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
-
-        <div class="mt-5 px-2">
-            <p class="fs-3 text-center estilo-letra">Estas son las áreas que vas a explorar, subdivididas por 4 niveles.
-                <br>
-                ¡El aprendizaje con diversión va empezar!</p>
+        <div class="col box-style">
+            <div class="caja">
+                <h1>Lectura Critica</h1>
+                <div class="mt-5 text-center">
+                  <a [routerLink]="['/materias/lecturacritica']">
+                        <img src="./../../../assets/images/lecturacritica.png"
+                            class="img-fluid">
+                    </a>
+                </div>
+                <div class="container-image">
+                    <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
+                        <div id="nivelUnoLin">
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                                class="img-fluid">
+                            <p>Nivel 1</p>
+                        </div>
+                    </a>
+                    <a href="" class="cursor-pointer">
+                        <div id="nivelDosLin" >
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                                class="img-fluid">
+                            <p>Nivel 2</p>
+                        </div>
+                    </a>
+                    <a href="" class="cursor-pointer">
+                        <div id="nivelTresLin" >
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                                class="img-fluid">
+                            <p>Nivel 3</p>
+                        </div>
+                    </a>
+                    <a href="" class="cursor-pointer">
+                        <div>
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                            class="img-fluid">
+                            <p>Nivel 4</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
+        <div class="col box-style">
+            <div class="caja">
+                <h1>Sociales y ciudadanas</h1>
+                <div class="mt-5 text-center">
+                  <a [routerLink]="['/materias/socialesciudadanas']">
+                    <img src="./../../../assets/images/socialesyciudadanas.png"
+                    class="img-fluid">
+                  </a>
+                </div>
+                <div class="container-image">
+                    <a href="" class="cursor-pointer">
+                        <div>
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                            class="img-fluid">
+                            <p>Nivel 1</p>
+                        </div>
+                    </a>
+                    <a href="" class="cursor-pointer">
+                        <div>
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                            class="img-fluid">
+                            <p>Nivel 2</p>
+                        </div>
+                    </a>
+                    <a href="" class="cursor-pointer">
+                        <div>
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                            class="img-fluid">
+                            <p>Nivel 3</p>
+                        </div>
+                    </a>
+                    <a href="" class="cursor-pointer">
+                        <div>
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                            class="img-fluid">
+                            <p>Nivel 4</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col box-style">
+            <div class="caja">
+                <h1>Ciencias naturales</h1>
+                <div class="mt-5 text-center">
+                  <a [routerLink]="['/materias/cienciasnaturales']">
+                    <img src="./../../../assets/images/cienciasnaturales.png"
+                    class="img-fluid">
+                  </a>
+                </div>
+                <div class="container-image">
+                    <a href="" class="cursor-pointer">
+                        <div>
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                            class="img-fluid">
+                            <p>Nivel 1</p>
+                        </div>
+                    </a>
+                    <a href="" class="cursor-pointer">
+                        <div>
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                            class="img-fluid">
+                            <p>Nivel 2</p>
+                        </div>
+                    </a>
+                    <a href="" class="cursor-pointer">
+                        <div>
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                            class="img-fluid">
+                            <p>Nivel 3</p>
+                        </div>
+                    </a>
+                    <a href="" class="cursor-pointer">
+                        <div>
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                            class="img-fluid">
+                            <p>Nivel 4</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col box-style">
+            <div class="caja">
+                <h1>Ingles</h1>
+                <div class="mt-5 text-center">
+                  <a [routerLink]="['/materias/ingles']">
+                    <img src="./../../../assets/images/ingles.png"
+                    class="img-fluid">
+                  </a>
+                </div>
+                <div class="container-image">
+                    <a href="" class="cursor-pointer">
+                        <div>
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                            class="img-fluid">
+                            <p>Nivel 1</p>
+                        </div>
+                    </a>
+                    <a href="" class="cursor-pointer">
+                        <div>
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                            class="img-fluid">
+                            <p>Nivel 2</p>
+                        </div>
+                    </a>
+                    <a href="" class="cursor-pointer">
+                        <div>
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                            class="img-fluid">
+                            <p>Nivel 3</p>
+                        </div>
+                    </a>
+                    <a href="" class="cursor-pointer">
+                        <div>
+                            <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png"
+                            class="img-fluid">
+                            <p>Nivel 4</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<div class="mt-5 px-2">
+    <p class="fs-3 text-center estilo-letra">Estas son las áreas que vas a explorar, subdivididas por 4 niveles.
+        <br>
+        ¡El aprendizaje con diversión va empezar!</p>
+</div>
 
-    <router-outlet></router-outlet>
+<router-outlet></router-outlet>

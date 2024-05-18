@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -16,9 +16,11 @@ import { provideAuth0 } from '@auth0/auth0-angular';
 @NgModule({
   declarations: [
     AppComponent,
+
     HomeComponent,
     MainPageComponent,
     ProgresoComponent,
+
   ],
 imports: [
     BrowserModule,
@@ -42,6 +44,8 @@ imports: [
       },
     }),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }
