@@ -104,8 +104,7 @@
 
                     <button id="resetLevelButton" class="btn btn-danger" (click)="resetLevel(currentLevelIndex)" *ngIf="isResetLevelButtonVisible()">Resetear Nivel</button>
 
-
-                    <button class="btn btn-danger" (click)="resetGame()" [hidden]="!isResetGameButtonVisible()">Resetear Todo</button>
+                    <button class="btn btn-danger" (click)="resetGame()" [hidden]="isResetGameButtonVisible()">Resetear Todo</button>
 
                   </div>
                 </div>
