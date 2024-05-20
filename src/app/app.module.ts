@@ -45,7 +45,6 @@ imports: [
     }),
   ],
   bootstrap: [AppComponent],
-
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

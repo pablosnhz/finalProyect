@@ -1,1 +1,11 @@
-<p>lectura-niveles works!</p>
+<div>
+  <button class="btn btn-primary" (click)="primerSheets()">mil preguntas</button>
+  <button class="btn btn-primary" (click)="segundoSheets()">otras mil preguntas</button>
+</div>
+
+<div *ngFor="let level of levels; let i = index">
+  <div *ngFor="let question of level; let j = index">
+    <p>{{ question.explicacion }}</p>
+    <img [src]="question.imagen">
+  </div>
+</div>

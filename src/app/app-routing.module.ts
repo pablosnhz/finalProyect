@@ -11,6 +11,7 @@ import { MainSocialesComponent } from './components/pages/socialesCiudadanas/mai
 import { MainNaturalesComponent } from './components/pages/cienciasNaturales/main-naturales/main-naturales.component';
 import { MainInglesComponent } from './components/pages/ingles/main-ingles/main-ingles.component';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { LecturaNivelesComponent } from './components/pages/lecturaCritica/lectura-niveles/lectura-niveles.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
     path: 'materias/lecturacritica',
     component:  MainLecturaComponent,
     loadChildren: () => import('./components/pages/lecturaCritica/lecturacritica.module').then(m => m.LecturacriticaModule),
+  },
+  {
+    path: 'materias/lecturacritica/niveleslectura',
+    component: LecturaNivelesComponent,
   },
   // socualesciudadanas
   {

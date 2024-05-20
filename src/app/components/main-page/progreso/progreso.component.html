@@ -22,6 +22,16 @@
   </nav>
 </header>
 
+
+<div class="results-container">
+  <h1>Resultados Razonamiento Logico</h1>
+  <p>Respuestas correctas: {{ correctAnswers }}</p>
+  <p>Respuestas incorrectas: {{ incorrectAnswers }}</p>
+  <p>Total de preguntas que se hicieron: {{ totalQuestions }}</p>
+  <p>Porcentaje de respuestas correctas: {{ correctPorcentaje | number:'1.2-2' }}%</p>
+</div>
+
+
     <div class="container">
       <h1 class="display-5 font-weight-bold">Aqui veras tu progreso!</h1>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">

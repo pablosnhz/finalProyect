@@ -31,7 +31,9 @@
     {
       "name": "sheets-data",
       "urls": [
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgkcYFvN0hy7HemFKxjnV3TiRzX15UE0BE5VyBetsdm87fOo1U76UsGIrNUPA-7P3eKD_n_Iqsmcrv/pub?output=csv"
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgkcYFvN0hy7HemFKxjnV3TiRzX15UE0BE5VyBetsdm87fOo1U76UsGIrNUPA-7P3eKD_n_Iqsmcrv/pub?output=csv",
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vScPVmsfeVLxIe3mf5JTQTjdwi-uC2pOTTYHdIHVQOwKL8Q1ufCskJhKXJLVX8Li9Dk78sB9wggmDJV/pub?output=csv",
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ37ySe4Qb_jmzhrvFSn90P26ixI8Aum_FWhMyMsMuD2eH-bSBqHXJ4LMwYWS3__seqYoXmmFQB9DVb/pub?output=csv"
       ],
       "cacheConfig": {
         "strategy": "freshness",

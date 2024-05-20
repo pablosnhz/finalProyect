@@ -28,6 +28,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   constructor(private sheetsService: SheetsDatesService) { }
 
   ngOnInit(): void {
+    // al iniciar la app lo primero que aparece son los datos del sheets
     this.sheetsService.getSheets().subscribe(data => {
       this.questionsData = data;
       const numQuestionsPerLevel = 5;
@@ -38,10 +39,15 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
       this.selectedOptions = this.levels.map(() => new Array(5).fill(null));
       this.modalIds = this.questionsData.map((_, index) => 'modal_' + index);
     });
+    // controlamos el tiempo tambien una vez iniciada la app inicia el timer
     const storedStartTime = localStorage.getItem('startTime');
     if (storedStartTime) {
       this.startTime = parseInt(storedStartTime, 10);
-      this.startTimer();
+      if (this.startTime > Date.now()) {
+        this.resetTimer();
+      } else {
+        this.startTimer();
+      }
     } else {
       this.startTime = Date.now();
       localStorage.setItem('startTime', this.startTime.toString());
@@ -49,14 +55,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     }
   }
 
-  resetTimer() {
-    this.stopTimer();
-    this.clock = 0;
-    this.startTime = Date.now();
-    localStorage.setItem('startTime', this.startTime.toString());
-    this.startTimer();
-  }
-
+  // niveles
   prevLevel() {
     if (this.currentLevelIndex > 0) {
       this.currentLevelIndex--;
@@ -72,11 +71,13 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     }
   }
 
+  // navegacion entre los niveles
   selectLevel(levelIndex: number) {
     this.currentLevelIndex = levelIndex;
     this.currentQuestionIndex = 0;
   }
 
+  // control de botones
   prevQuestion() {
     if (this.currentQuestionIndex > 0) {
       this.currentQuestionIndex--;
@@ -96,6 +97,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     }
   }
 
+  // detectamos las respuestas correctas e incorrectas
   isAnswerCorrect(levelIndex: number, questionIndex: number): boolean {
     const pregunta = this.questionsData[levelIndex * 5 + questionIndex];
     const selectedOption = this.selectedOptions[levelIndex][questionIndex];
@@ -105,34 +107,43 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     return pregunta.respuestas === pregunta[selectedOption];
   }
 
+  // opcion para evaluar la finalizacion de los niveles
   onOptionSelected(levelIndex: number, questionIndex: number, option: string) {
     this.selectedOptions[levelIndex][questionIndex] = option;
     this.levels[levelIndex][questionIndex].answered = true;
     this.checkAllLevelsCompleted();
   }
 
+  // timer
   startTimer() {
-    if (this.timerSubscription) {
-      this.timerSubscription.unsubscribe();
-    }
+    this.stopTimer();
+
     this.timerSubscription = timer(0, 1000).subscribe(() => {
-      const elapsedTime = Date.now() - this.startTime;
-      this.clock = Math.floor(elapsedTime / 1000);
+      const currentTime = Date.now();
+      this.clock = Math.floor((currentTime - this.startTime) / 1000);
     });
   }
-
 
   stopTimer() {
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
+      this.timerSubscription = undefined;
     }
+  }
+
+  resetTimer() {
+    this.stopTimer();
+    this.clock = 0;
+    this.startTime = Date.now();
+    localStorage.setItem('startTime', this.startTime.toString());
+    this.startTimer();
   }
 
   ngOnDestroy(): void {
     this.stopTimer();
   }
 
-  // Timer
+  // formato para controlar el timer
   formatClock(): string {
     const hours = Math.floor(this.clock / 3600);
     const minutes = Math.floor((this.clock % 3600) / 60);
@@ -149,6 +160,8 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     return value < 10 ? `0${value}` : `${value}`;
   }
 
+
+  // logica para resetear total
   resetGame() {
     this.resetTimer();
     for (let i = 0; i < this.levels.length; i++) {
@@ -157,6 +170,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     document.getElementById('resetGameButton')!.setAttribute('hidden', 'true');
   }
 
+  // logica para resetear nivel e incluso el check/block de los niveles
   resetLevel(levelIndex: number) {
     if (!this.selectedOptions[levelIndex]) {
       return;
@@ -189,10 +203,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     }
   }
 
-  isResetGameButtonVisible(): boolean {
-    return this.allLevelsCompleted();
-  }
-
+  // si todas las preguntas de los 4 niveles fueron completadas entonces aparece el resetTotal
   allQuestionsAnswered(): boolean {
     return this.answeredQuestionsCounts.every(count => count === 5);
   }
@@ -213,6 +224,11 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     return true;
   }
 
+  // boton de reseteo total
+  isResetGameButtonVisible(): boolean {
+    return this.allLevelsCompleted();
+  }
+  // boton de reseteo por nivel
   isResetLevelButtonVisible(): boolean {
     return this.isLevelCompleted(this.currentLevelIndex);
   }
