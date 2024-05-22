@@ -31,14 +31,15 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     // al iniciar la app lo primero que aparece son los datos del sheets
     this.sheetsService.getSheets().subscribe(data => {
       this.questionsData = data;
-      const numQuestionsPerLevel = 5;
-      for (let i = 0; i < this.questionsData.length; i += numQuestionsPerLevel) {
-        this.levels.push(this.questionsData.slice(i, i + numQuestionsPerLevel));
+      const numQuestionsPorLevel = 5;
+      for (let i = 0; i < this.questionsData.length; i += numQuestionsPorLevel) {
+        this.levels.push(this.questionsData.slice(i, i + numQuestionsPorLevel));
         this.answeredQuestionsCounts.push(0);
       }
-      this.selectedOptions = this.levels.map(() => new Array(5).fill(null));
+      this.selectedOptions = this.levels.map(() => new Array(numQuestionsPorLevel).fill(null));
       this.modalIds = this.questionsData.map((_, index) => 'modal_' + index);
     });
+
     // controlamos el tiempo tambien una vez iniciada la app inicia el timer
     const storedStartTime = localStorage.getItem('startTime');
     if (storedStartTime) {
@@ -75,6 +76,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   selectLevel(levelIndex: number) {
     this.currentLevelIndex = levelIndex;
     this.currentQuestionIndex = 0;
+    this.questionsData = this.levels[this.currentLevelIndex];
   }
 
   // control de botones
