@@ -27,8 +27,8 @@ export class SheetsDatesService {
       this.httpClient.get(url, { responseType: 'text' }).pipe(
         map((csvData: string) => {
           const jsonData = parse(csvData, { header: true });
-          console.log(jsonData.data);
-          return jsonData.data.map((row: any) => ({
+          return jsonData.data
+          .map((row: any) => ({
             nivel: row.nivel,
             pregunta: row.pregunta,
             enunciado: row.enunciado,

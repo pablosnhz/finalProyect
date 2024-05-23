@@ -6,7 +6,6 @@ import { MatematicaComponent } from './matematica/matematica.component';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from 'src/app/shared/spinner/spinner.component';
 
-
 @NgModule({
   declarations: [
     NivelesMatematicaComponent,

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, Signal } from '@angular/core';
 import { SheetsDatesService } from 'src/app/core/services/common/sheets-dates.service';
 import { Subscription, timer } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-niveles-matematica',
@@ -25,21 +26,16 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
 
   $loading: Signal<boolean> = this.sheetsService.$loading;
 
-  constructor(private sheetsService: SheetsDatesService) { }
+  constructor(private sheetsService: SheetsDatesService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     // al iniciar la app lo primero que aparece son los datos del sheets
     this.sheetsService.getSheets().subscribe(data => {
-      this.questionsData = data;
-      const numQuestionsPorLevel = 5;
-      for (let i = 0; i < this.questionsData.length; i += numQuestionsPorLevel) {
-        this.levels.push(this.questionsData.slice(i, i + numQuestionsPorLevel));
-        this.answeredQuestionsCounts.push(0);
+      if (data) {
+        this.questionsData = data;
+        this.iniciarLevels();
       }
-      this.selectedOptions = this.levels.map(() => new Array(numQuestionsPorLevel).fill(null));
-      this.modalIds = this.questionsData.map((_, index) => 'modal_' + index);
     });
-
     // controlamos el tiempo tambien una vez iniciada la app inicia el timer
     const storedStartTime = localStorage.getItem('startTime');
     if (storedStartTime) {
@@ -53,7 +49,19 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
       this.startTime = Date.now();
       localStorage.setItem('startTime', this.startTime.toString());
       this.startTimer();
+    };
+
+  }
+
+  // logica de niveles
+  iniciarLevels() {
+    const numQuestionsPorLevel = 5;
+    for (let i = 0; i < this.questionsData.length; i += numQuestionsPorLevel) {
+      this.levels.push(this.questionsData.slice(i, i + numQuestionsPorLevel));
+      this.answeredQuestionsCounts.push(0);
     }
+    this.selectedOptions = this.levels.map(() => new Array(numQuestionsPorLevel).fill(null));
+    this.modalIds = this.questionsData.map((_, index) => 'modal_' + index);
   }
 
   // niveles
@@ -101,13 +109,17 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
 
   // detectamos las respuestas correctas e incorrectas
   isAnswerCorrect(levelIndex: number, questionIndex: number): boolean {
-    const pregunta = this.questionsData[levelIndex * 5 + questionIndex];
+    const pregunta = this.questionsData[questionIndex];
     const selectedOption = this.selectedOptions[levelIndex][questionIndex];
+
     if (selectedOption === null) {
       return false;
     }
     return pregunta.respuestas === pregunta[selectedOption];
   }
+
+
+
 
   // opcion para evaluar la finalizacion de los niveles
   onOptionSelected(levelIndex: number, questionIndex: number, option: string) {

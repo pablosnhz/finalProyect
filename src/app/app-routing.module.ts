@@ -30,7 +30,7 @@ const routes: Routes = [
     loadChildren: () => import('./components/pages/razonamientoLogico/matematica.module').then(m => m.MatematicaModule),
   },
   {
-    path: 'materias/matematica/niveles',
+    path: 'materias/matematica/niveles/:nivel',
     component: NivelesMatematicaComponent,
   },
   // lecturacritica
