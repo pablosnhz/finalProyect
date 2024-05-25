@@ -15,6 +15,13 @@ export class ProgresoComponent implements OnInit{
   constructor(private dataProgress: DataProgressService) { }
 
   ngOnInit(): void {
+    this.updateProgress();
+    this.dataProgress.progressUpdated.subscribe(() => {
+      this.updateProgress();
+    })
+  }
+
+  updateProgress() {
     this.correctAnswers = this.dataProgress.getCorrectAnswers();
     this.incorrectAnswers = this.dataProgress.getIncorrectAnswers();
     this.totalQuestions = this.dataProgress.getTotalQuestions();

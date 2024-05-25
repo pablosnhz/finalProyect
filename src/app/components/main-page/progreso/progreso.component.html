@@ -27,9 +27,13 @@
   <h1>Resultados Razonamiento Logico</h1>
   <p>Respuestas correctas: {{ correctAnswers }}</p>
   <p>Respuestas incorrectas: {{ incorrectAnswers }}</p>
-  <p>Total de preguntas que se hicieron: {{ totalQuestions }}</p>
-  <p>Porcentaje de respuestas correctas: {{ correctPorcentaje | number:'1.2-2' }}%</p>
+  <p>Total de preguntas que se hicieron: {{ totalQuestions }} de 20</p>
+  <p>Porcentaje de respuestas correctas: {{ correctPorcentaje | number:'1.0-0' }}%</p>
+  <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar bg-success" role="progressbar" [style.width.%]="correctPorcentaje" [attr.aria-valuenow]="correctPorcentaje">{{ correctPorcentaje | number:'1.0-0' }}%</div>
+  </div>
 </div>
+
 
 
     <div class="container">

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, Signal } from '@angular/core';
 import { SheetsDatesService } from 'src/app/core/services/common/sheets-dates.service';
 import { Subscription, timer } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { DataProgressService } from 'src/app/core/services/common/data-progress.service';
 
 @Component({
   selector: 'app-niveles-matematica',
@@ -26,7 +27,9 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
 
   $loading: Signal<boolean> = this.sheetsService.$loading;
 
-  constructor(private sheetsService: SheetsDatesService, private route: ActivatedRoute) { }
+  constructor(private sheetsService: SheetsDatesService,
+              private progressService: DataProgressService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     // al iniciar la app lo primero que aparece son los datos del sheets
@@ -34,6 +37,8 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
       if (data) {
         this.questionsData = data;
         this.iniciarLevels();
+        this.loadSelectedOptions();
+        this.restoreSelections();
       }
     });
     // controlamos el tiempo tambien una vez iniciada la app inicia el timer
@@ -56,6 +61,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   // logica de niveles
   iniciarLevels() {
     const numQuestionsPorLevel = 5;
+
     for (let i = 0; i < this.questionsData.length; i += numQuestionsPorLevel) {
       this.levels.push(this.questionsData.slice(i, i + numQuestionsPorLevel));
       this.answeredQuestionsCounts.push(0);
@@ -124,7 +130,12 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   // opcion para evaluar la finalizacion de los niveles
   onOptionSelected(levelIndex: number, questionIndex: number, option: string) {
     this.selectedOptions[levelIndex][questionIndex] = option;
+    // si la respuesta es correcta entonces la toma progressService
+    const isCorrect = this.isAnswerCorrect(levelIndex, questionIndex);
     this.levels[levelIndex][questionIndex].answered = true;
+    this.progressService.recordAnswer(isCorrect);
+    // cada pregunta seleccionada la guardamos
+    this.saveSelectedOptions();
     this.checkAllLevelsCompleted();
   }
 
@@ -182,7 +193,28 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
       this.resetLevel(i);
     }
     document.getElementById('resetGameButton')!.setAttribute('hidden', 'true');
+    // limpiamos tanto los campos de los inputs seleccionados como del localstorege
+    localStorage.removeItem('selectedOptions');
+    // Reiniciar todas las opciones seleccionadas dentro del localstorage para el progressService
+    this.selectedOptions = this.levels.map(() => new Array(5).fill(null));
+
+    // Reiniciar el contador de preguntas respondidas
+    this.answeredQuestionsCounts = this.levels.map(() => 0);
+
+    this.levels.forEach((level) => {
+      level.forEach((question: any) => {
+        question.answered = false;
+      });
+    });
+
+    this.progressService.resetIncorrectAnswers();
+    this.progressService.resetTotalQuestions();
+
+    this.progressService.resetData();
+
   }
+
+
 
   // logica para resetear nivel e incluso el check/block de los niveles
   resetLevel(levelIndex: number) {
@@ -199,7 +231,9 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     });
 
     this.answeredQuestionsCounts[levelIndex] = 0;
-    this.levels[levelIndex].forEach((question: any) => question.answered = false);
+    this.levels[levelIndex].forEach((question: any) => {
+      question.answered = false;
+    });
 
     const lockButton = document.getElementById('levelLockButton' + (levelIndex + 1)) as HTMLElement;
     if (lockButton) {
@@ -215,6 +249,9 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
         lockIcon.style.display = 'inline-block';
       }
     }
+    this.progressService.removeAnswersForLevel(levelIndex);
+
+    this.saveSelectedOptions();
   }
 
   // si todas las preguntas de los 4 niveles fueron completadas entonces aparece el resetTotal
@@ -253,4 +290,50 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
       this.stopTimer();
     }
   }
+
+  // guardamos las respuestas seleccionadas
+  saveSelectedOptions() {
+    localStorage.setItem('selectedOptions', JSON.stringify(this.selectedOptions));
+  }
+
+  // cargamos las preguntas que seleccionamos
+  loadSelectedOptions() {
+    const storedOptions = localStorage.getItem('selectedOptions');
+    if (storedOptions) {
+      this.selectedOptions = JSON.parse(storedOptions);
+    }
+  }
+
+  // cargamos las respuestas que seleccionamos
+  private restoreSelections() {
+    const storedSelections = localStorage.getItem('selectedOptions');
+    if (storedSelections) {
+      this.selectedOptions = JSON.parse(storedSelections);
+      this.updateAnsweredQuestionsCounts();
+
+      for (let levelIndex = 0; levelIndex < this.selectedOptions.length; levelIndex++) {
+        const level = this.selectedOptions[levelIndex];
+        for (let questionIndex = 0; questionIndex < level.length; questionIndex++) {
+          const option = level[questionIndex];
+          if (option !== null) {
+            const pregunta = this.questionsData[questionIndex];
+            const isCorrect = this.isAnswerCorrect(levelIndex, questionIndex);
+            if (isCorrect) {
+              this.levels[levelIndex][questionIndex].answered = true;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  private updateAnsweredQuestionsCounts() {
+    this.answeredQuestionsCounts = this.levels.map((level, levelIndex) => {
+      return level.reduce((count: number, _: any, questionIndex: number) => {
+        return this.selectedOptions[levelIndex][questionIndex] !== null ? count + 1 : count;
+      }, 0);
+    });
+  }
+
 }
