@@ -22,224 +22,121 @@
   </nav>
 </header>
 
-
-<div class="results-container">
-  <h1>Resultados Razonamiento Logico</h1>
-  <p>Respuestas correctas: {{ correctAnswers }}</p>
-  <p>Respuestas incorrectas: {{ incorrectAnswers }}</p>
-  <p>Total de preguntas que se hicieron: {{ totalQuestions }} de 20</p>
-  <p>Porcentaje de respuestas correctas: {{ correctPorcentaje | number:'1.0-0' }}%</p>
-  <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
-    <div class="progress-bar bg-success" role="progressbar" [style.width.%]="correctPorcentaje" [attr.aria-valuenow]="correctPorcentaje">{{ correctPorcentaje | number:'1.0-0' }}%</div>
-  </div>
-</div>
-
-
-
-    <div class="container">
-      <h1 class="display-5 font-weight-bold">Aqui veras tu progreso!</h1>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-          <div class="col">
-            <div class="col box-styles">
-                <div class="d-flex align-items-center">
-                    <div class="text-center">
-                        <a href="./../materias/matematica/matematica.html">
-                            <img src="./../../../../assets/images/matematica.png" class="img-fluid" >
-                        </a>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="mb-3">Razonamiento Logico</h3>
-                        <div class="container-images">
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel1">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 1</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel2">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 2</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel3">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 3</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel4">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 4</a>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="container">
+  <h1 class="display-5 font-weight-bold">¡Aquí verás tu progreso!</h1>
+  <div class="row row-cols-1 row-cols-md-2">
+    <div class="col">
+      <div class="box-styles">
+        <div class="d-flex align-items-center">
+          <div class="text-center">
+            <a [routerLink]="['/materias/matematica/niveles/nivel']">
+              <img src="./../../../../assets/images/matematica.png" class="img-fluids">
+            </a>
           </div>
-          <div class="col">
-            <div class="col box-styles">
-                <div class="d-flex align-items-center">
-                    <div class="text-center">
-                        <a href="./../materias/matematica/matematica.html">
-                            <img src="./../../../../assets/images/lecturacritica.png" class="img-fluid" >
-                        </a>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="mb-3">Lectura Critica</h3>
-                        <div class="container-images">
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel1">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 1</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel2">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 2</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel3">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 3</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel4">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 4</a>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+          <div class="results-container">
+            <h3 class="mb-2 font-weight-bold">Razonamiento Lógico</h3>
+            <div>
+              <p>Respuestas correctas: {{ correctAnswers }}</p>
+              <p>Respuestas incorrectas: {{ incorrectAnswers }}</p>
+              <p>Total de preguntas que se hicieron: {{ totalQuestions }} de 20</p>
+              <p>Porcentaje de respuestas correctas: {{ correctPorcentaje | number:'1.0-0' }}%</p>
+              <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-success" role="progressbar" [style.width.%]="correctPorcentaje" [attr.aria-valuenow]="correctPorcentaje">{{ correctPorcentaje | number:'1.0-0' }}%</div>
+              </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="col box-styles">
-                <div class="d-flex align-items-center">
-                    <div class="text-center">
-                        <a href="./../materias/matematica/matematica.html">
-                            <img src="./../../../../assets/images/socialesyciudadanas.png" class="img-fluid" >
-                        </a>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="mb-3">Sociales y ciudadanas</h3>
-                        <div class="container-images">
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel1">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 1</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel2">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 2</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel3">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 3</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel4">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 4</a>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
-
-          <div class="w-100"></div>
-          <div class="col">
-            <div class="col box-styles">
-                <div class="d-flex align-items-center">
-                    <div class="text-center">
-                        <a href="./../materias/matematica/matematica.html">
-                            <img src="../../../../assets/images/cienciasnaturales.png" class="img-fluid" >
-                        </a>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="mb-3">Ciencias Naturales</h3>
-                        <div class="container-images">
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel1">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 1</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel2">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 2</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel3">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 3</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel4">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 4</a>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="col box-styles">
-                <div class="d-flex align-items-center">
-                    <div class="text-center">
-                        <a href="./../materias/matematica/matematica.html">
-                            <img src="../../../../assets/images/ingles.png" class="img-fluid" >
-                        </a>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="mb-3">Ingles</h3>
-                        <div class="container-images">
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel1">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 1</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel2">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 2</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel3">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 3</a>
-                                </div>
-                            </a>
-                            <a href="./../materias/matematica/niveles/matematicaNiveles.html" class="cursor-pointer">
-                                <div id="nivel4">
-                                    <img src="https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png" class="img-fluid">
-                                    <a>Nivel 4</a>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="box-styles">
+        <div class="d-flex align-items-center">
+          <div class="text-center">
+            <a href="./../materias/matematica/matematica.html">
+              <img src="./../../../../assets/images/lecturacritica.png" class="img-fluids">
+            </a>
+          </div>
+          <div class="ml-4 results-container">
+            <h3 class="mb-2 font-weight-bold">Lectura Critica</h3>
+            <div>
+              <p>Respuestas correctas: {{ correctAnswers }}</p>
+              <p>Respuestas incorrectas: {{ incorrectAnswers }}</p>
+              <p>Total de preguntas que se hicieron: {{ totalQuestions }} de 20</p>
+              <p>Porcentaje de respuestas correctas: {{ correctPorcentaje | number:'1.0-0' }}%</p>
+              <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-success" role="progressbar" [style.width.%]="correctPorcentaje" [attr.aria-valuenow]="correctPorcentaje">{{ correctPorcentaje | number:'1.0-0' }}%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="box-styles">
+        <div class="d-flex align-items-center">
+          <div class="text-center">
+            <a href="./../materias/matematica/matematica.html">
+              <img src="./../../../../assets/images/socialesyciudadanas.png" class="img-fluids">
+            </a>
+          </div>
+          <div class="ml-4 results-container">
+            <h3 class="mb-2 font-weight-bold">Sociales y ciudadanas</h3>
+            <div>
+              <p>Respuestas correctas: {{ correctAnswers }}</p>
+              <p>Respuestas incorrectas: {{ incorrectAnswers }}</p>
+              <p>Total de preguntas que se hicieron: {{ totalQuestions }} de 20</p>
+              <p>Porcentaje de respuestas correctas: {{ correctPorcentaje | number:'1.0-0' }}%</p>
+              <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-success" role="progressbar" [style.width.%]="correctPorcentaje" [attr.aria-valuenow]="correctPorcentaje">{{ correctPorcentaje | number:'1.0-0' }}%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="box-styles">
+        <div class="d-flex align-items-center">
+          <div class="text-center">
+            <a href="./../materias/matematica/matematica.html">
+              <img src="./../../../../assets/images/cienciasnaturales.png" class="img-fluids">
+            </a>
+          </div>
+          <div class="ml-4 results-container">
+            <h3 class="mb-2 font-weight-bold">Ciencias naturales</h3>
+            <div>
+              <p>Respuestas correctas: {{ correctAnswers }}</p>
+              <p>Respuestas incorrectas: {{ incorrectAnswers }}</p>
+              <p>Total de preguntas que se hicieron: {{ totalQuestions }} de 20</p>
+              <p>Porcentaje de respuestas correctas: {{ correctPorcentaje | number:'1.0-0' }}%</p>
+              <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-success" role="progressbar" [style.width.%]="correctPorcentaje" [attr.aria-valuenow]="correctPorcentaje">{{ correctPorcentaje | number:'1.0-0' }}%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-3">
+      <div class="box-styles">
+        <div class="d-flex align-items-center">
+          <div class="text-center">
+            <a href="./../materias/matematica/matematica.html">
+              <img src="./../../../../assets/images/ingles.png" class="img-fluids">
+            </a>
+          </div>
+          <div class="ml-4 results-container">
+            <h3 class="mb-2 font-weight-bold">Ingles</h3>
+            <div>
+              <p>Respuestas correctas: {{ correctAnswers }}</p>
+              <p>Respuestas incorrectas: {{ incorrectAnswers }}</p>
+              <p>Total de preguntas que se hicieron: {{ totalQuestions }} de 20</p>
+              <p>Porcentaje de respuestas correctas: {{ correctPorcentaje | number:'1.0-0' }}%</p>
+              <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-success" role="progressbar" [style.width.%]="correctPorcentaje" [attr.aria-valuenow]="correctPorcentaje">{{ correctPorcentaje | number:'1.0-0' }}%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

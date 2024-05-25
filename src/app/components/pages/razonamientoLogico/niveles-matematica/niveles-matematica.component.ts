@@ -304,7 +304,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     }
   }
 
-  // cargamos las respuestas que seleccionamos
+  // cargamos las respuestas que seleccionamos e incluso el check de los niveles
   private restoreSelections() {
     const storedSelections = localStorage.getItem('selectedOptions');
     if (storedSelections) {
@@ -314,9 +314,10 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
       for (let levelIndex = 0; levelIndex < this.selectedOptions.length; levelIndex++) {
         const level = this.selectedOptions[levelIndex];
         for (let questionIndex = 0; questionIndex < level.length; questionIndex++) {
-          const option = level[questionIndex];
-          if (option !== null) {
-            const pregunta = this.questionsData[questionIndex];
+          const selectedOption = this.selectedOptions[levelIndex][questionIndex];
+          if (selectedOption !== null) {
+            const question = this.levels[levelIndex][questionIndex];
+            question.answered = true;
             const isCorrect = this.isAnswerCorrect(levelIndex, questionIndex);
             if (isCorrect) {
               this.levels[levelIndex][questionIndex].answered = true;
@@ -326,7 +327,6 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
       }
     }
   }
-
 
   private updateAnsweredQuestionsCounts() {
     this.answeredQuestionsCounts = this.levels.map((level, levelIndex) => {
