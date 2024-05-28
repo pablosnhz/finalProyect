@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Signal } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, Signal } from '@angular/core';
 import { SheetsDatesService } from 'src/app/core/services/common/sheets-dates.service';
 import { Subscription, timer } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -55,7 +55,6 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
       localStorage.setItem('startTime', this.startTime.toString());
       this.startTimer();
     };
-
   }
 
   // logica de niveles

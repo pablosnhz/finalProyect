@@ -11,6 +11,7 @@ import { ProgresoComponent } from './components/main-page/progreso/progreso.comp
 
 // Auth0
 import { provideAuth0 } from '@auth0/auth0-angular';
+import { LevelsCompletedComponent } from './shared/levels-completed/levels-completed.component';
 
 
 @NgModule({
