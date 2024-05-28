@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center mb-2">
+<div class="d-flex justify-content-center">
   <div *ngFor="let level of levels; let i = index" class="d-flex justify-content-center">
     <button type="button" class="btn me-2" [ngClass]="isLevelCompleted(i) ? 'btn-success' : 'btn-secondary'" (click)="onSelectLevel(i)">
       <i *ngIf="isLevelCompleted(i)" class="bi bi-check-lg"></i>
@@ -6,3 +6,5 @@
     </button>
   </div>
 </div>
+
+

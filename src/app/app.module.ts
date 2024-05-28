@@ -21,7 +21,6 @@ import { LevelsCompletedComponent } from './shared/levels-completed/levels-compl
     HomeComponent,
     MainPageComponent,
     ProgresoComponent,
-
   ],
 imports: [
     BrowserModule,

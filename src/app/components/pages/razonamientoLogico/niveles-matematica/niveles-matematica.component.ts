@@ -29,7 +29,8 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
 
   constructor(private sheetsService: SheetsDatesService,
               private progressService: DataProgressService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+            ) { }
 
   ngOnInit(): void {
     // al iniciar la app lo primero que aparece son los datos del sheets
