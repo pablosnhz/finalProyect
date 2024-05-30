@@ -120,7 +120,24 @@
   <a [routerLink]="['/materias']" class="btn btn-danger mb-2"><i class="bi bi-box-arrow-left"></i></a>
   <div class="d-flex justify-content-center mb-2">
     <div class="d-flex justify-content-center">
-      <app-levels-completed [levels]="levels" [currentLevelIndex]="currentLevelIndex" (levelSelected)="selectLevel($event)"></app-levels-completed>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn me-2" [ngClass]="isLevelCompleted(0) ? 'btn-success' : 'btn-secondary'" (click)="selectLevel(0)">
+            <i *ngIf="isLevelCompleted(0)" class="bi bi-check-lg"></i>
+            <i *ngIf="!isLevelCompleted(0)" class="bi bi-lock"></i>
+          </button>
+          <button type="button" class="btn me-2" [ngClass]="isLevelCompleted(1) ? 'btn-success' : 'btn-secondary'" (click)="selectLevel(1)">
+            <i *ngIf="isLevelCompleted(1)" class="bi bi-check-lg"></i>
+            <i *ngIf="!isLevelCompleted(1)" class="bi bi-lock"></i>
+          </button>
+          <button type="button" class="btn me-2" [ngClass]="isLevelCompleted(2) ? 'btn-success' : 'btn-secondary'" (click)="selectLevel(2)">
+            <i *ngIf="isLevelCompleted(2)" class="bi bi-check-lg"></i>
+            <i *ngIf="!isLevelCompleted(2)" class="bi bi-lock"></i>
+          </button>
+          <button type="button" class="btn me-2" [ngClass]="isLevelCompleted(3) ? 'btn-success' : 'btn-secondary'" (click)="selectLevel(3)">
+            <i *ngIf="isLevelCompleted(3)" class="bi bi-check-lg"></i>
+            <i *ngIf="!isLevelCompleted(3)" class="bi bi-lock"></i>
+          </button>
+        </div>
     </div>
   </div>
   <a [routerLink]="['/materias']" class="btn btn-primary mb-2"><i class="bi bi-arrow-right"></i></a>

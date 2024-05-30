@@ -27,6 +27,9 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
 
   $loading: Signal<boolean> = this.sheetsService.$loading;
 
+  @Output() levelCompleted = new EventEmitter<number>();
+  @Output() levelSelected = new EventEmitter<number>();
+
   constructor(private sheetsService: SheetsDatesService,
               private progressService: DataProgressService,
               private route: ActivatedRoute,
@@ -91,6 +94,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     this.currentLevelIndex = levelIndex;
     this.currentQuestionIndex = 0;
     this.questionsData = this.levels[this.currentLevelIndex];
+    this.levelSelected.emit(levelIndex);
   }
 
   // control de botones
@@ -272,6 +276,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
         return false;
       }
     }
+    this.levelCompleted.emit(levelIndex);
     return true;
   }
 

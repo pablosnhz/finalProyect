@@ -11,7 +11,7 @@ import { ProgresoComponent } from './components/main-page/progreso/progreso.comp
 
 // Auth0
 import { provideAuth0 } from '@auth0/auth0-angular';
-import { LevelsCompletedComponent } from './shared/levels-completed/levels-completed.component';
+import { NivelesMatematicaComponent } from './components/pages/razonamientoLogico/niveles-matematica/niveles-matematica.component';
 
 
 @NgModule({
@@ -21,6 +21,8 @@ import { LevelsCompletedComponent } from './shared/levels-completed/levels-compl
     HomeComponent,
     MainPageComponent,
     ProgresoComponent,
+
+    NivelesMatematicaComponent
   ],
 imports: [
     BrowserModule,

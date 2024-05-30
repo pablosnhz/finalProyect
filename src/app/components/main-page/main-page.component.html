@@ -28,6 +28,7 @@
   </nav>
 </header>
 
+
 <div id="inicio" class="container">
   <div *ngIf="auth.user$ | async as user">
     <h1 class="display-5 font-weight-bold">{{ user.name }} ¡Empieza la prueba!</h1>
@@ -41,6 +42,13 @@
             <img src="./../../../assets/images/matematica.png" class="img-fluid">
           </a>
         </div>
+
+        <app-niveles-matematica
+        (levelCompleted)="onLevelCompleted($event)"
+        (levelSelected)="onLevelSelected($event)">
+      </app-niveles-matematica>
+
+
         <div class="container-image">
           <a [routerLink]="['/materias/matematica/niveles', 1]" class="cursor-pointer">
             <div id="nivel1">

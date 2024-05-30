@@ -6,14 +6,12 @@ import { NivelesMatematicaComponent } from './niveles-matematica/niveles-matemat
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from 'src/app/shared/spinner/spinner.component';
 import { MatematicaRoutingModule } from './matematica-routing.module';
-import { LevelsCompletedComponent } from 'src/app/shared/levels-completed/levels-completed.component';
 
 @NgModule({
   declarations: [
     MatematicaComponent,
-    NivelesMatematicaComponent,
+    // NivelesMatematicaComponent,
     SpinnerComponent,
-    LevelsCompletedComponent
   ],
   imports: [
     CommonModule,
