@@ -12,6 +12,7 @@ import { ProgresoComponent } from './components/main-page/progreso/progreso.comp
 // Auth0
 import { provideAuth0 } from '@auth0/auth0-angular';
 import { NivelesMatematicaComponent } from './components/pages/razonamientoLogico/niveles-matematica/niveles-matematica.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { NivelesMatematicaComponent } from './components/pages/razonamientoLogic
     HomeComponent,
     MainPageComponent,
     ProgresoComponent,
+    SpinnerComponent,
 
     NivelesMatematicaComponent
   ],

@@ -28,7 +28,8 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   $loading: Signal<boolean> = this.sheetsService.$loading;
 
   @Output() levelCompleted = new EventEmitter<number>();
-  @Output() levelSelected = new EventEmitter<number>();
+  @Output() isSelectLevel = new EventEmitter<number>();
+
 
   constructor(private sheetsService: SheetsDatesService,
               private progressService: DataProgressService,
@@ -94,7 +95,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     this.currentLevelIndex = levelIndex;
     this.currentQuestionIndex = 0;
     this.questionsData = this.levels[this.currentLevelIndex];
-    this.levelSelected.emit(levelIndex);
+    this.isSelectLevel.emit(levelIndex);
   }
 
   // control de botones
@@ -170,6 +171,9 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stopTimer();
+
+    localStorage.setItem('clock', this.clock.toString());
+    localStorage.setItem('startTime', this.startTime.toString());
   }
 
   // formato para controlar el timer
@@ -279,6 +283,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     this.levelCompleted.emit(levelIndex);
     return true;
   }
+
 
   // boton de reseteo total
   isResetGameButtonVisible(): boolean {

@@ -1,6 +1,6 @@
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
-import { NivelesMatematicaComponent } from '../pages/razonamientoLogico/niveles-matematica/niveles-matematica.component';
+
 
 @Component({
   selector: 'app-main-page',
@@ -13,11 +13,14 @@ export class MainPageComponent implements OnInit{
   @Input() levels: any[] = [];
   @Output() levelSelected = new EventEmitter<number>();
 
+  nivelesCompletados: number[] = [];
   levelStatus: boolean[] = [false, false, false, false];
+  completedLevels: Set<number> = new Set<number>();
 
-  constructor(public auth: AuthService, private cdr: ChangeDetectorRef) {}
+  constructor(public auth: AuthService, private cdr: ChangeDetectorRef,) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   logout() {
     this.auth.logout();
@@ -27,15 +30,18 @@ export class MainPageComponent implements OnInit{
     this.levelSelected.emit(levelIndex);
   }
 
-  isLevelCompleted(levelIndex: number): boolean {
-    const level = this.levels[levelIndex];
-    return level && level.every((question: any) => question.answered);
-  }
-
   handleLevelStatusChanged() {
     console.log('Level status changed');
     this.updateLevelsStatus();
     this.cdr.detectChanges();
+  }
+
+  onLevelCompleted(levelIndex: number) {
+    this.completedLevels.add(levelIndex);
+  }
+
+  isLevelCompleted(levelIndex: number): boolean {
+    return this.completedLevels.has(levelIndex);
   }
 
   updateLevelsStatus() {
@@ -46,15 +52,7 @@ export class MainPageComponent implements OnInit{
     return this.isLevelCompleted(levelIndex) ? 'https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Tick_Mark_Circle-512.png' : 'https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png';
   }
 
-  // Handler for the levelSelected event
-  onLevelSelected(levelIndex: number) {
-    this.onSelectLevel(levelIndex);
-  }
 
-  // Handler for the levelCompleted event
-  onLevelCompleted(levelIndex: number) {
-    this.levelStatus[levelIndex] = true;
-    this.updateLevelsStatus();
-  }
+
 
 }

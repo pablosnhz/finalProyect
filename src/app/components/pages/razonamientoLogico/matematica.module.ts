@@ -11,7 +11,7 @@ import { MatematicaRoutingModule } from './matematica-routing.module';
   declarations: [
     MatematicaComponent,
     // NivelesMatematicaComponent,
-    SpinnerComponent,
+    // SpinnerComponent,
   ],
   imports: [
     CommonModule,
