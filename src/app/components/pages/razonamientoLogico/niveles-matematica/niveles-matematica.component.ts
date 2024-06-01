@@ -95,7 +95,8 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     this.currentLevelIndex = levelIndex;
     this.currentQuestionIndex = 0;
     this.questionsData = this.levels[this.currentLevelIndex];
-    this.isSelectLevel.emit(levelIndex);
+    this.isSelectLevel.emit(this.currentLevelIndex);
+    console.log(`Selected Level: ${levelIndex}, Data:`, this.currentLevelIndex);
   }
 
   // control de botones

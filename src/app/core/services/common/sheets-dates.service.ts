@@ -29,7 +29,7 @@ export class SheetsDatesService {
           const jsonData = parse(csvData, { header: true });
           return jsonData.data
           .map((row: any) => ({
-            nivel: row.nivel,
+            // nivel: row.nivel,
             pregunta: row.pregunta,
             enunciado: row.enunciado,
             a: row.a,

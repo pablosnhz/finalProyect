@@ -9,18 +9,14 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class MainPageComponent implements OnInit{
 
-
   @Input() levels: any[] = [];
   @Output() levelSelected = new EventEmitter<number>();
 
-  nivelesCompletados: number[] = [];
-  levelStatus: boolean[] = [false, false, false, false];
   completedLevels: Set<number> = new Set<number>();
 
-  constructor(public auth: AuthService, private cdr: ChangeDetectorRef,) {}
+  constructor(public auth: AuthService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   logout() {
     this.auth.logout();
@@ -28,12 +24,7 @@ export class MainPageComponent implements OnInit{
 
   onSelectLevel(levelIndex: number) {
     this.levelSelected.emit(levelIndex);
-  }
-
-  handleLevelStatusChanged() {
-    console.log('Level status changed');
-    this.updateLevelsStatus();
-    this.cdr.detectChanges();
+    console.log(levelIndex);
   }
 
   onLevelCompleted(levelIndex: number) {
@@ -44,15 +35,10 @@ export class MainPageComponent implements OnInit{
     return this.completedLevels.has(levelIndex);
   }
 
-  updateLevelsStatus() {
-    this.levels = [...this.levels];
-  }
-
   getButtonClass(levelIndex: number): string {
-    return this.isLevelCompleted(levelIndex) ? 'https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Tick_Mark_Circle-512.png' : 'https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png';
+    return this.isLevelCompleted(levelIndex)
+      ? 'https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Tick_Mark_Circle-512.png'
+      : 'https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png';
   }
-
-
-
 
 }
