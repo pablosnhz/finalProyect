@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output, Signal } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, Signal } from '@angular/core';
 import { SheetsDatesService } from 'src/app/core/services/common/sheets-dates.service';
 import { Subscription, timer } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataProgressService } from 'src/app/core/services/common/data-progress.service';
 
 @Component({
@@ -21,22 +21,39 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   selectedOptions: (string | null)[][] = [];
   answeredQuestionsCounts: number[] = [];
 
+  level: number | undefined;
+
   clock: number = 0;
   private timerSubscription: Subscription | undefined;
   private startTime: number = 0;
 
   $loading: Signal<boolean> = this.sheetsService.$loading;
 
+  private queryParamsSubscription: Subscription | undefined;
+
   @Output() levelCompleted = new EventEmitter<number>();
   @Output() isSelectLevel = new EventEmitter<number>();
+  // @Input() set levelIndex(value: number) {
+  //   if (value !== undefined && value !== this.currentLevelIndex) {
+  //     this.selectLevel(value);
+  //   }
+  // }
 
 
   constructor(private sheetsService: SheetsDatesService,
               private progressService: DataProgressService,
               private route: ActivatedRoute,
+              private router: Router
             ) { }
 
   ngOnInit(): void {
+    this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
+      const level = +params['level'];
+      if (!isNaN(level)) {
+        this.selectLevel(level);
+      }
+    });
+
     // al iniciar la app lo primero que aparece son los datos del sheets
     this.sheetsService.getSheets().subscribe(data => {
       if (data) {
@@ -69,6 +86,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     for (let i = 0; i < this.questionsData.length; i += numQuestionsPorLevel) {
       this.levels.push(this.questionsData.slice(i, i + numQuestionsPorLevel));
       this.answeredQuestionsCounts.push(0);
+
     }
     this.selectedOptions = this.levels.map(() => new Array(numQuestionsPorLevel).fill(null));
     this.modalIds = this.questionsData.map((_, index) => 'modal_' + index);
@@ -95,8 +113,17 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
     this.currentLevelIndex = levelIndex;
     this.currentQuestionIndex = 0;
     this.questionsData = this.levels[this.currentLevelIndex];
-    this.isSelectLevel.emit(this.currentLevelIndex);
-    console.log(`Selected Level: ${levelIndex}, Data:`, this.currentLevelIndex);
+    this.isSelectLevel.emit(levelIndex);
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { level: levelIndex },
+      queryParamsHandling: 'merge',
+    });
+
+
+
+    console.log(`Estas en el nivel: ${levelIndex}`);
   }
 
   // control de botones

@@ -45,31 +45,33 @@
 
         <!-- class="hidden-component" -->
         <app-niveles-matematica
-        [levelIndex]="onSelectLevel"
+          [queryParams]="{ level: levelSelected }"
           (levelCompleted)="onLevelCompleted($event)"
           (isSelectLevel)="onSelectLevel($event)">
         </app-niveles-matematica>
 
+
+
         <div class="container-image">
-          <a  class="cursor-pointer" (click)="onSelectLevel(0)">
+          <a class="cursor-pointer" (click)="onSelectLevel(0)" [routerLink]="['/materias/matematica/niveles']" [queryParams]="{ level: 0 }">
             <div id="nivel1">
               <img [src]="getButtonClass(0)" class="img-fluid">
               <p>Nivel 1</p>
             </div>
           </a>
-          <a   class="cursor-pointer" (click)="onSelectLevel(1)">
+          <a class="cursor-pointer" (click)="onSelectLevel(1)" [routerLink]="['/materias/matematica/niveles']" [queryParams]="{ level: 1 }">
             <div id="nivel2">
               <img [src]="getButtonClass(1)" class="img-fluid">
               <p>Nivel 2</p>
             </div>
           </a>
-          <a [routerLink]="['/materias/matematica/niveles', 3]" class="cursor-pointer" (click)="onSelectLevel(2)">
+          <a class="cursor-pointer" (click)="onSelectLevel(2)" [routerLink]="['/materias/matematica/niveles']" [queryParams]="{ level: 2 }">
             <div id="nivel3">
               <img [src]="getButtonClass(2)" class="img-fluid">
               <p>Nivel 3</p>
             </div>
           </a>
-          <a [routerLink]="['/materias/matematica/niveles', 4]" class="cursor-pointer" (click)="onSelectLevel(3)">
+          <a class="cursor-pointer" (click)="onSelectLevel(3)" [routerLink]="['/materias/matematica/niveles']" [queryParams]="{ level: 3 }">
             <div id="nivel4">
               <img [src]="getButtonClass(3)" class="img-fluid">
               <p>Nivel 4</p>

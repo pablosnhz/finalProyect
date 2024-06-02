@@ -24,19 +24,19 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
     component: MainPageComponent,
   },
-  {
-    path: 'materias/matematica',
-    loadChildren: () => import('./components/pages/razonamientoLogico/matematica.module').then(m => m.MatematicaModule),
-  },
   // {
   //   path: 'materias/matematica',
-  //   component: MatematicaComponent,
   //   loadChildren: () => import('./components/pages/razonamientoLogico/matematica.module').then(m => m.MatematicaModule),
   // },
-  // {
-  //   path: 'materias/matematica/niveles/:nivel',
-  //   component: NivelesMatematicaComponent,
-  // },
+  {
+    path: 'materias/matematica',
+    component: MatematicaComponent,
+    loadChildren: () => import('./components/pages/razonamientoLogico/matematica.module').then(m => m.MatematicaModule),
+  },
+  {
+    path: 'materias/matematica/niveles/:level',
+    component: NivelesMatematicaComponent,
+  },
   // lecturacritica
   {
     path: 'materias/lecturacritica',

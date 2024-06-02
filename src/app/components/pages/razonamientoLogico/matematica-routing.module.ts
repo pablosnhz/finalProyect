@@ -9,7 +9,7 @@ const routes: Routes = [
     component: MatematicaComponent,
   },
   {
-    path: 'niveles/:nivel',
+    path: 'niveles',
     component: NivelesMatematicaComponent,
   },
 ];
