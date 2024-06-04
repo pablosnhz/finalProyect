@@ -36,7 +36,7 @@
           <div class="results-container">
             <h3 class="mb-2 font-weight-bold">Razonamiento Lógico</h3>
             <div>
-              <button class="btn btn-danger" (click)="onResetGame()">Resetear Todo</button>
+              <button class="btn btn-danger" *ngIf="showResetButton" (click)="onResetGame()">Resetear Todo</button>
               <p>Respuestas correctas: {{ correctAnswers }}</p>
               <p>Respuestas incorrectas: {{ incorrectAnswers }}</p>
               <p>Total de preguntas que se hicieron: {{ totalQuestions }} de 20</p>

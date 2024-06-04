@@ -4,6 +4,7 @@ import { Subscription, timer } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataProgressService } from 'src/app/core/services/common/data-progress.service';
 import { TimeFinalService } from 'src/app/core/services/common/time-final.service';
+import { ResetGameButtonService } from 'src/app/core/services/common/reset-game-button.service';
 
 @Component({
   selector: 'app-niveles-matematica',
@@ -45,11 +46,13 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   constructor(private sheetsService: SheetsDatesService,
               private progressService: DataProgressService,
               private finalTimeService: TimeFinalService,
+              private resetGameButtonService: ResetGameButtonService,
               private route: ActivatedRoute,
               private router: Router
             ) { }
 
   ngOnInit(): void {
+
     this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
       const level = +params['level'];
       if (!isNaN(level)) {
@@ -71,22 +74,20 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   }
 
   loadTimerState() {
-    const storedStartTime = localStorage.getItem('startTime');
     const storedClock = localStorage.getItem('clock');
     const storedFinalTime = localStorage.getItem('finalTime');
     const allLevelsCompleted = this.allLevelsCompleted();
 
-    if (storedFinalTime && allLevelsCompleted && storedClock) {
-        this.clock = parseInt(storedFinalTime, 10);
-        this.finalTimeService.setFinalTime(this.clock);
-    } else if (storedStartTime && storedClock) {
-        this.startTime = parseInt(storedStartTime, 10);
-        this.clock = parseInt(storedClock, 10);
-        this.startTimer();
+    if (storedFinalTime && allLevelsCompleted) {
+      this.clock = parseInt(storedFinalTime, 10);
+      this.finalTimeService.setFinalTime(this.clock);
+    } else if (storedClock) {
+      this.clock = parseInt(storedClock, 10);
+      this.startTimer();
     } else {
-        this.resetTimer();
+      this.resetTimer();
     }
-}
+  }
 
 
 
@@ -197,31 +198,36 @@ storeFinalTime() {
   // timer
   startTimer() {
     this.stopTimer();
-    if (!this.startTime) {
-        this.startTime = Date.now();
-        localStorage.setItem('startTime', this.startTime.toString());
-    }
+    const storedClock = parseInt(localStorage.getItem('clock') || '0', 10);
+    this.clock = storedClock;
+    this.startTime = Date.now();
+    localStorage.setItem('startTime', this.startTime.toString());
     this.timerSubscription = timer(0, 1000).subscribe(() => {
-        const currentTime = Date.now();
-        this.clock = Math.floor((currentTime - this.startTime) / 1000);
+      const currentTime = Date.now();
+      this.clock = storedClock + Math.floor((currentTime - this.startTime) / 1000);
+      localStorage.setItem('clock', this.clock.toString());
     });
-}
+  }
 
-stopTimer() {
-  if (this.timerSubscription) {
+  stopTimer() {
+    if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
       this.timerSubscription = undefined;
+    }
+    localStorage.setItem('clock', this.clock.toString());
+    localStorage.removeItem('startTime');
   }
-  localStorage.setItem('clock', this.clock.toString());
-}
+
 
   resetTimer() {
     this.stopTimer();
     this.clock = 0;
+    localStorage.setItem('clock', this.clock.toString());
     this.startTime = Date.now();
     localStorage.setItem('startTime', this.startTime.toString());
     this.startTimer();
   }
+
 
   ngOnDestroy(): void {
     this.stopTimer();
@@ -237,16 +243,13 @@ stopTimer() {
     const minutes = Math.floor((this.clock % 3600) / 60);
     const seconds = this.clock % 60;
 
-    const formattedHours = this.padZero(hours);
-    const formattedMinutes = this.padZero(minutes);
-    const formattedSeconds = this.padZero(seconds);
-
-    return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    return `${this.padZero(hours)}:${this.padZero(minutes)}:${this.padZero(seconds)}`;
   }
 
-  padZero(value: number): string {
-    return value < 10 ? `0${value}` : `${value}`;
+  padZero(num: number): string {
+    return num < 10 ? '0' + num : num.toString();
   }
+
 
 
   // logica para resetear total
@@ -257,6 +260,7 @@ stopTimer() {
 
     // reseteo progreso y timer
     this.resetTimer();
+
     for (let i = 0; i < this.levels.length; i++) {
       this.resetLevel(i);
     }
@@ -279,11 +283,18 @@ stopTimer() {
         question.answered = false;
       });
     });
+
     this.progressService.resetIncorrectAnswers();
     this.progressService.resetTotalQuestions();
     this.progressService.resetData();
+    this.resetGameProgress();
   }
 
+  resetGameProgress() {
+    this.resetGameButtonService.resetGame$.subscribe(() => {
+      this.resetGame();
+    })
+  }
 
   // logica para resetear nivel e incluso el check/block de los niveles
   resetLevel(levelIndex: number) {
@@ -329,9 +340,15 @@ stopTimer() {
   }
 
   // verificamo que todos los niveles hayan sido resueltos
+  // refactorice el codigo para hacer el condicional del resetButton show en progreso
   allLevelsCompleted(): boolean {
-    return this.levels.every((_, index) => this.isLevelCompleted(index));
+    const allLevelsCompleted = this.levels.every((_, index) => this.isLevelCompleted(index));
+    if (allLevelsCompleted) {
+      this.resetGameButtonService.setShowResetButton(true);
+    }
+    return allLevelsCompleted;
   }
+
 
   // verificamos los niveles que fueron resueltos
   isLevelCompleted(levelIndex: number): boolean {
@@ -344,7 +361,6 @@ stopTimer() {
     this.levelCompleted.emit(levelIndex);
     return true;
   }
-
 
   // boton de reseteo total
   isResetGameButtonVisible(): boolean {

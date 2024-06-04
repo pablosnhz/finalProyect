@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataProgressService } from 'src/app/core/services/common/data-progress.service';
 import { ResetGameButtonService } from 'src/app/core/services/common/reset-game-button.service';
 import { TimeFinalService } from 'src/app/core/services/common/time-final.service';
@@ -8,13 +8,14 @@ import { TimeFinalService } from 'src/app/core/services/common/time-final.servic
   templateUrl: './progreso.component.html',
   styleUrls: ['./progreso.component.scss']
 })
-export class ProgresoComponent implements OnInit{
+export class ProgresoComponent implements OnInit, OnDestroy{
   correctAnswers: number = 0;
   incorrectAnswers: number = 0;
   totalQuestions: number = 0;
   correctPorcentaje: number = 0;
 
   finalTimer: number | undefined;
+  showResetButton: boolean = false;
 
   constructor(private dataProgress: DataProgressService,
               private resetGameService: ResetGameButtonService,
@@ -22,6 +23,10 @@ export class ProgresoComponent implements OnInit{
     this.finalTimerService.getFinalTime().subscribe((time: number) => {
       this.finalTimer = time;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.showButtonReset();
   }
 
   ngOnInit(): void {
@@ -34,10 +39,20 @@ export class ProgresoComponent implements OnInit{
       this.finalTimer = time;
       console.log("Final timer received:", this.finalTimer);
     });
+
+    this.showButtonReset();
   }
 
   onResetGame() {
     this.resetGameService.triggerResetGame();
+  }
+
+  showButtonReset() {
+    this.resetGameService.showResetButton$.subscribe((show: boolean) => {
+      this.showResetButton = show;
+      console.log("Button Reset Progreso:", this.showResetButton);
+
+    });
   }
 
   updateProgress() {
