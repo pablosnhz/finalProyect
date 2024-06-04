@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataProgressService } from 'src/app/core/services/common/data-progress.service';
+import { ResetGameButtonService } from 'src/app/core/services/common/reset-game-button.service';
+import { TimeFinalService } from 'src/app/core/services/common/time-final.service';
 
 @Component({
   selector: 'app-progreso',
@@ -12,13 +14,30 @@ export class ProgresoComponent implements OnInit{
   totalQuestions: number = 0;
   correctPorcentaje: number = 0;
 
-  constructor(private dataProgress: DataProgressService) { }
+  finalTimer: number | undefined;
+
+  constructor(private dataProgress: DataProgressService,
+              private resetGameService: ResetGameButtonService,
+              private finalTimerService: TimeFinalService) {
+    this.finalTimerService.getFinalTime().subscribe((time: number) => {
+      this.finalTimer = time;
+    });
+  }
 
   ngOnInit(): void {
     this.updateProgress();
     this.dataProgress.progressUpdated.subscribe(() => {
       this.updateProgress();
-    })
+    });
+
+    this.finalTimerService.getFinalTime().subscribe((time: number) => {
+      this.finalTimer = time;
+      console.log("Final timer received:", this.finalTimer);
+    });
+  }
+
+  onResetGame() {
+    this.resetGameService.triggerResetGame();
   }
 
   updateProgress() {

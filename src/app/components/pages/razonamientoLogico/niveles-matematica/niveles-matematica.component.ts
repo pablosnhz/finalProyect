@@ -3,6 +3,7 @@ import { SheetsDatesService } from 'src/app/core/services/common/sheets-dates.se
 import { Subscription, timer } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { DataProgressService } from 'src/app/core/services/common/data-progress.service';
+import { TimeFinalService } from 'src/app/core/services/common/time-final.service';
 
 @Component({
   selector: 'app-niveles-matematica',
@@ -30,9 +31,11 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   @Output() levelCompleted = new EventEmitter<number>();
   @Output() isSelectLevel = new EventEmitter<number>();
 
+  private finalTime: number | null = null;
 
   constructor(private sheetsService: SheetsDatesService,
               private progressService: DataProgressService,
+              private finalTimeService: TimeFinalService,
               private route: ActivatedRoute,
             ) { }
 
@@ -47,20 +50,35 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
       }
     });
     // controlamos el tiempo tambien una vez iniciada la app inicia el timer
-    const storedStartTime = localStorage.getItem('startTime');
-    if (storedStartTime) {
-      this.startTime = parseInt(storedStartTime, 10);
-      if (this.startTime > Date.now()) {
-        this.resetTimer();
-      } else {
-        this.startTimer();
-      }
-    } else {
-      this.startTime = Date.now();
-      localStorage.setItem('startTime', this.startTime.toString());
-      this.startTimer();
-    };
+    this.loadTimerState();
   }
+
+  loadTimerState() {
+    const storedStartTime = localStorage.getItem('startTime');
+    const storedClock = localStorage.getItem('clock');
+    const storedFinalTime = localStorage.getItem('finalTime');
+    const allLevelsCompleted = this.allLevelsCompleted();
+
+    if (storedFinalTime && allLevelsCompleted && storedClock) {
+        this.clock = parseInt(storedFinalTime, 10);
+        this.finalTimeService.setFinalTime(this.clock);
+    } else if (storedStartTime && storedClock) {
+        this.startTime = parseInt(storedStartTime, 10);
+        this.clock = parseInt(storedClock, 10);
+        this.startTimer();
+    } else {
+        this.resetTimer();
+    }
+}
+
+
+
+storeFinalTime() {
+  if (this.allLevelsCompleted()) {
+      this.finalTime = this.clock;
+      localStorage.setItem('finalTime', this.finalTime.toString());
+  }
+}
 
   // logica de niveles
   iniciarLevels() {
@@ -115,6 +133,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
       if (this.allQuestionsAnswered()) {
         document.getElementById('resetGameButton')!.removeAttribute('hidden');
         this.stopTimer();
+        this.storeFinalTime();
       }
     }
   }
@@ -136,31 +155,38 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   // opcion para evaluar la finalizacion de los niveles
   onOptionSelected(levelIndex: number, questionIndex: number, option: string) {
     this.selectedOptions[levelIndex][questionIndex] = option;
-    // si la respuesta es correcta entonces la toma progressService
     const isCorrect = this.isAnswerCorrect(levelIndex, questionIndex);
     this.levels[levelIndex][questionIndex].answered = true;
+
+    // Actualizar el progreso en el servicio
     this.progressService.recordAnswer(isCorrect);
-    // cada pregunta seleccionada la guardamos
+
+    // Guardar las opciones seleccionadas
     this.saveSelectedOptions();
     this.checkAllLevelsCompleted();
   }
 
+
   // timer
   startTimer() {
     this.stopTimer();
-
+    if (!this.startTime) {
+        this.startTime = Date.now();
+        localStorage.setItem('startTime', this.startTime.toString());
+    }
     this.timerSubscription = timer(0, 1000).subscribe(() => {
-      const currentTime = Date.now();
-      this.clock = Math.floor((currentTime - this.startTime) / 1000);
+        const currentTime = Date.now();
+        this.clock = Math.floor((currentTime - this.startTime) / 1000);
     });
-  }
+}
 
-  stopTimer() {
-    if (this.timerSubscription) {
+stopTimer() {
+  if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
       this.timerSubscription = undefined;
-    }
   }
+  localStorage.setItem('clock', this.clock.toString());
+}
 
   resetTimer() {
     this.stopTimer();
@@ -172,6 +198,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stopTimer();
+    this.storeFinalTime();
 
     localStorage.setItem('clock', this.clock.toString());
     localStorage.setItem('startTime', this.startTime.toString());
@@ -197,32 +224,38 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
 
   // logica para resetear total
   resetGame() {
+    // Reinicia el tiempo final a cero
+    this.finalTime = null;
+    localStorage.removeItem('finalTime');
+
+    // reseteo progreso y timer
     this.resetTimer();
     for (let i = 0; i < this.levels.length; i++) {
       this.resetLevel(i);
     }
     document.getElementById('resetGameButton')!.setAttribute('hidden', 'true');
-    // limpiamos tanto los campos de los inputs seleccionados como del localstorege
+
+    // Limpia los campos
     localStorage.removeItem('selectedOptions');
-    // Reiniciar todas las opciones seleccionadas dentro del localstorage para el progressService
+    localStorage.removeItem('startTime');
+    localStorage.removeItem('clock');
+
+    // Reiniciar todas las opciones seleccionadas para el progressService
     this.selectedOptions = this.levels.map(() => new Array(5).fill(null));
 
-    // Reiniciar el contador de preguntas respondidas
+    // Reiniciar el contador de preguntas respondidas para el progress
     this.answeredQuestionsCounts = this.levels.map(() => 0);
 
+    // Marcar todas las preguntas como no respondidas y restablecer el progreso del servicio
     this.levels.forEach((level) => {
       level.forEach((question: any) => {
         question.answered = false;
       });
     });
-
     this.progressService.resetIncorrectAnswers();
     this.progressService.resetTotalQuestions();
-
     this.progressService.resetData();
-
   }
-
 
 
   // logica para resetear nivel e incluso el check/block de los niveles
@@ -299,6 +332,7 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
   private checkAllLevelsCompleted() {
     if (this.allLevelsCompleted()) {
       this.stopTimer();
+      this.storeFinalTime();
     }
   }
 
