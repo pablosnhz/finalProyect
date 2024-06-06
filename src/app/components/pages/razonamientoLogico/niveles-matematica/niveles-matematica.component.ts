@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, Signal } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, Signal } from '@angular/core';
 import { SheetsDatesService } from 'src/app/core/services/common/sheets-dates.service';
 import { Subscription, timer } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -70,8 +70,12 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
       }
     });
     // controlamos el tiempo tambien una vez iniciada la app inicia el timer
-    this.loadTimerState();
+    // this.loadTimerState();
   }
+
+  // ngAfterViewInit(): void {
+  //   this.loadTimerState();
+  // }
 
   loadTimerState() {
     const storedClock = localStorage.getItem('clock');
@@ -93,8 +97,8 @@ export class NivelesMatematicaComponent implements OnInit, OnDestroy {
 
 storeFinalTime() {
   if (this.allLevelsCompleted()) {
-      this.finalTime = this.clock;
-      localStorage.setItem('finalTime', this.finalTime.toString());
+    this.finalTime = this.clock;
+    localStorage.setItem('finalTime', this.finalTime.toString());
   }
 }
 
@@ -353,6 +357,13 @@ storeFinalTime() {
   // verificamos los niveles que fueron resueltos
   isLevelCompleted(levelIndex: number): boolean {
     const questions = this.levels[levelIndex];
+
+    // Verificar si questions es nulo o indefinido, o si no es un arreglo iterable
+    if (!questions || !Array.isArray(questions)) {
+      return false;
+    }
+
+    // Iterar sobre las preguntas solo si questions es un arreglo iterable
     for (const question of questions) {
       if (!question.answered) {
         return false;
@@ -361,6 +372,7 @@ storeFinalTime() {
     this.levelCompleted.emit(levelIndex);
     return true;
   }
+
 
   // boton de reseteo total
   isResetGameButtonVisible(): boolean {
