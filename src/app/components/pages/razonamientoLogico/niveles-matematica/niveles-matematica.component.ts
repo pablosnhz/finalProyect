@@ -35,11 +35,6 @@ private queryParamsSubscription: Subscription | undefined;
 
 @Output() levelCompleted = new EventEmitter<number>();
 @Output() isSelectLevel = new EventEmitter<number>();
-// @Input() set levelIndex(value: number) {
-//   if (value !== undefined && value !== this.currentLevelIndex) {
-//     this.selectLevel(value);
-//   }
-// }
 
 private finalTime: number | null = null;
 
@@ -52,7 +47,6 @@ constructor(private sheetsService: SheetsDatesService,
           ) { }
 
 ngOnInit(): void {
-
   this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
     const level = +params['level'];
     if (!isNaN(level)) {
@@ -69,8 +63,9 @@ ngOnInit(): void {
     }
   });
   // controlamos el tiempo tambien una vez iniciada la app inicia el timer
+  // !estamos probando esto
   this.loadTimerState();
-}
+  }
 
 loadTimerState() {
   const storedClock = localStorage.getItem('clock');
@@ -143,7 +138,6 @@ selectLevel(levelIndex: number) {
     queryParamsHandling: 'merge',
   });
   console.log(`Estas en el nivel: ${levelIndex}`);
-
 }
 
 // control de botones
@@ -178,9 +172,6 @@ isAnswerCorrect(levelIndex: number, questionIndex: number): boolean {
   }
   return pregunta.respuestas === pregunta[selectedOption];
 }
-
-
-
 
 // opcion para evaluar la finalizacion de los niveles
 onOptionSelected(levelIndex: number, questionIndex: number, option: string) {
@@ -253,8 +244,6 @@ formatClock(): string {
 padZero(num: number): string {
   return num < 10 ? '0' + num : num.toString();
 }
-
-
 
 // logica para resetear total
 resetGame() {
@@ -385,7 +374,6 @@ private checkAllLevelsCompleted() {
     this.storeFinalTime();
   }
 }
-
 
 // guardamos las respuestas seleccionadas
 saveSelectedOptions() {

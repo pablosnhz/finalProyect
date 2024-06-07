@@ -15,7 +15,7 @@ export class ProgresoComponent implements OnInit, OnDestroy {
   totalQuestions: number = 0;
   correctPorcentaje: number = 0;
 
-  finalTimer: number | undefined;
+  finalTimer: number | undefined = 0;
   showResetButton: boolean = false;
 
   private subscriptions: Subscription[] = [];
@@ -64,6 +64,8 @@ export class ProgresoComponent implements OnInit, OnDestroy {
   onResetGame() {
     this.resetGameService.triggerResetGame();
     this.showResetButton = false;
+    // aplicamos el timer para que se resetee el tiempo
+    this.finalTimer = 0;
   }
 
   updateProgress() {
@@ -71,5 +73,17 @@ export class ProgresoComponent implements OnInit, OnDestroy {
     this.incorrectAnswers = this.dataProgress.getIncorrectAnswers();
     this.totalQuestions = this.dataProgress.getTotalQuestions();
     this.correctPorcentaje = this.dataProgress.getCorrectPorcentaje();
+  }
+
+  // formato para hacer el cambio del tiempo el cual antes por defecto me llegaba 21:00:00
+  formatTime(seconds: number): string {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    return `${this.padZero(hours)}:${this.padZero(minutes)}:${this.padZero(secs)}`;
+  }
+
+  padZero(num: number): string {
+    return num < 10 ? '0' + num : num.toString();
   }
 }

@@ -25,7 +25,6 @@ export class MainPageComponent implements OnInit{
 
   onSelectLevel(levelIndex: number) {
     this.levelSelected.emit(levelIndex);
-    // this.router.navigate([], {
     this.router.navigate([], {
       queryParams: { level: levelIndex },
       queryParamsHandling: 'merge',

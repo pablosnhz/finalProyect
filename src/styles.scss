@@ -21,5 +21,11 @@ body {
   color-scheme: light dark;
   padding: 1em;
   max-width: $max-width;
-}
 
+
+  // desactivar copia de textos
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
