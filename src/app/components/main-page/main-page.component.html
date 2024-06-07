@@ -43,14 +43,14 @@
           </a>
         </div>
 
-        <app-niveles-matematica
-        class="hidden-component"
-          [queryParams]="{ level: levelSelected }"
-          (levelCompleted)="onLevelCompleted($event)"
-          (isSelectLevel)="onSelectLevel($event)">
-        </app-niveles-matematica>
-
-
+        <div *ngIf="levelSelected !== null">
+          <app-niveles-matematica
+            class="hidden-component"
+            [queryParams]="{ level: levelSelected }"
+            (levelCompleted)="onLevelCompleted($event)"
+            (isSelectLevel)="onSelectLevel($event)">
+          </app-niveles-matematica>
+        </div>
 
         <div class="container-image">
           <a class="cursor-pointer"  [routerLink]="['/materias/matematica/niveles']" [queryParams]="{ level: 0 }">

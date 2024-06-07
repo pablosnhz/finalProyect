@@ -1,18 +1,25 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimeFinalService {
 
-  private finalTime: BehaviorSubject<number> = new BehaviorSubject(0);
+  private finalTimeSubject = new BehaviorSubject<number>(this.getFinalTimeFromStorage());
+  finalTime$ = this.finalTimeSubject.asObservable();
 
   setFinalTime(time: number) {
-    this.finalTime.next(time);
+    localStorage.setItem('finalTime', time.toString());
+    this.finalTimeSubject.next(time);
   }
 
-  getFinalTime(): Observable<number> {
-    return this.finalTime.asObservable();
+  getFinalTime(): BehaviorSubject<number> {
+    return this.finalTimeSubject;
+  }
+
+  private getFinalTimeFromStorage(): number {
+    const storedTime = localStorage.getItem('finalTime');
+    return storedTime ? parseInt(storedTime, 10) : 0;
   }
 }
