@@ -46,8 +46,4 @@ export class MainPageComponent implements OnInit{
       : 'https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png';
   }
 
-  onDataSelected(numQuestionsPorLevel: number) {
-    console.log(`Número de preguntas por nivel: ${numQuestionsPorLevel}`);
-    // Aquí puedes manejar los datos emitidos por el evento dataSelected
-  }
 }
