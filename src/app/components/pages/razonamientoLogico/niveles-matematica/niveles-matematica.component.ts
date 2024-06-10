@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataProgressService } from 'src/app/core/services/common/data-progress.service';
 import { TimeFinalService } from 'src/app/core/services/common/time-final.service';
 import { ResetGameButtonService } from 'src/app/core/services/common/reset-game-button.service';
+import { LevelService } from 'src/app/core/services/common/level-service.service';
 
 @Component({
 selector: 'app-niveles-matematica',
@@ -43,10 +44,15 @@ constructor(private sheetsService: SheetsDatesService,
             private finalTimeService: TimeFinalService,
             private resetGameButtonService: ResetGameButtonService,
             private route: ActivatedRoute,
-            private router: Router
-          ) { }
+            private router: Router,
+            private levelService: LevelService
+          ) { this.loadTimerState(); }
 
 ngOnInit(): void {
+  // controlamos el tiempo tambien una vez iniciada la app inicia el timer
+  // !estamos probando esto
+  this.loadTimerState();
+
   this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
     const level = +params['level'];
     if (!isNaN(level)) {
@@ -62,9 +68,7 @@ ngOnInit(): void {
       this.restoreSelections();
     }
   });
-  // controlamos el tiempo tambien una vez iniciada la app inicia el timer
-  // !estamos probando esto
-  this.loadTimerState();
+
   }
 
 loadTimerState() {
@@ -93,6 +97,8 @@ storeFinalTime() {
 if (this.allLevelsCompleted()) {
   this.finalTime = this.clock;
   localStorage.setItem('finalTime', this.finalTime.toString());
+  // SOLUCION DEL TIMER QUE LLEGABA EN CERO
+  this.finalTimeService.getFinalTime().next(this.finalTime);
   }
 }
 
@@ -130,7 +136,7 @@ selectLevel(levelIndex: number) {
   this.currentLevelIndex = levelIndex;
   this.currentQuestionIndex = 0;
   this.questionsData = this.levels[this.currentLevelIndex];
-  this.isSelectLevel.emit(levelIndex);
+  // this.levelService.levelCompletedService(levelIndex);
 
   this.router.navigate([], {
     relativeTo: this.route,
@@ -351,7 +357,7 @@ isLevelCompleted(levelIndex: number): boolean {
       return false;
     }
   }
-  this.levelCompleted.emit(levelIndex);
+  this.levelService.levelCompletedService(levelIndex);
   return true;
 }
 

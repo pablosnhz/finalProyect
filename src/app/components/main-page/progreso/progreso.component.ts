@@ -3,6 +3,7 @@ import { DataProgressService } from 'src/app/core/services/common/data-progress.
 import { ResetGameButtonService } from 'src/app/core/services/common/reset-game-button.service';
 import { TimeFinalService } from 'src/app/core/services/common/time-final.service';
 import { Subscription } from 'rxjs';
+import { LevelService } from 'src/app/core/services/common/level-service.service';
 
 @Component({
   selector: 'app-progreso',
@@ -18,16 +19,18 @@ export class ProgresoComponent implements OnInit, OnDestroy {
   finalTimer: number | undefined = 0;
   showResetButton: boolean = false;
 
-  private subscriptions: Subscription[] = [];
+  public subscriptions: Subscription[] = [];
 
   constructor(
     private dataProgress: DataProgressService,
     private resetGameService: ResetGameButtonService,
-    private finalTimerService: TimeFinalService
+    private finalTimerService: TimeFinalService,
+    private levelService: LevelService,
   ) {
     this.subscriptions.push(
       this.finalTimerService.getFinalTime().subscribe((time: number) => {
         this.finalTimer = time;
+        console.log("Constructor Final timer:", this.finalTimer);
       })
     );
   }
@@ -37,6 +40,7 @@ export class ProgresoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
     this.updateProgress();
     this.subscriptions.push(
       this.dataProgress.progressUpdated.subscribe(() => {
@@ -47,7 +51,7 @@ export class ProgresoComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.finalTimerService.getFinalTime().subscribe((time: number) => {
         this.finalTimer = time;
-        console.log("Final timer received:", this.finalTimer);
+        console.log("Final timer:", this.finalTimer);
       })
     );
 
@@ -66,6 +70,7 @@ export class ProgresoComponent implements OnInit, OnDestroy {
     this.showResetButton = false;
     // aplicamos el timer para que se resetee el tiempo
     this.finalTimer = 0;
+    this.levelService.removeCompletedLevels();
   }
 
   updateProgress() {
