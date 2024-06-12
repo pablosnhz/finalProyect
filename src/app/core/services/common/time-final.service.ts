@@ -14,6 +14,11 @@ export class TimeFinalService {
     this.finalTimeSubject.next(time);
   }
 
+  resetFinalTime() {
+    localStorage.removeItem('finalTime');
+    this.finalTimeSubject.next(0);
+  }
+
   getFinalTime(): BehaviorSubject<number> {
     return this.finalTimeSubject;
   }

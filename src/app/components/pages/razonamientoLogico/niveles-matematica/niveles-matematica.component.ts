@@ -46,13 +46,11 @@ constructor(private sheetsService: SheetsDatesService,
             private route: ActivatedRoute,
             private router: Router,
             private levelService: LevelService
-          ) { this.loadTimerState(); }
+          ) {
+            this.loadTimerState();
+           }
 
 ngOnInit(): void {
-  // controlamos el tiempo tambien una vez iniciada la app inicia el timer
-  // !estamos probando esto
-  this.loadTimerState();
-
   this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
     const level = +params['level'];
     if (!isNaN(level)) {
@@ -63,6 +61,8 @@ ngOnInit(): void {
   this.sheetsService.getSheets().subscribe(data => {
     if (data) {
       this.questionsData = data;
+      // controlamos el tiempo tambien una vez iniciada la app inicia el timer
+      this.loadTimerState();
       this.iniciarLevels();
       this.loadSelectedOptions();
       this.restoreSelections();
@@ -79,8 +79,7 @@ loadTimerState() {
   // aca y no en el onInit que anteriormente presentaba errores con el timer...
   this.resetGameButtonService.resetGame$.subscribe(() => {
     this.resetGame();
-    this.resetTimer();
-  })
+  });
 
   if (storedFinalTime && allLevelsCompleted) {
     this.clock = parseInt(storedFinalTime, 10);
@@ -287,7 +286,9 @@ resetGame() {
   this.progressService.resetTotalQuestions();
   this.progressService.resetData();
 
-  this.resetGameButtonService.setShowResetButton(false);
+  if(this.allLevelsCompleted()) {
+    return this.resetGameButtonService.setShowResetButton(true);
+  }
 
 }
 

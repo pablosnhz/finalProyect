@@ -27,12 +27,12 @@ export class ProgresoComponent implements OnInit, OnDestroy {
     private finalTimerService: TimeFinalService,
     private levelService: LevelService,
   ) {
-    this.subscriptions.push(
-      this.finalTimerService.getFinalTime().subscribe((time: number) => {
-        this.finalTimer = time;
-        console.log("Constructor Final timer:", this.finalTimer);
-      })
-    );
+    // this.subscriptions.push(
+    //   this.finalTimerService.getFinalTime().subscribe((time: number) => {
+    //     this.finalTimer = time;
+    //     console.log("Constructor Final timer:", this.finalTimer);
+    //   })
+    // );
   }
 
   ngOnDestroy(): void {
@@ -63,14 +63,19 @@ export class ProgresoComponent implements OnInit, OnDestroy {
     );
 
     this.showResetButton = this.resetGameService.getShowResetButtonFromStorage();
+
+
   }
 
   onResetGame() {
     this.resetGameService.triggerResetGame();
+    this.finalTimerService.resetFinalTime();
+    this.levelService.removeCompletedLevels();
     this.showResetButton = false;
     // aplicamos el timer para que se resetee el tiempo
     this.finalTimer = 0;
-    this.levelService.removeCompletedLevels();
+
+    this.dataProgress.resetData();
   }
 
   updateProgress() {
