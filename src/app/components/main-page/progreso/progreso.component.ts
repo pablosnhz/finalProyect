@@ -63,20 +63,24 @@ export class ProgresoComponent implements OnInit, OnDestroy {
     );
 
     this.showResetButton = this.resetGameService.getShowResetButtonFromStorage();
+}
 
+onResetGame() {
+  localStorage.removeItem('completedLevels');
+  localStorage.removeItem('selectedOptions');
+  this.resetGameService.triggerResetGame();
+  this.finalTimerService.resetFinalTime();
+  this.levelService.removeCompletedLevels();
+  this.showResetButton = false;
+  this.finalTimer = 0;
 
-  }
+  this.dataProgress.resetData();
+  // localStorage.removeItem('completedLevels'); // Asegúrate de limpiar los datos de niveles completados
+  // localStorage.removeItem('finalTime');
+  // localStorage.removeItem('clock');
+  // localStorage.removeItem('startTime');
+}
 
-  onResetGame() {
-    this.resetGameService.triggerResetGame();
-    this.finalTimerService.resetFinalTime();
-    this.levelService.removeCompletedLevels();
-    this.showResetButton = false;
-    // aplicamos el timer para que se resetee el tiempo
-    this.finalTimer = 0;
-
-    this.dataProgress.resetData();
-  }
 
   updateProgress() {
     this.correctAnswers = this.dataProgress.getCorrectAnswers();

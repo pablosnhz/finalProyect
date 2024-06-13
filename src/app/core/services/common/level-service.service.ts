@@ -30,7 +30,9 @@ export class LevelService {
 
   removeCompletedLevels(): void {
     localStorage.removeItem('completedLevels');
-    this.getCompletedLevels().clear();
+    // this.getCompletedLevels().clear();
+
+    this.completedLevels.clear();
   }
 
   private saveCompletedLevels(): void {

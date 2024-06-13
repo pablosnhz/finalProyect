@@ -282,10 +282,6 @@ resetGame() {
       });
   });
 
-  this.progressService.resetIncorrectAnswers();
-  this.progressService.resetTotalQuestions();
-  this.progressService.resetData();
-
   if(this.allLevelsCompleted()) {
     return this.resetGameButtonService.setShowResetButton(true);
   }

@@ -15,6 +15,7 @@ export class TimeFinalService {
   }
 
   resetFinalTime() {
+    localStorage.removeItem('clock');
     localStorage.removeItem('finalTime');
     this.finalTimeSubject.next(0);
   }
