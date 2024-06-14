@@ -18,6 +18,7 @@ datos: any[] = [];
 selectedOption: string | null = null;
 questionsData: any[] = [];
 levels: any[] = [];
+totalLevels: number = 4;
 currentLevelIndex: number = 0;
 currentQuestionIndex: number = 0;
 modalIds: string[] = [];
@@ -288,6 +289,7 @@ resetGame() {
 
 }
 
+
 // logica para resetear nivel e incluso el check/block de los niveles
 resetLevel(levelIndex: number) {
   if (!this.selectedOptions[levelIndex]) {
@@ -342,7 +344,6 @@ allLevelsCompleted(): boolean {
 // verificamos los niveles que fueron resueltos
 isLevelCompleted(levelIndex: number): boolean {
   const questions = this.levels[levelIndex];
-
   // Verificar si questions es nulo o indefinido, o si no es un arreglo iterable
   if (!questions || !Array.isArray(questions)) {
     return false;
@@ -357,7 +358,6 @@ isLevelCompleted(levelIndex: number): boolean {
   this.levelService.levelCompletedService(levelIndex);
   return true;
 }
-
 
 // boton de reseteo total
 isResetGameButtonVisible(): boolean {
