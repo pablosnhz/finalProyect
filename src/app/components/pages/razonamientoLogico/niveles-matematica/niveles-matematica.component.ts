@@ -35,6 +35,9 @@ $loading: Signal<boolean> = this.sheetsService.$loading;
 
 private queryParamsSubscription: Subscription | undefined;
 
+// modal next level
+showCompletedModal: boolean = false;
+
 @Output() levelCompleted = new EventEmitter<number>();
 @Output() isSelectLevel = new EventEmitter<number>();
 
@@ -69,8 +72,7 @@ ngOnInit(): void {
       this.restoreSelections();
     }
   });
-
-  }
+}
 
 loadTimerState() {
   const storedClock = localStorage.getItem('clock');
@@ -128,6 +130,7 @@ nextLevel() {
     this.currentLevelIndex++;
     this.currentQuestionIndex = 0;
     this.checkAllLevelsCompleted();
+    this.closeModal();
   }
 }
 
@@ -337,6 +340,10 @@ allQuestionsAnswered(): boolean {
 // refactorice el codigo para hacer el condicional del resetButton show en progreso
 allLevelsCompleted(): boolean {
   const allLevelsCompleted = this.levels.every((_, index) => this.isLevelCompleted(index));
+  // condicional para mostrar el next level modal
+  if (this.isLevelCompleted(this.currentLevelIndex)) {
+    this.showCompletedModal = true;
+  }
   // this.resetGameButtonService.setShowResetButton(allLevelsCompleted);
   return allLevelsCompleted;
 }
@@ -421,6 +428,15 @@ private updateAnsweredQuestionsCounts() {
       return this.selectedOptions[levelIndex][questionIndex] !== null ? count + 1 : count;
     }, 0);
   });
+}
+
+// logica de los modales para proximo nivel
+closeModal() {
+  this.showCompletedModal = false;
+}
+
+openModal() {
+  this.showCompletedModal = true;
 }
 
 }

@@ -1,10 +1,9 @@
-
-<header id="header">
-  <nav class="navbar navbar-expand-md bg-white">
-      <div class="container">
-          <a [routerLink]="['/']">
+  <header id="header" class="sticky-top">
+    <nav class="navbar navbar-expand-md bg-white">
+        <div class="container">
+            <a [routerLink]="['/']">
               <img src="./../../assets/images/logoprincipal.png" class="navbar-brand img-fluid" style="max-width: 60px;">
-          </a>
+            </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
               <span class="navbar-toggler-icon"></span>
           </button>
@@ -19,8 +18,8 @@
               </ul>
           </div>
       </div>
-  </nav>
-</header>
+    </nav>
+  </header>
 
 <div class="container">
   <h1 class="display-5 font-weight-bold">¡Aquí verás tu progreso!</h1>
@@ -33,7 +32,7 @@
               <img src="./../../../../assets/images/matematica.png" class="img-fluids">
               </a>
             <h5 class="mb-2 font-weight-bold text-nowrap">Razonamiento Lógico</h5>
-            <button class="btn btn-danger" id="resetGameButton" *ngIf="showResetButton" (click)="onResetGame()">Resetear Todo</button>
+            <button class="btn btn-danger" id="resetGameButton" *ngIf="showResetButton" (click)="onResetGame()">Resetear Materia</button>
           </div>
           <div class="results-container">
             <div>

@@ -82,6 +82,7 @@
           id="alertIncorrect{{ index }}" role="alert">
           <strong>La respuesta correcta era: {{ pregunta.respuestas }}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <br>
           <a href="#" class="bg-transparent border-0 justification-link"
             data-bs-toggle="modal" [attr.data-bs-target]="'#' + modalIds[index]" *ngIf="!isAnswerCorrect(currentLevelIndex, index)">
             <strong>Conocé la justificación. Haz Click aquí.</strong>
@@ -143,12 +144,12 @@
 </div>
 </ng-template>
 
-<div class="modal" tabindex="-1" id="showCompletedModal" aria-labelledby="staticBackdropLabel" aria-hidden="false" [ngClass]="isLevelCompleted(currentLevelIndex) ? 'd-block' : 'd-none'">
+<div class="modal" tabindex="-1" id="showCompletedModal" aria-labelledby="staticBackdropLabel" [class.d-block]="showCompletedModal" [class.d-none]="!showCompletedModal">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Nivel Completado!</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
       </div>
       <div class="modal-body">
         <img class="img-fluid" src="https://png.pngtree.com/png-clipart/20231005/original/pngtree-climbing-the-ladder-of-success-towards-goals-and-careers-vector-png-image_12964499.png" alt="">
@@ -157,10 +158,16 @@
         <p *ngIf="currentLevelIndex === totalLevels - 1">¡Felicitaciones! Has completado todos los niveles.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
         <button type="button" class="btn btn-warning" (click)="nextLevel()" *ngIf="currentLevelIndex < totalLevels - 1"><strong><small>Siguiente Nivel</small></strong></button>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+
 

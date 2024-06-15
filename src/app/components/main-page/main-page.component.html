@@ -1,6 +1,5 @@
-
-<header id="header">
-  <nav class="navbar navbar-expand-md bg-white">
+  <header id="header" class="sticky-top">
+    <nav class="navbar navbar-expand-md bg-white">
       <div class="container">
           <a [routerLink]="['/materias']">
               <img src="./../../assets/images/logoprincipal.png" class="navbar-brand img-fluid" style="max-width: 60px;">
@@ -25,9 +24,8 @@
               </ul>
           </div>
       </div>
-  </nav>
-</header>
-
+    </nav>
+  </header>
 
 <div id="inicio" class="container">
   <div *ngIf="auth.user$ | async as user">

@@ -23,9 +23,15 @@ body {
   max-width: $max-width;
 
 
-  // desactivar copia de textos
+  // desactivo copia de textos
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    height: auto;
+  }
 }

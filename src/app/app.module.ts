@@ -41,7 +41,7 @@ imports: [
       clientId: 'BivuSrxGygi0ctlzcBxQvvRYfTweDpPW',
       cacheLocation: 'localstorage',
       authorizationParams: {
-        redirect_uri: "http://localhost:4200/",
+        redirect_uri: "https://makete.netlify.app/",
         // redirect_uri: window.location.origin
 
       },

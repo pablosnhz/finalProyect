@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'materias',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     component: MainPageComponent,
   },
   {
