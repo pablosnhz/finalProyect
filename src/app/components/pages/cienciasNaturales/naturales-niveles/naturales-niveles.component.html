@@ -1,0 +1,175 @@
+<header id="header">
+  <nav class="navbar navbar-expand-md bg-white">
+      <div class="container">
+          <a href="./../../../home/home.html" class="navbar-brand fs-2 text-black">Ciencias Naturales</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto" style="gap: 10px;">
+                  <li class="nav-item">
+                      <a [routerLink]="['/materias']" class="btn btn-warning"><strong><small>Volver</small></strong></a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+  <div class="d-flex justify-content-center">
+      <hr class="w-75 border-secondary m-0" />
+  </div>
+</header>
+
+<ng-container *ngIf="$loading(); else content">
+  <app-spinner></app-spinner>
+</ng-container>
+
+<ng-template #content>
+<div id="temporizador" class="text-center mt-3 mb-md-5 display-4">
+  <small>{{ formatClock() }}</small>
+</div>
+
+
+<div class="container d-flex align-items-center justify-content-center" >
+  <div class="row justify-content-center px-0">
+
+      <!-- SEGUNDA COLUMNA -->
+      <div class="col-md-6 col-sm-12 order-md-2 order-2" *ngFor="let pregunta of questionsData; let index = index" [class.d-none]="index !== currentQuestionIndex">
+          <h1 class="text-center fw-bold fs-1">{{ pregunta.titulo }}</h1>
+          <div class="overflow-auto" style="max-height: 400px;">
+            <p class="me-2 mt-3" style="white-space: pre-line;"> {{ pregunta.teoria }}</p>
+            <img [src]="pregunta.imagen" alt="">
+          </div>
+          <style>
+            .overflow-auto::-webkit-scrollbar {
+                width: 8px;
+            }
+            .overflow-auto::-webkit-scrollbar-thumb {
+                background-color: #888;
+                border-radius: 4px;
+            }
+            .overflow-auto::-webkit-scrollbar-thumb:hover {
+                background-color: #555;
+            }
+        </style>
+      </div>
+
+<!-- PRIMERA COLUMNA -->
+<div class="col-md-6 col-sm-12 order-md-1 order-1">
+<div class="col-sm-12 py-3" id="questions-container">
+  <div *ngFor="let pregunta of questionsData; let index = index" class="question ml-sm-5 pl-sm-5 pt-2" [class.d-none]="index !== currentQuestionIndex">
+    <!-- Pregunta -->
+    <div class="py-2 h5 mb-4"><b>Pregunta {{ pregunta.pregunta }}: {{ pregunta.enunciado }}</b></div>
+    <!-- Opciones -->
+    <div class="custom-radio" *ngFor="let opcion of ['a', 'b', 'c', 'd']">
+      <input type="radio" id="option_{{ opcion }}_{{ index }}" name="options{{ index }}" value="{{ opcion }}"
+              (change)="onOptionSelected(currentLevelIndex, index, opcion)"
+              [checked]="selectedOptions[currentLevelIndex][index] === opcion"
+              [disabled]="selectedOptions[currentLevelIndex][index] !== null && selectedOptions[currentLevelIndex][index] !== opcion">
+      <label for="option_{{ opcion }}_{{ index }}">
+        <span>{{ opcion.toUpperCase() }}) {{ pregunta[opcion] }}</span>
+      </label>
+    </div>
+
+    <div class="alert alert-success alert-dismissible fade show text-center"
+        [class.d-none]="!isAnswerCorrect(currentLevelIndex, index) || selectedOptions[currentLevelIndex][index] === null"
+        id="alertCorrect{{ index }}" role="alert">
+        <strong>¡Respuesta correcta!</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade show text-center"
+        [class.d-none]="isAnswerCorrect(currentLevelIndex, index) || selectedOptions[currentLevelIndex][index] === null"
+        id="alertIncorrect{{ index }}" role="alert">
+        <strong>La respuesta correcta era: {{ pregunta.respuestas }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <br>
+        <a href="#" class="bg-transparent border-0 justification-link"
+          data-bs-toggle="modal" [attr.data-bs-target]="'#' + modalIds[index]" *ngIf="!isAnswerCorrect(currentLevelIndex, index)">
+          <strong>Conocé la justificación. Haz Click aquí.</strong>
+        </a>
+    </div>
+
+      <!-- Modal -->
+      <div class="modal fade" [id]="modalIds[index]" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              {{ pregunta.explicacion }}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-gray border border-dark text-black" data-bs-dismiss="modal">Ok! Gracias.</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-12 py-3 d-flex justify-content-around">
+                <button type="button" class="btn btn-primary" id="prevButton" (click)="prevQuestion()">Anterior</button>
+                <button type="button" class="btn btn-primary" id="nextButton" (click)="nextQuestion()">Siguiente</button>
+                <!-- <button class="btn btn-danger" (click)="resetGame()" [hidden]="!allLevelsCompleted()">Resetear Todo</button> -->
+                <!-- <button id="resetLevelButton" class="btn btn-danger" (click)="resetLevel(currentLevelIndex)" *ngIf="isResetLevelButtonVisible()">Resetear Nivel</button> -->
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- BOTONES DE NIVELES -->
+<div class="d-flex justify-content-around align-items-center mt-5 mb-3 me-2 ms-2">
+<a [routerLink]="['/materias']" class="btn btn-danger mb-2"><i class="bi bi-box-arrow-left"></i></a>
+<div class="d-flex justify-content-center mb-2">
+  <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center">
+        <button type="button" class="btn me-2" [ngClass]="isLevelCompleted(0) ? 'btn-success' : 'btn-secondary'" (click)="selectLevel(0)">
+          <i *ngIf="isLevelCompleted(0)" class="bi bi-check-lg"></i>
+          <i *ngIf="!isLevelCompleted(0)" class="bi bi-lock"></i>
+        </button>
+        <button type="button" class="btn me-2" [ngClass]="isLevelCompleted(1) ? 'btn-success' : 'btn-secondary'" (click)="selectLevel(1)">
+          <i *ngIf="isLevelCompleted(1)" class="bi bi-check-lg"></i>
+          <i *ngIf="!isLevelCompleted(1)" class="bi bi-lock"></i>
+        </button>
+        <button type="button" class="btn me-2" [ngClass]="isLevelCompleted(2) ? 'btn-success' : 'btn-secondary'" (click)="selectLevel(2)">
+          <i *ngIf="isLevelCompleted(2)" class="bi bi-check-lg"></i>
+          <i *ngIf="!isLevelCompleted(2)" class="bi bi-lock"></i>
+        </button>
+        <button type="button" class="btn me-2" [ngClass]="isLevelCompleted(3) ? 'btn-success' : 'btn-secondary'" (click)="selectLevel(3)">
+          <i *ngIf="isLevelCompleted(3)" class="bi bi-check-lg"></i>
+          <i *ngIf="!isLevelCompleted(3)" class="bi bi-lock"></i>
+        </button>
+      </div>
+  </div>
+</div>
+<a [routerLink]="['/materias']" class="btn btn-primary mb-2"><i class="bi bi-arrow-right"></i></a>
+</div>
+</ng-template>
+
+<div class="modal" tabindex="-1" id="showCompletedModal" aria-labelledby="staticBackdropLabel" [class.d-block]="showCompletedModal" [class.d-none]="!showCompletedModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nivel Completado!</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img class="img-fluid" src="./../../../../../assets/images/levelFinalized.png" alt="">
+        <p *ngIf="currentLevelIndex < totalLevels - 1">Felicitaciones! Has completado el <strong>Nivel {{ currentLevelIndex + 1 }}</strong>.</p>
+        <p *ngIf="currentLevelIndex < totalLevels - 1">Sigue avanzando al <strong>Nivel {{ currentLevelIndex + 2 }}</strong></p>
+        <p *ngIf="currentLevelIndex === totalLevels - 1">¡Felicitaciones! Has completado todos los niveles. <br>Puedes seguir con <strong>Ingles</strong></p>
+      </div>
+      <div class="modal-footer text-nowrap">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
+        <button type="button" class="btn btn-warning" *ngIf="currentLevelIndex === totalLevels - 1" [routerLink]="['/materias']" ><small><strong>Volver a Materias</strong></small></button>
+        <button type="button" class="btn btn-warning" *ngIf="currentLevelIndex === totalLevels - 1" [routerLink]="['/materias/ingles/niveles']"><small><strong>Seguir con Ingles</strong></small></button>
+        <button type="button" class="btn btn-warning" (click)="nextLevel()" *ngIf="currentLevelIndex < totalLevels - 1"><strong><small>Siguiente Nivel</small></strong></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

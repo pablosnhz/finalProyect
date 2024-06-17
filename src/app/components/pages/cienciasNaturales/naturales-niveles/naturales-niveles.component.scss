@@ -1,0 +1,44 @@
+$primary-color: #27775C;
+
+.custom-radio {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.375em;
+  cursor: pointer;
+  margin-bottom: 15px;
+  input {
+    position: absolute;
+    left: -9999px;
+    &:checked + label span:before {
+      box-shadow: inset 0 0 0 0.4375em $primary-color;
+    }
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    padding: 0.375em 0.75em 0.375em 0.375em;
+    border-radius: 99em;
+    transition: 0.25s ease;
+    margin-bottom: 0;
+
+    &:hover {
+      background-color: #fff;
+    }
+
+    span {
+      display: flex;
+      align-items: center;
+      &:before {
+        content: "";
+        background-color: #fff;
+        width: 1.3em;
+        height: 1.3em;
+        border-radius: 50%;
+        margin-right: 0.375em;
+        transition: 0.25s ease;
+        box-shadow: inset 0 0 0 0.1em #000000;
+      }
+    }
+  }
+}

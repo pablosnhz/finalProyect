@@ -7,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit{
 
+  deferredPrompt: any;
+
+  constructor() {
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      this.deferredPrompt = event;
+    });
+  }
+
   ngOnInit(): void {
     document.addEventListener("scroll", () => {
       const goTopContainer = document.querySelector(".go-top-container");
@@ -28,5 +37,26 @@ export class HomeComponent implements OnInit{
         });
       });
     }
+
+    this.scrollToTop();
   }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  installPWA() {
+    if (this.deferredPrompt) {
+      this.deferredPrompt.prompt();
+      this.deferredPrompt.userChoice.then((choiceResult: any) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('se realizo la instalacion de la PWA');
+        } else {
+          console.log('no se realizo la instalacion de la PWA');
+        }
+        this.deferredPrompt = null;
+      });
+    }
+  }
+
 }

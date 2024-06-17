@@ -11,7 +11,7 @@
 npm-debug.log
 yarn-error.log
 # el modulo
-/app.module.ts
+app.module.ts
 
 # IDEs and editors
 .idea/

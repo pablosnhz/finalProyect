@@ -53,7 +53,7 @@ export class SheetsDatesService {
     return forkJoin(sheetRequests).pipe(
       map((sheetsData: any[][]) => {
         const allData = sheetsData.flat();
-        localStorage.setItem('datosSheets', JSON.stringify(allData));
+        localStorage.setItem('razonamientoSheets', JSON.stringify(allData));
         this.$loading.set(false);
         return allData;
       }),

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, Signal } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, Signal } from '@angular/core';
 import { SheetsDatesService } from 'src/app/core/services/common/sheets-dates.service';
 import { Subscription, timer } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -55,6 +55,8 @@ constructor(private sheetsService: SheetsDatesService,
            }
 
 ngOnInit(): void {
+  this.scrollToTop();
+
   this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
     const level = +params['level'];
     if (!isNaN(level)) {
@@ -437,6 +439,10 @@ closeModal() {
 
 openModal() {
   this.showCompletedModal = true;
+}
+
+scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 }

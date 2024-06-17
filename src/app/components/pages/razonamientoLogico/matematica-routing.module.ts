@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NivelesMatematicaComponent } from './niveles-matematica/niveles-matematica.component';
 import { MatematicaComponent } from './matematica/matematica.component';
+import { NivelesMatematicaComponent } from './niveles-matematica/niveles-matematica.component';
 
 const routes: Routes = [
   {

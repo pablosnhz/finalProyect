@@ -54,6 +54,35 @@
           </div>
         </div>
       </div>
+      <div class="box-styles">
+        <div class="d-flex align-items-center">
+          <div class="text-center">
+            <a href="./../materias/matematica/matematica.html">
+              <img src="./../../../../assets/images/socialesyciudadanas.png" class="img-fluids">
+            </a>
+          <h5 class="mb-2 font-weight-bold text-nowrap">Sociales y ciudadanas</h5>
+          <button class="btn btn-danger" id="resetGameButtonSociales" *ngIf="showResetButtonSociales" (click)="onResetGameSociales()">Resetear Materia</button>
+      </div>
+      <div class="results-container">
+        <div>
+          <p>Respuestas correctas: {{ correctAnswersSociales }}</p>
+          <p>Respuestas incorrectas: {{ incorrectAnswersSociales }}</p>
+          <p>Total de preguntas que se hicieron: {{ totalQuestionsSociales }} de 20</p>
+          <p>Porcentaje de respuestas correctas: {{ correctPorcentajeSociales | number:'1.0-0' }}%</p>
+          <p>Realizaste todos los niveles en: {{ formatTime(finalTimerSociales!) }}</p>
+          <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" role="progressbar" [ngClass]="{
+              'bg-danger': correctPorcentajeSociales < 20,
+              'bg-warning': correctPorcentajeSociales >= 20 && correctPorcentajeSociales < 60,
+              'bg-success': correctPorcentajeSociales >= 60
+            }" [style.width.%]="correctPorcentajeSociales" [attr.aria-valuenow]="correctPorcentajeSociales">
+              {{ correctPorcentajeSociales | number:'1.0-0' }}%
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
     <div class="col">
       <div class="box-styles">
@@ -63,48 +92,59 @@
               <img src="./../../../../assets/images/lecturacritica.png" class="img-fluids">
             </a>
           <h5 class="mb-2 font-weight-bold text-nowrap">Lectura Critica</h5>
-        <!-- <button class="btn btn-danger" *ngIf="showResetButton" (click)="onResetGame()">Resetear Todo</button> -->
-          </div>
-          <div class="ml-4 results-container">
-            <div>
-              <p>Respuestas correctas: {{ correctAnswers }}</p>
-              <p>Respuestas incorrectas: {{ incorrectAnswers }}</p>
-              <p>Total de preguntas que se hicieron: {{ totalQuestions }} de 20</p>
-              <p>Porcentaje de respuestas correctas: {{ correctPorcentaje | number:'1.0-0' }}%</p>
-              <p>Realizaste todos los niveles en: {{ formatTime(finalTimer!) }}</p>
-              <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
-               <div class="progress-bar bg-success" role="progressbar" [style.width.%]="correctPorcentaje" [attr.aria-valuenow]="correctPorcentaje">{{ correctPorcentaje | number:'1.0-0' }}%</div>
-              </div>
+          <button class="btn btn-danger" id="resetGameButtonLectura" *ngIf="showResetButtonLectura" (click)="onResetGameLectura()">Resetear Materia</button>
+      </div>
+      <div class="results-container">
+        <div>
+          <p>Respuestas correctas: {{ correctAnswersLectura }}</p>
+          <p>Respuestas incorrectas: {{ incorrectAnswersLectura }}</p>
+          <p>Total de preguntas que se hicieron: {{ totalQuestionsLectura }} de 20</p>
+          <p>Porcentaje de respuestas correctas: {{ correctPorcentajeLectura | number:'1.0-0' }}%</p>
+          <p>Realizaste todos los niveles en: {{ formatTime(finalTimerLectura!) }}</p>
+          <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" role="progressbar" [ngClass]="{
+              'bg-danger': correctPorcentajeLectura < 20,
+              'bg-warning': correctPorcentajeLectura >= 20 && correctPorcentajeLectura < 60,
+              'bg-success': correctPorcentajeLectura >= 60
+            }" [style.width.%]="correctPorcentajeLectura" [attr.aria-valuenow]="correctPorcentajeLectura">
+              {{ correctPorcentajeLectura | number:'1.0-0' }}%
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="box-styles">
-        <div class="d-flex align-items-center">
-          <div class="text-center">
-            <a href="./../materias/matematica/matematica.html">
-              <img src="./../../../../assets/images/socialesyciudadanas.png" class="img-fluids">
-            </a>
-          <h5 class="mb-2 font-weight-bold text-nowrap">Sociales y ciudadanas</h5>
-          <!-- <button class="btn btn-danger" *ngIf="showResetButton" (click)="onResetGame()">Resetear Todo</button> -->
-          </div>
-          <div class="ml-4 results-container">
-            <div>
-              <p>Respuestas correctas: {{ correctAnswers }}</p>
-              <p>Respuestas incorrectas: {{ incorrectAnswers }}</p>
-              <p>Total de preguntas que se hicieron: {{ totalQuestions }} de 20</p>
-              <p>Porcentaje de respuestas correctas: {{ correctPorcentaje | number:'1.0-0' }}%</p>
-              <p>Realizaste todos los niveles en: {{ formatTime(finalTimer!) }}</p>
-              <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
-               <div class="progress-bar bg-success" role="progressbar" [style.width.%]="correctPorcentaje" [attr.aria-valuenow]="correctPorcentaje">{{ correctPorcentaje | number:'1.0-0' }}%</div>
-              </div>
-            </div>
-          </div>
+  </div>
+  <div class="box-styles">
+    <div class="d-flex align-items-center">
+      <div class="text-center">
+        <a href="./../materias/matematica/matematica.html">
+          <img src="./../../../../assets/images/ingles.png" class="img-fluids">
+        </a>
+      <h5 class="mb-2 font-weight-bold text-nowrap">Ingles</h5>
+      <button class="btn btn-danger" id="resetGameButtonIngles" *ngIf="showResetButtonIngles" (click)="onResetGameIngles()">Resetear Materia</button>
+  </div>
+  <div class="results-container">
+    <div>
+      <p>Respuestas correctas: {{ correctAnswersIngles }}</p>
+      <p>Respuestas incorrectas: {{ incorrectAnswersIngles }}</p>
+      <p>Total de preguntas que se hicieron: {{ totalQuestionsIngles }} de 20</p>
+      <p>Porcentaje de respuestas correctas: {{ correctPorcentajeIngles | number:'1.0-0' }}%</p>
+      <p>Realizaste todos los niveles en: {{ formatTime(finalTimerIngles!) }}</p>
+      <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" role="progressbar" [ngClass]="{
+          'bg-danger': correctPorcentajeIngles < 20,
+          'bg-warning': correctPorcentajeIngles >= 20 && correctPorcentajeIngles < 60,
+          'bg-success': correctPorcentajeIngles >= 60
+        }" [style.width.%]="correctPorcentajeIngles" [attr.aria-valuenow]="correctPorcentajeIngles">
+          {{ correctPorcentajeIngles | number:'1.0-0' }}%
+        </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+</div>
+
     <div class="col">
       <div class="box-styles">
         <div class="d-flex align-items-center">
@@ -113,45 +153,26 @@
               <img src="./../../../../assets/images/cienciasnaturales.png" class="img-fluids">
             </a>
           <h5 class="mb-2 font-weight-bold text-nowrap">Ciencias naturales</h5>
-          <!-- <button class="btn btn-danger" *ngIf="showResetButton" (click)="onResetGame()">Resetear Todo</button> -->
-          </div>
-          <div class="ml-4 results-container">
-            <div>
-              <p>Respuestas correctas: {{ correctAnswers }}</p>
-              <p>Respuestas incorrectas: {{ incorrectAnswers }}</p>
-              <p>Total de preguntas que se hicieron: {{ totalQuestions }} de 20</p>
-              <p>Porcentaje de respuestas correctas: {{ correctPorcentaje | number:'1.0-0' }}%</p>
-              <p>Realizaste todos los niveles en: {{ formatTime(finalTimer!) }}</p>
-              <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
-               <div class="progress-bar bg-success" role="progressbar" [style.width.%]="correctPorcentaje" [attr.aria-valuenow]="correctPorcentaje">{{ correctPorcentaje | number:'1.0-0' }}%</div>
-              </div>
+          <button class="btn btn-danger" id="resetGameButtonNaturales" *ngIf="showResetButtonNaturales" (click)="onResetGameNaturales()">Resetear Materia</button>
+      </div>
+      <div class="results-container">
+        <div>
+          <p>Respuestas correctas: {{ correctAnswersNaturales }}</p>
+          <p>Respuestas incorrectas: {{ incorrectAnswersNaturales }}</p>
+          <p>Total de preguntas que se hicieron: {{ totalQuestionsNaturales }} de 20</p>
+          <p>Porcentaje de respuestas correctas: {{ correctPorcentajeNaturales | number:'1.0-0' }}%</p>
+          <p>Realizaste todos los niveles en: {{ formatTime(finalTimerNaturales!) }}</p>
+          <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" role="progressbar" [ngClass]="{
+              'bg-danger': correctPorcentajeNaturales < 20,
+              'bg-warning': correctPorcentajeNaturales >= 20 && correctPorcentajeNaturales < 60,
+              'bg-success': correctPorcentajeNaturales >= 60
+            }" [style.width.%]="correctPorcentajeNaturales" [attr.aria-valuenow]="correctPorcentajeNaturales">
+              {{ correctPorcentajeNaturales | number:'1.0-0' }}%
+            </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col mb-3">
-      <div class="box-styles">
-        <div class="d-flex align-items-center">
-          <div class="text-center">
-            <a href="./../materias/matematica/matematica.html">
-              <img src="./../../../../assets/images/ingles.png" class="img-fluids">
-            </a>
-          <h5 class="mb-2 font-weight-bold text-nowrap">Ingles</h5>
-          <!-- <button class="btn btn-danger" *ngIf="showResetButton" (click)="onResetGame()">Resetear Todo</button> -->
-          </div>
-          <div class="ml-4 results-container">
-            <div>
-              <p>Respuestas correctas: {{ correctAnswers }}</p>
-              <p>Respuestas incorrectas: {{ incorrectAnswers }}</p>
-              <p>Total de preguntas que se hicieron: {{ totalQuestions }} de 20</p>
-              <p>Porcentaje de respuestas correctas: {{ correctPorcentaje | number:'1.0-0' }}%</p>
-              <p>Realizaste todos los niveles en: {{ formatTime(finalTimer!) }}</p>
-              <div class="progress" role="progressbar" aria-label="Success" aria-valuemin="0" aria-valuemax="100">
-               <div class="progress-bar bg-success" role="progressbar" [style.width.%]="correctPorcentaje" [attr.aria-valuenow]="correctPorcentaje">{{ correctPorcentaje | number:'1.0-0' }}%</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+

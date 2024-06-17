@@ -13,6 +13,13 @@ import { ProgresoComponent } from './components/main-page/progreso/progreso.comp
 import { provideAuth0 } from '@auth0/auth0-angular';
 import { NivelesMatematicaComponent } from './components/pages/razonamientoLogico/niveles-matematica/niveles-matematica.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { LecturaNivelesComponent } from './components/pages/lecturaCritica/lectura-niveles/lectura-niveles.component';
+import { SocialesNivelesComponent } from './components/pages/socialesCiudadanas/sociales-niveles/sociales-niveles.component';
+import { NaturalesNivelesComponent } from './components/pages/cienciasNaturales/naturales-niveles/naturales-niveles.component';
+import { InglesNivelesComponent } from './components/pages/ingles/ingles-niveles/ingles-niveles.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -24,6 +31,10 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     SpinnerComponent,
 
     NivelesMatematicaComponent,
+    LecturaNivelesComponent,
+    SocialesNivelesComponent,
+    NaturalesNivelesComponent,
+    InglesNivelesComponent
   ],
 imports: [
     BrowserModule,
@@ -41,7 +52,7 @@ imports: [
       clientId: 'BivuSrxGygi0ctlzcBxQvvRYfTweDpPW',
       cacheLocation: 'localstorage',
       authorizationParams: {
-        redirect_uri: "https://makete.netlify.app/",
+        redirect_uri: "http://localhost:4200/",
         // redirect_uri: window.location.origin
 
       },

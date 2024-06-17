@@ -11,6 +11,11 @@ import { LevelService } from 'src/app/core/services/common/level-service.service
 export class MainPageComponent implements OnInit {
 
   completedLevels: Set<number> = new Set<number>();
+  completedLevelsLectura: Set<number> = new Set<number>();
+  completedLevelsSociales: Set<number> = new Set<number>();
+  completedLevelsNaturales: Set<number> = new Set<number>();
+  completedLevelsIngles: Set<number> = new Set<number>();
+
 
   constructor(
     public auth: AuthService,
@@ -25,6 +30,38 @@ export class MainPageComponent implements OnInit {
     this.levelService.levelCompleted$.subscribe((completedLevels) => {
       this.completedLevels = completedLevels;
     });
+
+    // lectura
+    this.levelService.loadCompletedLevelsLectura();
+    this.completedLevelsLectura = this.levelService.getCompletedLevelsLectura();
+
+    this.levelService.levelCompletedLectura$.subscribe((completedLevels) => {
+      this.completedLevelsLectura = completedLevels;
+    });
+
+    // sociales
+    this.levelService.loadCompletedLevelsSociales();
+    this.completedLevelsSociales = this.levelService.getCompletedLevelsSociales();
+
+    this.levelService.levelCompletedSociales$.subscribe((completedLevels) => {
+      this.completedLevelsSociales = completedLevels;
+    });
+
+    // naturales
+    this.levelService.loadCompletedLevelsNaturales();
+    this.completedLevelsNaturales = this.levelService.getCompletedLevelsNaturales();
+
+    this.levelService.levelCompletedNaturales$.subscribe((completedLevels) => {
+      this.completedLevelsNaturales = completedLevels;
+    });
+
+    // ingles
+    this.levelService.loadCompletedLevelsIngles();
+    this.completedLevelsIngles = this.levelService.getCompletedLevelsIngles();
+
+    this.levelService.levelCompletedIngles$.subscribe((completedLevels) => {
+      this.completedLevelsIngles = completedLevels;
+    });
   }
 
   logout() {
@@ -38,8 +75,49 @@ export class MainPageComponent implements OnInit {
     });
   }
 
+  isLevelCompletedIngles(levelIndex: number): boolean {
+    return this.completedLevelsIngles.has(levelIndex);
+  }
+
+  isLevelCompletedNaturales(levelIndex: number): boolean {
+    return this.completedLevelsNaturales.has(levelIndex);
+  }
+
+  isLevelCompletedSociales(levelIndex: number): boolean {
+    return this.completedLevelsSociales.has(levelIndex);
+  }
+
+  isLevelCompletedLectura(levelIndex: number): boolean {
+    return this.completedLevelsLectura.has(levelIndex);
+  }
+
   isLevelCompleted(levelIndex: number): boolean {
     return this.completedLevels.has(levelIndex);
+  }
+
+
+  getButtonClassNaturales(levelIndex: number): string {
+    return this.isLevelCompletedNaturales(levelIndex)
+      ? 'https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Tick_Mark_Circle-512.png'
+      : 'https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png';
+  }
+
+  getButtonClassIngles(levelIndex: number): string {
+    return this.isLevelCompletedIngles(levelIndex)
+      ? 'https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Tick_Mark_Circle-512.png'
+      : 'https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png';
+  }
+
+  getButtonClassSociales(levelIndex: number): string {
+    return this.isLevelCompletedSociales(levelIndex)
+      ? 'https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Tick_Mark_Circle-512.png'
+      : 'https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png';
+  }
+
+  getButtonClassLectura(levelIndex: number): string {
+    return this.isLevelCompletedLectura(levelIndex)
+      ? 'https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Tick_Mark_Circle-512.png'
+      : 'https://icones.pro/wp-content/uploads/2022/08/icone-de-cadenas-de-securite-gris.png';
   }
 
   getButtonClass(levelIndex: number): string {
