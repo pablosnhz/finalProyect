@@ -5,6 +5,7 @@ import { DataProgressService } from 'src/app/core/services/common/data-progress.
 import { LecturaCriticaService } from 'src/app/core/services/common/lectura-critica.service';
 import { LevelService } from 'src/app/core/services/common/level-service.service';
 import { ResetGameButtonService } from 'src/app/core/services/common/reset-game-button.service';
+import { SocialesService } from 'src/app/core/services/common/sociales.service';
 import { TimeFinalService } from 'src/app/core/services/common/time-final.service';
 
 @Component({
@@ -31,7 +32,7 @@ export class SocialesNivelesComponent {
   private timerSubscription: Subscription | undefined;
   private startTime: number = 0;
 
-  $loading: Signal<boolean> = this.lecturaService.$loading;
+  $loading: Signal<boolean> = this.socialesService.$loading;
 
   private queryParamsSubscription: Subscription | undefined;
 
@@ -43,7 +44,7 @@ export class SocialesNivelesComponent {
 
   private finalTime: number | null = null;
 
-  constructor(private lecturaService: LecturaCriticaService,
+  constructor(private socialesService: SocialesService,
               private progressSocialesService: DataProgressService,
               private finalTimeSocialesService: TimeFinalService,
               private resetGameButtonSocialesService: ResetGameButtonService,
@@ -64,7 +65,7 @@ export class SocialesNivelesComponent {
       }
     });
     // al iniciar la app lo primero que aparece son los datos del sheets
-    this.lecturaService.getSheets().subscribe(data => {
+    this.socialesService.getSheets().subscribe(data => {
       if (data) {
         this.questionsData = data;
         // controlamos el tiempo tambien una vez iniciada la app inicia el timer
@@ -131,6 +132,7 @@ export class SocialesNivelesComponent {
     if (this.currentLevelIndex < this.levels.length - 1) {
       this.currentLevelIndex++;
       this.currentQuestionIndex = 0;
+      this.questionsData = this.levels[this.currentLevelIndex];
       this.checkAllLevelsCompleted();
       this.closeModal();
     }

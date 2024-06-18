@@ -1,22 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, WritableSignal, signal } from '@angular/core';
 import { parse } from 'papaparse';
-import { Observable, map, catchError, of, forkJoin, BehaviorSubject } from 'rxjs';
+import { Observable, map, catchError, of, forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LecturaCriticaService {
-
+export class NaturalesService {
   public $loading: WritableSignal<boolean> = signal(false);
 
   constructor(private httpClient: HttpClient) {}
 
   private sheetUrls: string[] = [
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQjluTvTMEzhbcAAHCg4Vx6l6M9WwBVEoPiq5nCyEhIj2UDFg82J2l1Yygwf8GQFUVS3-CjKxKzSC6u/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQFvRco0cs3fnMQK2fUZ0FZer7IqoDglKZqzh2gVG6koqw07gRTlicULFelZvqEuj79Cc3ZGt8bC5OA/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQO678wjyB7LYea5Z1Wqw1wWcd_XQbepSzv4b262n9-a8ueOH696Gy2rcxnUGHGX2CwMNdV7DZmb6W2/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYUmx_r6DPMNCLmEa-hFA9zlTegYP2jEMin5abaGKpuEAmGtYSHntLO5Sy3q5G248ouoPlDN5520bp/pub?output=csv'
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQGJ9-xXw4h3ne398LimtGuH5ObpxrX1McSqofgTvP1xn4LhoEJIVWeqapNLbMIe7wtzlnGwa84omEx/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vRE97pVtQf79Uhu3VqT8MkLRr1b9PbzQ9rt8gfo4D8Cv1vgIIE0YaLXvnI27A6TGgf9uPYGUsz-dE5L/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2E2nOQ5KKO6__wS5pt-KOZA6nHHPbh919e55cxPY-IV_w4bW08QTLBkHhaK7BW2vKTsSz12um8GXX/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2URUXdR9uc7qBQ6UdZyR5xFVlj9YtLW-xlgfo14Qw8A818D-q51r5VySLIHe83QGo4KUXXBLcPR1x/pub?output=csv'
   ];
 
   getSheets(): Observable<any[]> {
@@ -52,7 +51,7 @@ export class LecturaCriticaService {
     return forkJoin(sheetRequests).pipe(
       map((sheetsData: any[][]) => {
         const allData = sheetsData.flat();
-        localStorage.setItem('lecturaCriticaSheets', JSON.stringify(allData));
+        localStorage.setItem('naturalesSheets', JSON.stringify(allData));
         this.$loading.set(false);
         return allData;
       }),
@@ -63,4 +62,9 @@ export class LecturaCriticaService {
       })
     );
   }
+
+
+
 }
+
+

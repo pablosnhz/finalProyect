@@ -132,6 +132,7 @@ nextLevel() {
   if (this.currentLevelIndex < this.levels.length - 1) {
     this.currentLevelIndex++;
     this.currentQuestionIndex = 0;
+    this.questionsData = this.levels[this.currentLevelIndex];
     this.checkAllLevelsCompleted();
     this.closeModal();
   }

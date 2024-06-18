@@ -23,11 +23,11 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
     component: MainPageComponent,
   },
-  { path: 'materias/matematica/niveles', component: NivelesMatematicaComponent },
-  { path: 'materias/lecturacritica/niveles', component: LecturaNivelesComponent },
-  { path: 'materias/socialesciudadanas/niveles', component: SocialesNivelesComponent },
-  { path: 'materias/cienciasnaturales/niveles', component: NaturalesNivelesComponent },
-  { path: 'materias/ingles/niveles', component: InglesNivelesComponent },
+  // { path: 'materias/matematica/niveles', component: NivelesMatematicaComponent },
+  // { path: 'materias/lecturacritica/niveles', component: LecturaNivelesComponent },
+  // { path: 'materias/socialesciudadanas/niveles', component: SocialesNivelesComponent },
+  // { path: 'materias/cienciasnaturales/niveles', component: NaturalesNivelesComponent },
+  // { path: 'materias/ingles/niveles', component: InglesNivelesComponent },
 
   // razonamiento logico
   {

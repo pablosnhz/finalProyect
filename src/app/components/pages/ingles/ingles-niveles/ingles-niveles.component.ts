@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, Signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, timer } from 'rxjs';
 import { DataProgressService } from 'src/app/core/services/common/data-progress.service';
+import { InglesService } from 'src/app/core/services/common/ingles.service';
 import { LecturaCriticaService } from 'src/app/core/services/common/lectura-critica.service';
 import { LevelService } from 'src/app/core/services/common/level-service.service';
 import { ResetGameButtonService } from 'src/app/core/services/common/reset-game-button.service';
@@ -31,7 +32,7 @@ clock: number = 0;
 private timerSubscription: Subscription | undefined;
 private startTime: number = 0;
 
-$loading: Signal<boolean> = this.lecturaService.$loading;
+$loading: Signal<boolean> = this.inglesService.$loading;
 
 private queryParamsSubscription: Subscription | undefined;
 
@@ -43,7 +44,7 @@ showCompletedModal: boolean = false;
 
 private finalTime: number | null = null;
 
-constructor(private lecturaService: LecturaCriticaService,
+constructor(private inglesService: InglesService,
             private progressInglesService: DataProgressService,
             private finalTimeInglesService: TimeFinalService,
             private resetGameButtonInglesService: ResetGameButtonService,
@@ -64,7 +65,7 @@ ngOnInit(): void {
     }
   });
   // al iniciar la app lo primero que aparece son los datos del sheets
-  this.lecturaService.getSheets().subscribe(data => {
+  this.inglesService.getSheets().subscribe(data => {
     if (data) {
       this.questionsData = data;
       // controlamos el tiempo tambien una vez iniciada la app inicia el timer
@@ -131,6 +132,7 @@ nextLevel() {
   if (this.currentLevelIndex < this.levels.length - 1) {
     this.currentLevelIndex++;
     this.currentQuestionIndex = 0;
+    this.questionsData = this.levels[this.currentLevelIndex];
     this.checkAllLevelsCompleted();
     this.closeModal();
   }
