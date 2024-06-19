@@ -72,6 +72,11 @@ ngOnInit(): void {
       this.iniciarLevels();
       this.loadSelectedOptions();
       this.restoreSelections();
+
+      // solucion a iterar sobre los niveles del template mainPage para ir al nivel con su info en especifico
+      if (this.currentLevelIndex !== undefined && this.currentLevelIndex < this.levels.length) {
+        this.questionsData = this.levels[this.currentLevelIndex];
+      }
     }
   });
 }

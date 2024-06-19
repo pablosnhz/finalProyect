@@ -68,11 +68,15 @@ ngOnInit(): void {
   this.naturalesService.getSheets().subscribe(data => {
     if (data) {
       this.questionsData = data;
-      // controlamos el tiempo tambien una vez iniciada la app inicia el timer
       this.loadTimerState();
       this.iniciarLevels();
       this.loadSelectedOptions();
       this.restoreSelections();
+
+      // solucion a iterar sobre los niveles del template mainPage para ir al nivel con su info en especifico
+      if (this.currentLevelIndex !== undefined && this.currentLevelIndex < this.levels.length) {
+        this.questionsData = this.levels[this.currentLevelIndex];
+      }
     }
   });
 }
@@ -143,15 +147,15 @@ selectLevel(levelIndex: number) {
   this.currentLevelIndex = levelIndex;
   this.currentQuestionIndex = 0;
   this.questionsData = this.levels[this.currentLevelIndex];
-  // this.levelService.levelCompletedService(levelIndex);
-
   this.router.navigate([], {
     relativeTo: this.route,
     queryParams: { level: levelIndex },
     queryParamsHandling: 'merge',
   });
   console.log(`Estas en el nivel: ${levelIndex}`);
+  // localStorage.setItem('currentLevelIndexNaturales', levelIndex.toString());
 }
+
 
 // control de botones
 prevQuestion() {
@@ -263,6 +267,7 @@ resetGame() {
   // Reinicia el tiempo final a cero
   this.finalTime = null;
   localStorage.removeItem('finalTimeNaturales');
+  // localStorage.removeItem('currentLevelIndexNaturales');
 
   // reseteo progreso y timer
   this.resetTimer();
