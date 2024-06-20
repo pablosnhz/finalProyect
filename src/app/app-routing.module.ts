@@ -5,11 +5,6 @@ import { LoginPageComponent } from './routes/auth/pages/login-page/login-page.co
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { ProgresoComponent } from './components/main-page/progreso/progreso.component';
 import { AuthGuard } from '@auth0/auth0-angular';
-import { LecturaNivelesComponent } from './components/pages/lecturaCritica/lectura-niveles/lectura-niveles.component';
-import { NivelesMatematicaComponent } from './components/pages/razonamientoLogico/niveles-matematica/niveles-matematica.component';
-import { SocialesNivelesComponent } from './components/pages/socialesCiudadanas/sociales-niveles/sociales-niveles.component';
-import { NaturalesNivelesComponent } from './components/pages/cienciasNaturales/naturales-niveles/naturales-niveles.component';
-import { InglesNivelesComponent } from './components/pages/ingles/ingles-niveles/ingles-niveles.component';
 
 const routes: Routes = [
   {
