@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ApiRestService {
 
-  public url: string = 'http://localhost:4200';
+  public url: string = 'https://makete.netlify.app';
 
   constructor(private httpClient: HttpClient) { }
 

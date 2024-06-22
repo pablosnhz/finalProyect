@@ -43,10 +43,10 @@ const savePush = (req, res) => {
 const sendPush = (req, res) => {
 
   const pushSubscription = {
-    endpoint: "https://fcm.googleapis.com/fcm/send/dlEjYjg_6HA:APA91bEcHsu7n4Skp42Us6Gm6t1ExTrB1LWZlG6owD1GOpAP0asyiUDtipvve-7Yp8Y_fZgPVEHtlVVANhrlKvLDgRfwLI15Z2S7TEVMX2gNSTCMIt2VFYTg6qitb99e2fy8n_3I8xUP",
+    endpoint: "https://fcm.googleapis.com/fcm/send/cdcJ7CIItDs:APA91bFTZHx97Tdx8Bm2LLuhGek_JgGTdGBH1N6KT_qOlZgO8QlkSUJXjfKL2XcOSda9SX-g07MlwbrobOxiWfYnK-bUBg4vlAn5LA3uWTBHXioEVJ2ju-J3vLvV-FQl-Xe9zIW0YToU",
     keys: {
-        auth: "5sA7ZhIjyZ9L2pTf42aiFw",
-        p256dh: "BGrrV8LcRyWKQ6rvghabR6KRUaAuqSbNIyr6Qm6-IX0FoRtvsWTYCGhatw9suHY3hEdFl6wTyrE_q7CzGnDqP0E"
+        auth: "bRYHgs0Ob54sqggdOH1ugA",
+        p256dh: "BDkCQSCGcFEfs1MUKYZmRtJ6q903TpdYCXJo38Dq1kW4iNtfjO1UAZWVGIWGxuLpiMGxe2tl30sNWT5NtofJJj4"
     }
 };
 
@@ -80,5 +80,5 @@ app.route('/saveToken').post(savePush);
 app.route('/send').post(sendPush);
 
 const httpServer = app.listen(4200, () => {
-  console.log(`Servidor escuchando en http://localhost:${httpServer.address().port}`);
+  console.log(`Servidor escuchando en https://makete.netlify.app/${httpServer.address().port}`);
 });
