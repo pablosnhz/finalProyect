@@ -81,4 +81,7 @@ app.route('/send').post(sendPush);
 
 const httpServer = app.listen(4200, () => {
   console.log(`Servidor escuchando en https://makete.netlify.app/${httpServer.address().port}`);
+  console.log(`http://localhost:${httpServer.address().port}`);
 });
+
+// SOLO ESTAMOS OBTENIENDO LA NOTIFICACION DE FORMA LOCAL
