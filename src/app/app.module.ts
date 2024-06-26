@@ -17,9 +17,10 @@ import { LecturaNivelesComponent } from './components/pages/lecturaCritica/lectu
 import { SocialesNivelesComponent } from './components/pages/socialesCiudadanas/sociales-niveles/sociales-niveles.component';
 import { NaturalesNivelesComponent } from './components/pages/cienciasNaturales/naturales-niveles/naturales-niveles.component';
 import { InglesNivelesComponent } from './components/pages/ingles/ingles-niveles/ingles-niveles.component';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+
+import { environments } from 'src/environments/environments';
+import { initializeApp } from 'firebase/app';
+initializeApp(environments.firebaseConfig);
 
 @NgModule({
   declarations: [
