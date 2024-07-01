@@ -18,10 +18,6 @@ import { SocialesNivelesComponent } from './components/pages/socialesCiudadanas/
 import { NaturalesNivelesComponent } from './components/pages/cienciasNaturales/naturales-niveles/naturales-niveles.component';
 import { InglesNivelesComponent } from './components/pages/ingles/ingles-niveles/ingles-niveles.component';
 
-import { environments } from 'src/environments/environments';
-import { initializeApp } from 'firebase/app';
-initializeApp(environments.firebaseConfig);
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +49,7 @@ imports: [
       clientId: 'BivuSrxGygi0ctlzcBxQvvRYfTweDpPW',
       cacheLocation: 'localstorage',
       authorizationParams: {
-        redirect_uri: "https://makete.netlify.app/",
+        redirect_uri: "http://localhost:4200",
         // redirect_uri: window.location.origin
 
       },

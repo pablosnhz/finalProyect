@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { LevelService } from 'src/app/core/services/common/level-service.service';
+import { OneSignal } from 'onesignal-ngx';
 
 @Component({
   selector: 'app-main-page',
@@ -24,6 +25,25 @@ export class MainPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    window.OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: 'd6e6dee0-932f-4c7f-a81a-711d0fc9fa68',
+        notifyButton: {
+          enable: true
+        },
+        serviceWorkerParam: { scope: '/assets/push/onesignal/' },
+        serviceWorkerPath: '/assets/push/onesignal/OneSignalSDKWorker.js',
+        user: { email: '', external_id: '' },
+      });
+    });
+
+    const oneSignalScript = document.createElement('script');
+    oneSignalScript.src = 'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js';
+    oneSignalScript.defer = true;
+    document.head.appendChild(oneSignalScript);
+
+
     this.levelService.loadCompletedLevels();
     this.completedLevels = this.levelService.getCompletedLevels();
 

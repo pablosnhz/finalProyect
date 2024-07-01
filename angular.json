@@ -29,8 +29,7 @@
               "src/favicon.ico",
               "src/assets",
               "src/manifest.webmanifest",
-              "src/manimanifest.json",
-              "src/firebase-messaging.sw.js"
+              "src/push/onesignal/OneSignalSDKWorker.js"
             ],
             "styles": [
               "src/styles.scss"
