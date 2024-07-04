@@ -15,7 +15,7 @@ const routes: Routes = [
   // Materias
   {
     path: 'materias',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     component: MainPageComponent,
   },
   // { path: 'materias/matematica/niveles', component: NivelesMatematicaComponent },

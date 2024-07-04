@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit{
 
+  @ViewChild('navbarNav') navbarNav!: ElementRef;
   deferredPrompt: any;
 
   constructor() {
@@ -17,6 +18,8 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.setupNavigationLinks();
+
     document.addEventListener("scroll", () => {
       const goTopContainer = document.querySelector(".go-top-container");
       if (goTopContainer) {
@@ -43,6 +46,26 @@ export class HomeComponent implements OnInit{
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  setupNavigationLinks() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const targetId = (link.getAttribute('href') as string).substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 300,
+            behavior: 'smooth'
+          });
+          if (this.navbarNav.nativeElement.classList.contains('show')) {
+            this.navbarNav.nativeElement.classList.remove('show');
+          }
+        }
+      });
+    });
   }
 
   installPWA() {

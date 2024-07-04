@@ -8,7 +8,7 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" id="navbarNav" #navbarNav>
         <ul class="navbar-nav ms-auto" style="gap: 10px;">
           <li class="nav-item">
             <a href="#services" class="nav-link text-secondary"><small>Servicios</small></a>
@@ -21,6 +21,22 @@
           </li>
           <li class="nav-item">
             <a href="#pwa" class="nav-link text-secondary"><small><strong>Haz tu donacion</strong></small></a>
+          </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <strong><small>Pre Entreno</small></strong>
+              </button>
+              <ul class="dropdown-menu">
+                <li class="mb-2"><a class="dropdown-item"
+                  href="./../assets/documents/GuiadeOrientaciónSaber.pdf" download>Hoja Respuesta</a>
+                </li>
+                <li class="mb-2"><a class="dropdown-item"
+                  href="./../assets/documents/MatemáticasSaber11.pdf" download>Razonamiento Logico</a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a [routerLink]="['/login']" href="./../login/login.html" class="btn btn-warning"><strong><small>Iniciar</small></strong></a>
@@ -45,14 +61,14 @@
         <h6 class="fs-3 text-primary fw-bold mb-4"><strong>Proyecto Genius</strong></h6>
         <p class="fs-6">
           <small>En <strong>Caribe Enseña</strong>, nos hemos propuesto un objetivo claro: ofrecer un programa virtual de preparación para las
-          pruebas Saber 11 del ICFES, diseñado específicamente para nuestros estudiantes . Nos enfocamos en proporcionar
-          las herramientas necesarias para mejorar habilidades y conocimientos, aumentando así las posibilidades de éxito
-          en estas evaluaciones cruciales para ingresar a la vida universitaria.
-          <br><br>
-          <strong>Genius</strong> es nuestra solución innovadora: una plataforma de aprendizaje virtual que puedes descargar en tus
-          dispositivos móviles, como celulares, computadoras o tabletas. Su accesibilidad offline te permite acceder
-          al material educativo, guías de estudio, ejercicios y exámenes simulados, abarcando las áreas clave evaluadas
-          en las pruebas Saber 11, sin necesidad de una conexión a internet constante.</small>
+            pruebas Saber 11 del ICFES, diseñado específicamente para nuestros estudiantes. Nos enfocamos en proporcionar
+            las herramientas necesarias para mejorar habilidades y conocimientos, aumentando así las posibilidades de éxito
+            en estas evaluaciones cruciales para ingresar a la vida universitaria.
+            <br><br>
+            <strong>Genius</strong> es nuestra solución innovadora: una plataforma de aprendizaje virtual que puedes descargar en tus
+            dispositivos móviles, como celulares, computadoras o tabletas. Su accesibilidad offline te permite acceder
+            al material educativo, guías de estudio, ejercicios y exámenes simulados, abarcando las áreas clave evaluadas
+            en las pruebas Saber 11, sin necesidad de una conexión a internet constante.</small>
         </p>
         <a class="btn btn-warning" (click)="installPWA()"><strong><small>Descargar</small></strong></a>
       </div>
@@ -164,69 +180,6 @@
         </div>
       </div>
     </div>
-
-  <!-- SERVICES -->
-  <!-- <section id="services" class="py-5 mt-5" >
-    <div class="container">
-      <div class="text-center">
-        <h2 class="mb-4 mt-3">Servicios</h2>
-        <hr class="w-25 mx-auto" />
-      </div>
-      <div class="row">
-        <div class="col-md-3 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <i class="fa-regular fa-heart fa-2x my-3"></i>
-              <h5 class="fw-bold">PWA o Progressive Web App</h5>
-              <p class="text-muted"><strong>Es básicamente una aplicación web que se ve y se siente como una aplicación
-                que descargas en tu teléfono</strong>, pero ¡sin necesidad de descargarla! Puedes acceder a ella
-                directamente desde tu navegador web. Son geniales porque pueden funcionar incluso sin conexión
-                a internet y ofrecen características como notificaciones instantáneas y un rendimiento rápido.
-                ¡Es como tener lo mejor de ambos mundos!
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <i class="fa-regular fa-eye fa-2x my-3"></i>
-              <h5 class="fw-bold">Interfaz Intuitiva</h5>
-              <p class="text-muted">Fácil, accesible e intuitivo describe una plataforma de aprendizaje innovadora.
-                Con una interfaz amigable, acceso sin problemas desde dispositivos móviles y una navegación intuitiva,
-                ofrece una experiencia de estudio fluida. Proporciona recursos educativos y herramientas de
-                evaluación que mejoran el aprendizaje de los estudiantes, sin complicaciones.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <i class="fas fa-mobile-screen fa-2x my-3"></i>
-              <h5 class="fw-bold">Más de 2000 Preguntas Adaptadas a Competencias y Desempeños</h5>
-              <p class="text-muted">Descubre una amplia gama de más de 2000 preguntas y 200 contenidos
-                temáticos diseñados para abordar las competencias y niveles de desempeño de Saber 11.
-                Prepárate de manera integral para superar con éxito cada área evaluada y alcanzar tus
-                metas académicas con nuestra plataforma.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <i class="fa-regular fa-object-group fa-2x my-3"></i>
-              <h5 class="fw-bold">Simulacro de Prueba Saber 11</h5>
-              <p class="text-muted">Sumérgete en la experiencia de un simulacro cronometrado de la Prueba
-                Saber 11. Descarga nuestro contenido especialmente diseñado para ofrecerte una práctica
-                realista y completa. Domina cada pregunta Saber 11 y prepárate para alcanzar tus metas
-                académicas con confianza.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
   <!-- PREGUNTAS FRECUENTES -->
   <section id="preguntas">
     <div class="container">

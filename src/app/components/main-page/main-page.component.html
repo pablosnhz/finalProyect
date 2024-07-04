@@ -10,6 +10,22 @@
           <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ms-auto" style="gap: 10px;">
                 <li class="nav-item">
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      <strong><small>Pre Entreno/Simulacro</small></strong>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li class="mb-2"><a class="dropdown-item"
+                        href="./../assets/documents/GuiadeOrientaciónSaber.pdf" download>Hoja Respuesta</a>
+                      </li>
+                      <li class="mb-2"><a class="dropdown-item"
+                        href="./../assets/documents/MatemáticasSaber11.pdf" download>Razonamiento Logico</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="nav-item">
                   <a class="btn btn-warning" (click)="logout()"><strong><small>Cerrar sesion</small></strong></a>
                 </li>
                 <li class="nav-item">
@@ -17,9 +33,6 @@
                 </li>
                 <li class="nav-item">
                   <a class="btn btn-warning" [routerLink]="['/home']"><strong><small>Volver</small></strong></a>
-                </li>
-                <li class="nav-item">
-                  <!-- <a class="navbar-brand text-white radius-inicio" [routerLink]="['/home']">Volver</a> -->
                 </li>
               </ul>
           </div>
@@ -72,7 +85,7 @@
 
         <div class="col box-style">
             <div class="caja">
-                <h1>Lectura Critica</h1>
+                <h1>Lectura Crítica</h1>
                 <div class="mt-5 text-center">
                   <a [routerLink]="['/materias/lecturacritica']">
                         <img src="./../../../assets/images/lecturacritica.png"
@@ -183,7 +196,7 @@
         </div>
         <div class="col box-style">
             <div class="caja">
-                <h1>Ingles</h1>
+                <h1>Inglés</h1>
                 <div class="mt-5 text-center">
                   <a [routerLink]="['/materias/ingles']">
                     <img src="./../../../assets/images/ingles.png"
