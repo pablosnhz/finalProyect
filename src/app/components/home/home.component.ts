@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ export class HomeComponent implements OnInit{
   @ViewChild('navbarNav') navbarNav!: ElementRef;
   deferredPrompt: any;
 
-  constructor() {
+  constructor(private router: Router) {
     window.addEventListener('beforeinstallprompt', (event) => {
       event.preventDefault();
       this.deferredPrompt = event;
@@ -48,6 +49,11 @@ export class HomeComponent implements OnInit{
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // iniciar(grado: number) {
+  //   this.router.navigate(['/login'], { queryParams: { grado } });
+  // }
+
+  // navigate links specifically
   setupNavigationLinks() {
     const links = document.querySelectorAll('a[href^="#"]');
     links.forEach(link => {

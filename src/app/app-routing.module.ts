@@ -7,6 +7,7 @@ import { ProgresoComponent } from './components/main-page/progreso/progreso.comp
 import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
+  // login
   {
     path: '',
     component: LoginPageComponent,
@@ -18,12 +19,6 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
     component: MainPageComponent,
   },
-  // { path: 'materias/matematica/niveles', component: NivelesMatematicaComponent },
-  // { path: 'materias/lecturacritica/niveles', component: LecturaNivelesComponent },
-  // { path: 'materias/socialesciudadanas/niveles', component: SocialesNivelesComponent },
-  // { path: 'materias/cienciasnaturales/niveles', component: NaturalesNivelesComponent },
-  // { path: 'materias/ingles/niveles', component: InglesNivelesComponent },
-
   // razonamiento logico
   {
     path: 'materias/matematica',
