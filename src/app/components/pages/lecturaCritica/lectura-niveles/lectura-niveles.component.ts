@@ -82,6 +82,36 @@ ngOnInit(): void {
   });
 }
 
+// ngOnInit(): void {
+//   this.scrollToTop();
+
+//   this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
+//     const level = +params['level'];
+//     if (!isNaN(level)) {
+//       this.selectLevel(level);
+//     }
+//   });
+
+
+//   const selectedGrade = 'original';  // O 'decimo', dependiendo del login
+//   this.lecturaService.setGrade(selectedGrade);
+//   this.lecturaService.getSheets().subscribe(data => {
+//     if (data) {
+//       this.questionsData = data;
+//       // controlamos el tiempo tambien una vez iniciada la app inicia el timer
+//       this.loadTimerState();
+//       this.iniciarLevels();
+//       this.loadSelectedOptions();
+//       this.restoreSelections();
+
+//       // solucion a iterar sobre los niveles del template mainPage para ir al nivel con su info en especifico
+//       if (this.currentLevelIndex !== undefined && this.currentLevelIndex < this.levels.length) {
+//         this.questionsData = this.levels[this.currentLevelIndex];
+//       }
+//     }
+//   });
+// }
+
 loadTimerState() {
   const storedClock = localStorage.getItem('clockLectura');
   const storedFinalTime = localStorage.getItem('finalTimeLectura');

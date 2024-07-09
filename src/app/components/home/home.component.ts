@@ -49,8 +49,12 @@ export class HomeComponent implements OnInit{
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // iniciar(grado: number) {
-  //   this.router.navigate(['/login'], { queryParams: { grado } });
+  // iniciarOriginal() {
+  //   this.router.navigate(['/'], { queryParams: { grade: 'original' } });
+  // }
+
+  // iniciarGrado() {
+  //   this.router.navigate(['/'], { queryParams: { grade: 'grado' } });
   // }
 
   // navigate links specifically
