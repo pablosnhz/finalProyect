@@ -84,27 +84,27 @@ ngOnInit(): void {
 
 // ngOnInit(): void {
 //   this.scrollToTop();
-
 //   this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
 //     const level = +params['level'];
+//     const grado = params['grado'] || 'original'; // Valor por defecto es 'original'
 //     if (!isNaN(level)) {
 //       this.selectLevel(level);
 //     }
+//     this.loadQuestions(grado);
 //   });
+// }
 
 
-//   const selectedGrade = 'original';  // O 'decimo', dependiendo del login
-//   this.lecturaService.setGrade(selectedGrade);
+
+// loadQuestions(grado: string): void {
+//   this.lecturaService.setGrade(grado);
 //   this.lecturaService.getSheets().subscribe(data => {
 //     if (data) {
 //       this.questionsData = data;
-//       // controlamos el tiempo tambien una vez iniciada la app inicia el timer
 //       this.loadTimerState();
 //       this.iniciarLevels();
 //       this.loadSelectedOptions();
 //       this.restoreSelections();
-
-//       // solucion a iterar sobre los niveles del template mainPage para ir al nivel con su info en especifico
 //       if (this.currentLevelIndex !== undefined && this.currentLevelIndex < this.levels.length) {
 //         this.questionsData = this.levels[this.currentLevelIndex];
 //       }
