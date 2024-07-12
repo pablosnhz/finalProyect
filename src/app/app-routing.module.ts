@@ -12,6 +12,7 @@ const routes: Routes = [
     path: '',
     component: LoginPageComponent,
     loadChildren: () => import('./routes/login.module').then(m => m.LoginModule),
+    pathMatch: 'full'
   },
   // Materias
   {

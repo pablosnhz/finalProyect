@@ -13,10 +13,10 @@ export class InglesService {
   constructor(private httpClient: HttpClient) {}
 
   private sheetUrls: string[] = [
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vR4T8uLwzBQrjzhSe4PPzGCPwT1teD1jVOqMX-3nuVDohY0yH9oftPgLvVEa-e3tGJrvgBaVVLqVe_1/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQCLrhl0LSsvhxPhakIZ6BKU7oRz0VdM6YO42AFmOjp7guWXB3YDpLXCL40KyZid8xo2MHRQ0r2K8bc/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vR86QO59r9rtCbR3cGhXfhVR3dd5vHj8Y2HdvqeGkIpSZBvDBzgECVVlN5C5SxoAOZ5yk2g_31yH2NV/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQB4Gg3wJ3q5A7QLiXuDcF9UK42YsmCdJTbnSliOoNvkco6Wdfrxv3xPcBpKJ90HFEAkVf6wI5FDlLQ/pub?output=csv'
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vT222ibNMSbf1nomjFRw01N-S-MYiVtjUAmyNDxqJj8h4zvX8_LWrd9DxZ8WH4i6zV7yxZz0HfQ1FRe/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTAnsL9KLF6uEMPr5bCpr8ydTC_sdjkjvIKO4T02udPpdbNgKek7rBR785tRufIf-FkmNNBQMEkZDj0/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vRVfU8nMzBG10LX8Wx0_I1OR8WnGhSi7g4CrFddQ2OkWuGL6NiWBNJWOmW18mN5QPK4b9UBZR7qPgGP/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vT4J479YXrBAOPh0ILW7DciozAMr1EFkEhGaTyi7uBseXJ1r5FN9amI3eoMPJuhHEIcBOywSnZLCMvn/pub?output=csv'
   ];
 
   getSheets(): Observable<any[]> {

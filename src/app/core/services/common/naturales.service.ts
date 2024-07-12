@@ -12,10 +12,10 @@ export class NaturalesService {
   constructor(private httpClient: HttpClient) {}
 
   private sheetUrls: string[] = [
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQGJ9-xXw4h3ne398LimtGuH5ObpxrX1McSqofgTvP1xn4LhoEJIVWeqapNLbMIe7wtzlnGwa84omEx/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vRE97pVtQf79Uhu3VqT8MkLRr1b9PbzQ9rt8gfo4D8Cv1vgIIE0YaLXvnI27A6TGgf9uPYGUsz-dE5L/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2E2nOQ5KKO6__wS5pt-KOZA6nHHPbh919e55cxPY-IV_w4bW08QTLBkHhaK7BW2vKTsSz12um8GXX/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2URUXdR9uc7qBQ6UdZyR5xFVlj9YtLW-xlgfo14Qw8A818D-q51r5VySLIHe83QGo4KUXXBLcPR1x/pub?output=csv'
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQEC6SFKPOLXv8P-cis2GYYJZPdOv0UqdYHldeOyiq1A3CwimR3kKkkTjZGNu2p2V23en3vuOcSkPEz/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQTdpeH1WZMl4YQnnF-2jrpxCGraoCIUfgZoTO8ZM_nPjrnJY4MK84U-f3tMK8EclgoNWQhBCxIH5Dq/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQlF9UjYk9bwN7JDPtwC6IGvf01ps8MiWnMaxX5kRIED4iDy1sWIOGH0EDW7ArUO5Kgjq_oV2UKh8qb/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMSWmySKO_-YlLDIm_Ufb3i_lKNgTM5dffxPUEk2YJKPG9ASJxzIJucRAhbsuXAvPonNabCOWGkmIG/pub?output=csv'
   ];
 
   getSheets(): Observable<any[]> {

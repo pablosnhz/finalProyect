@@ -12,10 +12,10 @@ export class SocialesService {
   constructor(private httpClient: HttpClient) {}
 
   private sheetUrls: string[] = [
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQZ7t5yUhS-ieHNnmMw19SnF1RUfGXAn04Vc9LRU_6eIC0DiasGwi_CQxN4VtOwEdv2Qxt4BqNL92_U/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vSUoeAn7Rz3tzZ27woAZ4wqia7d1BS1p7Mg9r0e39pOP9QKLD0ikaqj6sX8sOVJGqI45AMi3AnJPVcK/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQMAiF7W88dTFEqzJmsuNx3P-vAlxRxf1F05v-xEc9P2N8QwzdXQ84DKls46K2ZKRzVgX29p7M1WoX1/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vSJXKN_3Bex6Y1kIIjOzEBdPWpiUID1zz1e4t8DsAQeUSpH2KtH3sebHWAy8K7hT7PNAFeUo4FO1sAj/pub?output=csv'
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQnLo9WtkRQPYa_qKkZ2X55CYvb2lVFIQYRjdQxdgNe0GabeLGH3sT6JbVBCbQhh6idvXVcw8V27rdG/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vT9VwDPY6G2UPMqZWzuZSUJHWOaZDJObDUxru-2TbnZFcdUSwGmXisQ3rOUQJ5HQg40UpPI7w18eTWp/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6U-I-S_0zDiPCHuBlb-iEVmCDStf6VkpfetUykjgL8Ij3gZaQHiOLql6eOmN4kUrv2ZoWFBRU14yt/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTGSt4KJhADgzrhrp97HCpmHEBBt00Ic7Z3vHse4w2JgXHL3k0JpjXLDsgS42Iu1YNNksrSh1E8vSBg/pub?output=csv'
   ];
 
   getSheets(): Observable<any[]> {

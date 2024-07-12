@@ -17,6 +17,7 @@ export class MainPageComponent implements OnInit {
   completedLevelsNaturales: Set<number> = new Set<number>();
   completedLevelsIngles: Set<number> = new Set<number>();
 
+  stateType: string | undefined;
 
   constructor(
     public auth: AuthService,
@@ -25,6 +26,7 @@ export class MainPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     window.OneSignalDeferred.push(async function(OneSignal) {
       await OneSignal.init({
