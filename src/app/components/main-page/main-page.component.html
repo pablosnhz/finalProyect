@@ -9,27 +9,11 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ms-auto" style="gap: 10px;">
-                <!-- <li class="nav-item">
-                  <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                      <strong><small>Pre Entreno/Simulacro</small></strong>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li class="mb-2"><a class="dropdown-item"
-                        href="./../assets/documents/GuiadeOrientaciónSaber.pdf" download>Hoja Respuesta</a>
-                      </li>
-                      <li class="mb-2"><a class="dropdown-item"
-                        href="./../assets/documents/MatemáticasSaber11.pdf" download>Razonamiento Logico</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li> -->
                 <li class="nav-item">
                   <a class="btn btn-warning" (click)="logout()"><strong><small>Cerrar sesion</small></strong></a>
                 </li>
                 <li class="nav-item">
-                  <a class="btn btn-warning" [routerLink]="['/progreso']"><strong><small>Ver mi progreso</small></strong></a>
+                  <a class="btn btn-warning" [routerLink]="['/materias/iniciar/progreso']"><strong><small>Ver mi progreso</small></strong></a>
                 </li>
                 <li class="nav-item">
                   <a class="btn btn-warning" [routerLink]="['/home']"><strong><small>Volver</small></strong></a>
@@ -49,31 +33,31 @@
       <div class="caja">
         <h1>Razonamiento Lógico</h1>
         <div class="mt-5 text-center">
-          <a [routerLink]="['/materias/matematica']">
+          <a [routerLink]="['/materias/iniciar/matematica']">
             <img src="./../../../assets/images/matematica.png" class="img-fluid">
           </a>
         </div>
 
       <div class="container-image">
-          <a class="cursor-pointer" [routerLink]="['/materias/matematica/niveles']" [queryParams]="{ level: 0 }">
+          <a class="cursor-pointer" [routerLink]="['/materias/iniciar/matematica/niveles']" [queryParams]="{ level: 0 }">
             <div id="nivel1">
               <img [src]="getButtonClass(0)" class="img-fluid">
               <p>Nivel 1</p>
             </div>
           </a>
-          <a class="cursor-pointer" [routerLink]="['/materias/matematica/niveles']" [queryParams]="{ level: 1 }">
+          <a class="cursor-pointer" [routerLink]="['/materias/iniciar/matematica/niveles']" [queryParams]="{ level: 1 }">
             <div id="nivel2">
               <img [src]="getButtonClass(1)" class="img-fluid">
               <p>Nivel 2</p>
             </div>
           </a>
-          <a class="cursor-pointer" [routerLink]="['/materias/matematica/niveles']" [queryParams]="{ level: 2 }">
+          <a class="cursor-pointer" [routerLink]="['/materias/iniciar/matematica/niveles']" [queryParams]="{ level: 2 }">
             <div id="nivel3">
               <img [src]="getButtonClass(2)" class="img-fluid">
               <p>Nivel 3</p>
             </div>
           </a>
-          <a class="cursor-pointer" [routerLink]="['/materias/matematica/niveles']" [queryParams]="{ level: 3 }">
+          <a class="cursor-pointer" [routerLink]="['/materias/iniciar/matematica/niveles']" [queryParams]="{ level: 3 }">
             <div id="nivel4">
               <img [src]="getButtonClass(3)" class="img-fluid">
               <p>Nivel 4</p>
@@ -87,31 +71,31 @@
             <div class="caja">
                 <h1>Lectura Crítica</h1>
                 <div class="mt-5 text-center">
-                  <a [routerLink]="['/materias/lecturacritica']">
+                  <a [routerLink]="['/materias/iniciar/lecturacritica']">
                         <img src="./../../../assets/images/lecturacritica.png"
                             class="img-fluid">
                     </a>
                 </div>
                 <div class="container-image">
-                  <a class="cursor-pointer" [routerLink]="['/materias/lecturacritica/niveles']" [queryParams]="{ level: 0 }">
+                  <a class="cursor-pointer" [routerLink]="['/materias/iniciar/lecturacritica/niveles']" [queryParams]="{ level: 0 }">
                     <div id="nivel1">
                       <img [src]="getButtonClassLectura(0)" class="img-fluid">
                       <p>Nivel 1</p>
                     </div>
                   </a>
-                  <a class="cursor-pointer" [routerLink]="['/materias/lecturacritica/niveles']" [queryParams]="{ level: 1 }">
+                  <a class="cursor-pointer" [routerLink]="['/materias/iniciar/lecturacritica/niveles']" [queryParams]="{ level: 1 }">
                     <div id="nivel2">
                       <img [src]="getButtonClassLectura(1)" class="img-fluid">
                       <p>Nivel 2</p>
                     </div>
                   </a>
-                  <a class="cursor-pointer" [routerLink]="['/materias/lecturacritica/niveles']" [queryParams]="{ level: 2 }">
+                  <a class="cursor-pointer" [routerLink]="['/materias/iniciar/lecturacritica/niveles']" [queryParams]="{ level: 2 }">
                     <div id="nivel3">
                       <img [src]="getButtonClassLectura(2)" class="img-fluid">
                       <p>Nivel 3</p>
                     </div>
                   </a>
-                  <a class="cursor-pointer" [routerLink]="['/materias/lecturacritica/niveles']" [queryParams]="{ level: 3 }">
+                  <a class="cursor-pointer" [routerLink]="['/materias/iniciar/lecturacritica/niveles']" [queryParams]="{ level: 3 }">
                     <div id="nivel4">
                       <img [src]="getButtonClassLectura(3)" class="img-fluid">
                       <p>Nivel 4</p>
@@ -124,31 +108,31 @@
             <div class="caja">
                 <h1>Sociales y ciudadanas</h1>
                 <div class="mt-5 text-center">
-                  <a [routerLink]="['/materias/socialesciudadanas']">
+                  <a [routerLink]="['/materias/iniciar/socialesciudadanas']">
                     <img src="./../../../assets/images/socialesyciudadanas.png"
                     class="img-fluid">
                   </a>
                 </div>
                 <div class="container-image">
-                  <a class="cursor-pointer" [routerLink]="['/materias/socialesciudadanas/niveles']" [queryParams]="{ level: 0 }">
+                  <a class="cursor-pointer" [routerLink]="['/materias/iniciar/socialesciudadanas/niveles']" [queryParams]="{ level: 0 }">
                     <div id="nivel1">
                       <img [src]="getButtonClassSociales(0)" class="img-fluid">
                       <p>Nivel 1</p>
                     </div>
                   </a>
-                  <a class="cursor-pointer" [routerLink]="['/materias/socialesciudadanas/niveles']" [queryParams]="{ level: 1 }">
+                  <a class="cursor-pointer" [routerLink]="['/materias/iniciar/socialesciudadanas/niveles']" [queryParams]="{ level: 1 }">
                     <div id="nivel2">
                       <img [src]="getButtonClassSociales(1)" class="img-fluid">
                       <p>Nivel 2</p>
                     </div>
                   </a>
-                  <a class="cursor-pointer" [routerLink]="['/materias/socialesciudadanas/niveles']" [queryParams]="{ level: 2 }">
+                  <a class="cursor-pointer" [routerLink]="['/materias/iniciar/socialesciudadanas/niveles']" [queryParams]="{ level: 2 }">
                     <div id="nivel3">
                       <img [src]="getButtonClassSociales(2)" class="img-fluid">
                       <p>Nivel 3</p>
                     </div>
                   </a>
-                  <a class="cursor-pointer" [routerLink]="['/materias/socialesciudadanas/niveles']" [queryParams]="{ level: 3 }">
+                  <a class="cursor-pointer" [routerLink]="['/materias/iniciar/socialesciudadanas/niveles']" [queryParams]="{ level: 3 }">
                     <div id="nivel4">
                       <img [src]="getButtonClassSociales(3)" class="img-fluid">
                       <p>Nivel 4</p>
@@ -161,31 +145,31 @@
             <div class="caja">
                 <h1>Ciencias naturales</h1>
                 <div class="mt-5 text-center">
-                  <a [routerLink]="['/materias/cienciasnaturales']">
+                  <a [routerLink]="['/materias/iniciar/cienciasnaturales']">
                     <img src="./../../../assets/images/cienciasnaturales.png"
                     class="img-fluid">
                   </a>
                 </div>
                 <div class="container-image">
-                  <a class="cursor-pointer"  [routerLink]="['/materias/cienciasnaturales/niveles']" [queryParams]="{ level: 0 }">
+                  <a class="cursor-pointer"  [routerLink]="['/materias/iniciar/cienciasnaturales/niveles']" [queryParams]="{ level: 0 }">
                     <div id="nivel1">
                       <img [src]="getButtonClassNaturales(0)" class="img-fluid">
                       <p>Nivel 1</p>
                     </div>
                   </a>
-                  <a class="cursor-pointer"  [routerLink]="['/materias/cienciasnaturales/niveles']" [queryParams]="{ level: 1 }">
+                  <a class="cursor-pointer"  [routerLink]="['/materias/iniciar/cienciasnaturales/niveles']" [queryParams]="{ level: 1 }">
                     <div id="nivel2">
                       <img [src]="getButtonClassNaturales(1)" class="img-fluid">
                       <p>Nivel 2</p>
                     </div>
                   </a>
-                  <a class="cursor-pointer"  [routerLink]="['/materias/cienciasnaturales/niveles']" [queryParams]="{ level: 2 }">
+                  <a class="cursor-pointer"  [routerLink]="['/materias/iniciar/cienciasnaturales/niveles']" [queryParams]="{ level: 2 }">
                     <div id="nivel3">
                       <img [src]="getButtonClassNaturales(2)" class="img-fluid">
                       <p>Nivel 3</p>
                     </div>
                   </a>
-                  <a class="cursor-pointer" [routerLink]="['/materias/cienciasnaturales/niveles']" [queryParams]="{ level: 3 }">
+                  <a class="cursor-pointer" [routerLink]="['/materias/iniciar/cienciasnaturales/niveles']" [queryParams]="{ level: 3 }">
                     <div id="nivel4">
                       <img [src]="getButtonClassNaturales(3)" class="img-fluid">
                       <p>Nivel 4</p>
@@ -198,31 +182,31 @@
             <div class="caja">
                 <h1>Inglés</h1>
                 <div class="mt-5 text-center">
-                  <a [routerLink]="['/materias/ingles']">
+                  <a [routerLink]="['/materias/iniciar/ingles']">
                     <img src="./../../../assets/images/ingles.png"
                     class="img-fluid">
                   </a>
                 </div>
                 <div class="container-image">
-                  <a class="cursor-pointer" [routerLink]="['/materias/ingles/niveles']" [queryParams]="{ level: 0 }">
+                  <a class="cursor-pointer" [routerLink]="['/materias/iniciar/ingles/niveles']" [queryParams]="{ level: 0 }">
                     <div id="nivel1">
                       <img [src]="getButtonClassIngles(0)" class="img-fluid">
                       <p>Nivel 1</p>
                     </div>
                   </a>
-                  <a class="cursor-pointer" [routerLink]="['/materias/ingles/niveles']" [queryParams]="{ level: 1 }">
+                  <a class="cursor-pointer" [routerLink]="['/materias/iniciar/ingles/niveles']" [queryParams]="{ level: 1 }">
                     <div id="nivel2">
                       <img [src]="getButtonClassIngles(1)" class="img-fluid">
                       <p>Nivel 2</p>
                     </div>
                   </a>
-                  <a class="cursor-pointer" [routerLink]="['/materias/ingles/niveles']" [queryParams]="{ level: 2 }">
+                  <a class="cursor-pointer" [routerLink]="['/materias/iniciar/ingles/niveles']" [queryParams]="{ level: 2 }">
                     <div id="nivel3">
                       <img [src]="getButtonClassIngles(2)" class="img-fluid">
                       <p>Nivel 3</p>
                     </div>
                   </a>
-                  <a class="cursor-pointer" [routerLink]="['/materias/ingles/niveles']" [queryParams]="{ level: 3 }">
+                  <a class="cursor-pointer" [routerLink]="['/materias/iniciar/ingles/niveles']" [queryParams]="{ level: 3 }">
                     <div id="nivel4">
                       <img [src]="getButtonClassIngles(3)" class="img-fluid">
                       <p>Nivel 4</p>

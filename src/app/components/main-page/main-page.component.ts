@@ -87,7 +87,8 @@ export class MainPageComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
+    localStorage.removeItem('origin');
+    this.auth.logout({ returnTo: window.location.origin } as any);
   }
 
   onSelectLevel(levelIndex: number) {

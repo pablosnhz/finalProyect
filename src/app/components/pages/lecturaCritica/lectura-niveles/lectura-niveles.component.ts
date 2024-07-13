@@ -82,36 +82,6 @@ ngOnInit(): void {
   });
 }
 
-// ngOnInit(): void {
-//   this.scrollToTop();
-//   this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
-//     const level = +params['level'];
-//     const grado = params['grado'] || 'original'; // Valor por defecto es 'original'
-//     if (!isNaN(level)) {
-//       this.selectLevel(level);
-//     }
-//     this.loadQuestions(grado);
-//   });
-// }
-
-
-
-// loadQuestions(grado: string): void {
-//   this.lecturaService.setGrade(grado);
-//   this.lecturaService.getSheets().subscribe(data => {
-//     if (data) {
-//       this.questionsData = data;
-//       this.loadTimerState();
-//       this.iniciarLevels();
-//       this.loadSelectedOptions();
-//       this.restoreSelections();
-//       if (this.currentLevelIndex !== undefined && this.currentLevelIndex < this.levels.length) {
-//         this.questionsData = this.levels[this.currentLevelIndex];
-//       }
-//     }
-//   });
-// }
-
 loadTimerState() {
   const storedClock = localStorage.getItem('clockLectura');
   const storedFinalTime = localStorage.getItem('finalTimeLectura');

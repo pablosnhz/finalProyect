@@ -4,6 +4,7 @@ import { LecturaCriticaService } from './core/services/common/lectura-critica.se
 import { SocialesService } from './core/services/common/sociales.service';
 import { NaturalesService } from './core/services/common/naturales.service';
 import { InglesService } from './core/services/common/ingles.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -20,38 +21,33 @@ export class AppComponent implements OnInit{
               private socialesService: SocialesService,
               private naturalesService: NaturalesService,
               private inglesService: InglesService,
+              private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.sheetsDatesService.getSheets().subscribe(data => {
-      if (data) {
-        this.sheetsDatesService.getSheets();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.infoForIniciarandGrado(event.urlAfterRedirects);
       }
-    })
+    });
+  }
 
-    this.lecturaCritica.getSheets().subscribe(data => {
-      if (data) {
-        this.lecturaCritica.getSheets();
+  // con esto priorizamos que se va a cargar segun la ruta ya sea para INICIAR o GRADO
+  infoForIniciarandGrado(route: string) {
+    if (route.startsWith('/materias/iniciar')) {
+      this.sheetsDatesService.getSheets().subscribe();
+      this.lecturaCritica.getSheets().subscribe();
+      this.socialesService.getSheets().subscribe();
+      this.naturalesService.getSheets().subscribe();
+      this.inglesService.getSheets().subscribe();
+    } else {
+      if (route.startsWith('/materias/grado')) {
+        this.sheetsDatesService.getSheets().subscribe();
+        this.lecturaCritica.getSheets().subscribe();
+        this.socialesService.getSheets().subscribe();
+        this.naturalesService.getSheets().subscribe();
+        this.inglesService.getSheets().subscribe();
       }
-    })
-
-    this.socialesService.getSheets().subscribe(data => {
-      if (data) {
-        this.socialesService.getSheets();
-      }
-    })
-
-    this.naturalesService.getSheets().subscribe(data => {
-      if (data) {
-        this.naturalesService.getSheets();
-      }
-    })
-
-    this.inglesService.getSheets().subscribe(data => {
-      if (data) {
-        this.inglesService.getSheets();
-      }
-    })
+    }
   }
 }
-

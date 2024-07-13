@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,9 @@ export class HomeComponent implements OnInit{
   origin: string | null | undefined;
   @ViewChild('navbarNav') navbarNav!: ElementRef;
   deferredPrompt: any;
+  isAuthenticated = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private auth: AuthService) {
     window.addEventListener('beforeinstallprompt', (event) => {
       event.preventDefault();
       this.deferredPrompt = event;
@@ -20,7 +22,14 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.origin = localStorage.getItem('origin');
+    // auth para el condicional de GRADO y INICIAR
+    this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
+      this.isAuthenticated = isAuthenticated;
+      if (isAuthenticated) {
+        this.origin = localStorage.getItem('origin');
+      }
+    });
+
     this.setupNavigationLinks();
 
     document.addEventListener("scroll", () => {
@@ -51,14 +60,15 @@ export class HomeComponent implements OnInit{
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // variante de botones para las dos rutas de botones GRADO y INICIAR
   navigateToLogin(origin: string) {
     localStorage.setItem('origin', origin);
-    this.router.navigate(['/'], { queryParams: { origin } });
+    const route = origin === 'iniciar' ? '/iniciar' : '/grado';
+    this.router.navigate([route], { queryParams: { origin } });
   }
-
   isButtonVisible(buttonType: string): boolean {
     const origin = localStorage.getItem('origin');
-    return origin === null || origin === buttonType;
+    return !this.isAuthenticated || origin === buttonType;
   }
 
 
