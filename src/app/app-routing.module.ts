@@ -16,33 +16,33 @@ const routes: Routes = [
   },
   // Materias
   {
-    path: 'materias',
+    path: 'materias/:origin',
     // canActivate: [AuthGuard],
     component: MainPageComponent,
   },
   // razonamiento logico
   {
-    path: 'materias/matematica',
+    path: 'materias/:origin/matematica',
     loadChildren: () => import('./components/pages/razonamientoLogico/matematica.module').then(m => m.MatematicaModule),
   },
   // lecturacritica
   {
-    path: 'materias/lecturacritica',
+    path: 'materias/:origin/lecturacritica',
     loadChildren: () => import('./components/pages/lecturaCritica/lecturacritica.module').then(m => m.LecturacriticaModule),
   },
   // socualesciudadanas
   {
-    path: 'materias/socialesciudadanas',
+    path: 'materias/:origin/socialesciudadanas',
     loadChildren: () => import('./components/pages/socialesCiudadanas/sociales.module').then(m => m.SocialesModule),
   },
   // cienciasNaturales
   {
-    path: 'materias/cienciasnaturales',
+    path: 'materias/:origin/cienciasnaturales',
     loadChildren: () => import('./components/pages/cienciasNaturales/naturales.module').then(m => m.NaturalesModule),
   },
   // ingles
   {
-    path: 'materias/ingles',
+    path: 'materias/:origin/ingles',
     loadChildren: () => import('./components/pages/ingles/ingles.module').then(m => m.InglesModule),
   },
   {

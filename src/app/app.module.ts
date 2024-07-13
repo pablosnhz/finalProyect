@@ -45,13 +45,11 @@ imports: [
   ],
   providers: [
     provideAuth0({
-      domain: 'dev-dyyp1d0unr027i6u.us.auth0.com',
-      clientId: 'BivuSrxGygi0ctlzcBxQvvRYfTweDpPW',
+      domain: 'dev-mfuhxwtsa6qnfcwb.us.auth0.com',
+      clientId: 'gzAhbZn4ROfbNUkM90ykh6cxgibKVVhW',
       cacheLocation: 'localstorage',
       authorizationParams: {
-        redirect_uri: "http://localhost:4200",
-        // redirect_uri: window.location.origin
-
+        redirect_uri: "http://localhost:4200/",
       },
     }),
   ],

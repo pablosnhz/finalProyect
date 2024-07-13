@@ -30,7 +30,7 @@ export class MainPageComponent implements OnInit {
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     window.OneSignalDeferred.push(async function(OneSignal) {
       await OneSignal.init({
-        appId: 'd6e6dee0-932f-4c7f-a81a-711d0fc9fa68',
+        appId: 'cee476c5-443f-41df-b1ac-f524d5948b65',
         notifyButton: {
           enable: true
         },

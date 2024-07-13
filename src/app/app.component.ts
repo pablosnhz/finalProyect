@@ -4,7 +4,6 @@ import { LecturaCriticaService } from './core/services/common/lectura-critica.se
 import { SocialesService } from './core/services/common/sociales.service';
 import { NaturalesService } from './core/services/common/naturales.service';
 import { InglesService } from './core/services/common/ingles.service';
-import { OneSignal } from 'onesignal-ngx';
 
 @Component({
   selector: 'app-root',

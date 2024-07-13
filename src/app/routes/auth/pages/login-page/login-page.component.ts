@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
@@ -8,26 +8,37 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit{
-  stateType: string | undefined;
+  origin: string | undefined;
 
-  constructor(public auth: AuthService, private router: Router) {}
+  constructor(public auth: AuthService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.origin = params['origin'];
+      if (this.origin) {
+        localStorage.setItem('origin', this.origin);
+      }
+    });
+
     this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
       if (isAuthenticated) {
         console.log('Accedió:', isAuthenticated);
-        this.router.navigate(['/materias']);
+        const origin = localStorage.getItem('origin');
+        this.router.navigate(['/materias', origin]);
       }
     });
-  }
-
-  login() {
-    this.auth.loginWithRedirect();
-  }
+}
+login() {
+  this.auth.loginWithRedirect();
 }
 
+}
+
+
+
+
 // import { Component, OnInit } from '@angular/core';
-// import { ActivatedRoute, Router } from '@angular/router';
+// import { Router } from '@angular/router';
 // import { AuthService } from '@auth0/auth0-angular';
 
 // @Component({
@@ -36,51 +47,15 @@ export class LoginPageComponent implements OnInit{
 //   styleUrls: ['./login-page.component.scss'],
 // })
 // export class LoginPageComponent implements OnInit{
-//   constructor( public auth: AuthService , private router: Router, private route: ActivatedRoute){}
+//   stateType: string | undefined;
 
-//   private grado: string = 'original';
-
-//   ngOnInit(): void {
-//     this.route.queryParams.subscribe(params => {
-//       this.grado = params['grado'] || 'original';
-//     });
-
-//     this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
-//       if (isAuthenticated) {
-//         console.log('accedio?', isAuthenticated)
-//         this.router.navigate(['/materias'], { queryParams: { grado: this.grado } });
-//       }
-//     })
-//   }
-
-//   login(){
-//     this.auth.loginWithRedirect();
-//   }
-// }
-
-// import { Component, OnInit } from '@angular/core';
-// import { ActivatedRoute, Router } from '@angular/router';
-// import { AuthService } from '@auth0/auth0-angular';
-
-// @Component({
-//   selector: 'app-login-page',
-//   templateUrl: './login-page.component.html',
-//   styleUrls: ['./login-page.component.scss'],
-// })
-// export class LoginPageComponent implements OnInit{
-//   private grade: string | null = null;
-
-//   constructor( public auth: AuthService, private router: Router, private route: ActivatedRoute){}
+//   constructor(public auth: AuthService, private router: Router) {}
 
 //   ngOnInit(): void {
-//     this.route.queryParams.subscribe(params => {
-//       this.grade = params['grade'];
-//     });
-
 //     this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
 //       if (isAuthenticated) {
-//         console.log('accedio?', isAuthenticated);
-//         this.router.navigate(['/materias'], { queryParams: { grade: this.grade } });
+//         console.log('Accedió:', isAuthenticated);
+//         this.router.navigate(['/materias']);
 //       }
 //     });
 //   }

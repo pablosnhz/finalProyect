@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit{
 
+  origin: string | null | undefined;
   @ViewChild('navbarNav') navbarNav!: ElementRef;
   deferredPrompt: any;
 
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.origin = localStorage.getItem('origin');
     this.setupNavigationLinks();
 
     document.addEventListener("scroll", () => {
@@ -49,9 +51,16 @@ export class HomeComponent implements OnInit{
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  navigateToLogin(type: string) {
-    this.router.navigate(['/'], { state: { type } });
+  navigateToLogin(origin: string) {
+    localStorage.setItem('origin', origin);
+    this.router.navigate(['/'], { queryParams: { origin } });
   }
+
+  isButtonVisible(buttonType: string): boolean {
+    const origin = localStorage.getItem('origin');
+    return origin === null || origin === buttonType;
+  }
+
 
   // navigate links specifically
   setupNavigationLinks() {
