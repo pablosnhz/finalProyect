@@ -8,7 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { ProgresoComponent } from './components/main-page/progreso/progreso.component';
+
+import { NivelesMatematicaComponent } from './components/pages/razonamientoLogico/niveles-matematica/niveles-matematica.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { LecturaNivelesComponent } from './components/pages/lecturaCritica/lectura-niveles/lectura-niveles.component';
+import { SocialesNivelesComponent } from './components/pages/socialesCiudadanas/sociales-niveles/sociales-niveles.component';
+import { NaturalesNivelesComponent } from './components/pages/cienciasNaturales/naturales-niveles/naturales-niveles.component';
+import { InglesNivelesComponent } from './components/pages/ingles/ingles-niveles/ingles-niveles.component';
 
 // Auth0
 import { provideAuth0 } from '@auth0/auth0-angular';
@@ -21,6 +27,12 @@ import { provideAuth0 } from '@auth0/auth0-angular';
     MainPageComponent,
     ProgresoComponent,
     SpinnerComponent,
+
+    NivelesMatematicaComponent,
+    LecturaNivelesComponent,
+    SocialesNivelesComponent,
+    NaturalesNivelesComponent,
+    InglesNivelesComponent
   ],
 imports: [
     BrowserModule,
