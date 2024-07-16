@@ -6,33 +6,57 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
-import { MainPageComponent } from './components/main-page/main-page.component';
-import { ProgresoComponent } from './components/main-page/progreso/progreso.component';
-
-import { NivelesMatematicaComponent } from './components/pages/razonamientoLogico/niveles-matematica/niveles-matematica.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
-import { LecturaNivelesComponent } from './components/pages/lecturaCritica/lectura-niveles/lectura-niveles.component';
-import { SocialesNivelesComponent } from './components/pages/socialesCiudadanas/sociales-niveles/sociales-niveles.component';
-import { NaturalesNivelesComponent } from './components/pages/cienciasNaturales/naturales-niveles/naturales-niveles.component';
-import { InglesNivelesComponent } from './components/pages/ingles/ingles-niveles/ingles-niveles.component';
+
+
 
 // Auth0
 import { provideAuth0 } from '@auth0/auth0-angular';
+
+import { MainPageComponent } from './components/original/main-page/main-page.component';
+import { ProgresoComponent } from './components/original/main-page/progreso/progreso.component';
+import { NaturalesNivelesComponent } from './components/original/pages/cienciasNaturales/naturales-niveles/naturales-niveles.component';
+import { InglesNivelesComponent } from './components/original/pages/ingles/ingles-niveles/ingles-niveles.component';
+import { LecturaNivelesComponent } from './components/original/pages/lecturaCritica/lectura-niveles/lectura-niveles.component';
+import { NivelesMatematicaComponent } from './components/original/pages/razonamientoLogico/niveles-matematica/niveles-matematica.component';
+import { SocialesNivelesComponent } from './components/original/pages/socialesCiudadanas/sociales-niveles/sociales-niveles.component';
+
+import { ProgresoGradoComponent } from './components/grado/main-page/progreso/progresogrado.component';
+import { MainPageGradoComponent } from './components/grado/main-page/main-pagegrado.component';
+import { NaturalesNivelesGradoComponent } from './components/grado/pages/cienciasNaturales/naturales-niveles/naturales-grado-niveles.component';
+import { InglesNivelesGradoComponent } from './components/grado/pages/ingles/ingles-niveles/ingles-niveles-grado.component';
+import { LecturaNivelesGradoComponent } from './components/grado/pages/lecturaCritica/lectura-niveles/lectura-niveles-grado.component';
+import { NivelesMatematicaGradoComponent } from './components/grado/pages/razonamientoLogico/niveles-matematica/niveles-matematica-grado.component';
+import { SocialesNivelesGradoComponent } from './components/grado/pages/socialesCiudadanas/sociales-niveles/sociales-niveles-grado.component';
 
 @NgModule({
   declarations: [
     AppComponent,
 
     HomeComponent,
+
+    // Original
     MainPageComponent,
-    ProgresoComponent,
     SpinnerComponent,
+
+    ProgresoComponent,
 
     NivelesMatematicaComponent,
     LecturaNivelesComponent,
     SocialesNivelesComponent,
     NaturalesNivelesComponent,
-    InglesNivelesComponent
+    InglesNivelesComponent,
+
+    // Grado
+    MainPageGradoComponent,
+
+    ProgresoGradoComponent,
+
+    NaturalesNivelesGradoComponent,
+    InglesNivelesGradoComponent,
+    LecturaNivelesGradoComponent,
+    NivelesMatematicaGradoComponent,
+    SocialesNivelesGradoComponent
   ],
 imports: [
     BrowserModule,

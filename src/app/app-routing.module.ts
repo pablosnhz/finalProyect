@@ -2,8 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginPageComponent } from './routes/auth/pages/login-page/login-page.component';
-import { MainPageComponent } from './components/main-page/main-page.component';
-import { ProgresoComponent } from './components/main-page/progreso/progreso.component';
+
+import { MainPageComponent } from './components/original/main-page/main-page.component';
+import { ProgresoComponent } from './components/original/main-page/progreso/progreso.component';
+
+import { MainPageGradoComponent } from './components/grado/main-page/main-pagegrado.component';
+import { ProgresoGradoComponent } from './components/grado/main-page/progreso/progresogrado.component';
+
 import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
@@ -22,23 +27,23 @@ const routes: Routes = [
   },
   {
     path: 'materias/iniciar/matematica',
-    loadChildren: () => import('./components/pages/razonamientoLogico/matematica.module').then(m => m.MatematicaModule),
+    loadChildren: () => import('./components/original/pages/razonamientoLogico/matematica.module').then(m => m.MatematicaModule),
   },
   {
     path: 'materias/iniciar/lecturacritica',
-    loadChildren: () => import('./components/pages/lecturaCritica/lecturacritica.module').then(m => m.LecturacriticaModule),
+    loadChildren: () => import('./components/original/pages/lecturaCritica/lecturacritica.module').then(m => m.LecturacriticaModule),
   },
   {
     path: 'materias/iniciar/socialesciudadanas',
-    loadChildren: () => import('./components/pages/socialesCiudadanas/sociales.module').then(m => m.SocialesModule),
+    loadChildren: () => import('./components/original/pages/socialesCiudadanas/sociales.module').then(m => m.SocialesModule),
   },
   {
     path: 'materias/iniciar/cienciasnaturales',
-    loadChildren: () => import('./components/pages/cienciasNaturales/naturales.module').then(m => m.NaturalesModule),
+    loadChildren: () => import('./components/original/pages/cienciasNaturales/naturales.module').then(m => m.NaturalesModule),
   },
   {
     path: 'materias/iniciar/ingles',
-    loadChildren: () => import('./components/pages/ingles/ingles.module').then(m => m.InglesModule),
+    loadChildren: () => import('./components/original/pages/ingles/ingles.module').then(m => m.InglesModule),
   },
   {
     path: 'materias/iniciar/progreso',
@@ -48,31 +53,31 @@ const routes: Routes = [
   {
     path: 'materias/grado',
     // canActivate: [AuthGuard],
-    component: MainPageComponent,
+    component: MainPageGradoComponent,
   },
   {
     path: 'materias/grado/matematica',
-    loadChildren: () => import('./components/pages/razonamientoLogico/matematica.module').then(m => m.MatematicaModule),
+    loadChildren: () => import('./components/grado/pages/razonamientoLogico/matematica-grado.module').then(m => m.MatematicaGradoModule),
   },
   {
     path: 'materias/grado/lecturacritica',
-    loadChildren: () => import('./components/pages/lecturaCritica/lecturacritica.module').then(m => m.LecturacriticaModule),
+    loadChildren: () => import('./components/grado/pages/lecturaCritica/lecturacritica-grado.module').then(m => m.LecturacriticaGradoModule),
   },
   {
     path: 'materias/grado/socialesciudadanas',
-    loadChildren: () => import('./components/pages/socialesCiudadanas/sociales.module').then(m => m.SocialesModule),
+    loadChildren: () => import('./components/grado/pages/socialesCiudadanas/sociales-grado.module').then(m => m.SocialesGradoModule),
   },
   {
     path: 'materias/grado/cienciasnaturales',
-    loadChildren: () => import('./components/pages/cienciasNaturales/naturales.module').then(m => m.NaturalesModule),
+    loadChildren: () => import('./components/grado/pages/cienciasNaturales/naturales-grado.module').then(m => m.NaturalesGradoModule),
   },
   {
     path: 'materias/grado/ingles',
-    loadChildren: () => import('./components/pages/ingles/ingles.module').then(m => m.InglesModule),
+    loadChildren: () => import('./components/grado/pages/ingles/ingles-grado.module').then(m => m.InglesGradoModule),
   },
   {
     path: 'materias/grado/progreso',
-    component: ProgresoComponent
+    component: ProgresoGradoComponent
   },
   {
     path: 'home',
@@ -91,79 +96,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-
-
-
-
-
-
-
-
-// import { NgModule } from '@angular/core';
-// import { RouterModule, Routes } from '@angular/router';
-// import { HomeComponent } from './components/home/home.component';
-// import { LoginPageComponent } from './routes/auth/pages/login-page/login-page.component';
-// import { MainPageComponent } from './components/main-page/main-page.component';
-// import { ProgresoComponent } from './components/main-page/progreso/progreso.component';
-// import { AuthGuard } from '@auth0/auth0-angular';
-
-// const routes: Routes = [
-//   // login
-//   {
-//     path: '',
-//     component: LoginPageComponent,
-//     loadChildren: () => import('./routes/login.module').then(m => m.LoginModule),
-//     pathMatch: 'full'
-//   },
-//   // Materias
-//   {
-//     path: 'materias',
-//     // canActivate: [AuthGuard],
-//     component: MainPageComponent,
-//   },
-//   // razonamiento logico
-//   {
-//     path: 'materias/matematica',
-//     loadChildren: () => import('./components/pages/razonamientoLogico/matematica.module').then(m => m.MatematicaModule),
-//   },
-//   // lecturacritica
-//   {
-//     path: 'materias/lecturacritica',
-//     loadChildren: () => import('./components/pages/lecturaCritica/lecturacritica.module').then(m => m.LecturacriticaModule),
-//   },
-//   // socualesciudadanas
-//   {
-//     path: 'materias/socialesciudadanas',
-//     loadChildren: () => import('./components/pages/socialesCiudadanas/sociales.module').then(m => m.SocialesModule),
-//   },
-//   // cienciasNaturales
-//   {
-//     path: 'materias/cienciasnaturales',
-//     loadChildren: () => import('./components/pages/cienciasNaturales/naturales.module').then(m => m.NaturalesModule),
-//   },
-//   // ingles
-//   {
-//     path: 'materias/ingles',
-//     loadChildren: () => import('./components/pages/ingles/ingles.module').then(m => m.InglesModule),
-//   },
-//   {
-//     path: 'home',
-//     pathMatch: 'full',
-//     component: HomeComponent,
-//   },
-//   {
-//     path: 'progreso',
-//     component: ProgresoComponent
-//   },
-//   {
-//     path: '**',
-//     redirectTo: '',
-//   }
-// ];
-
-// @NgModule({
-//   imports: [RouterModule.forRoot(routes)],
-//   exports: [RouterModule]
-// })
-// export class AppRoutingModule { }

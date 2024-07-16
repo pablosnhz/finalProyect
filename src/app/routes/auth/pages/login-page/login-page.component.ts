@@ -33,34 +33,3 @@ login() {
 }
 
 }
-
-
-
-
-// import { Component, OnInit } from '@angular/core';
-// import { Router } from '@angular/router';
-// import { AuthService } from '@auth0/auth0-angular';
-
-// @Component({
-//   selector: 'app-login-page',
-//   templateUrl: './login-page.component.html',
-//   styleUrls: ['./login-page.component.scss'],
-// })
-// export class LoginPageComponent implements OnInit{
-//   stateType: string | undefined;
-
-//   constructor(public auth: AuthService, private router: Router) {}
-
-//   ngOnInit(): void {
-//     this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
-//       if (isAuthenticated) {
-//         console.log('Accedió:', isAuthenticated);
-//         this.router.navigate(['/materias']);
-//       }
-//     });
-//   }
-
-//   login() {
-//     this.auth.loginWithRedirect();
-//   }
-// }

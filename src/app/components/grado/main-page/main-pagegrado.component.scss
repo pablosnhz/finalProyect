@@ -1,0 +1,126 @@
+.logo {
+  width: 50px;
+}
+
+.button-personalizado {
+
+    background-color: #415da3f5;
+    color: white;
+}
+
+.radius-inicio {
+  border-radius: 20px;
+  cursor: pointer;
+  text-align: center;
+  padding: 7px 15px;
+  padding-top: 3px;
+  background-color: #F9B911;
+}
+
+.radius-check {
+  border-radius: 20px;
+  text-align: center;
+  padding: 15px 30px;
+  padding-top: 10px;
+  background-color: rgb(10, 187, 63);
+  color: black;
+  font-size: 25px;
+  border: transparent;
+}
+
+.box-style {
+  border-radius: 20px;
+  padding: 10px;
+  margin-top: 3rem;
+  border: 2px solid black;
+}
+
+/* boxStyleProgreso */
+.box-styles {
+  border-radius: 20px;
+  padding: 5px;
+  margin-top: 5rem;
+  border: 2px solid black;
+}
+
+// .img-fluid {
+//   max-width: 70%;
+//   height: auto;
+// }
+
+
+.caja {
+  margin-top: 2rem;
+}
+
+.caja h1{
+  text-align:center;
+  font-size: 1.3rem;
+  color: rgb(51, 52, 54);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+
+
+.caja a {
+  text-decoration: none;
+  color:#474747
+}
+
+.container-image {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.3rem;
+  text-align: center;
+  align-items: flex-end;
+}
+
+.container-image a {
+  font-size: 0.7em;
+  display: block;
+}
+
+.container-image img {
+  margin-top: 50px;
+  max-width: 90%;
+  height: auto;
+}
+
+/* container progreso */
+.container-images {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.3rem;
+  text-align: center;
+  align-items: flex-end;
+}
+
+.container-images a {
+  font-size: 0.7em;
+  display: block;
+}
+
+.container-images img {
+  max-width: 60%;
+  height: auto;
+}
+
+.estilo-letra{
+  color: rgb(122, 130, 138);
+}
+
+
+.gap-nav {
+  display: flex;
+  gap: 45rem;
+}
+
+.hidden-component {
+  display: none;
+
+
+
+
+}
+
