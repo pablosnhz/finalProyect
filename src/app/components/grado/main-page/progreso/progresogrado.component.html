@@ -10,7 +10,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ms-auto" style="gap: 10px;">
                 <li class="nav-item">
-                  <a class="btn btn-warning" [routerLink]="['/materias/grado']"><strong><small>Volver</small></strong></a>
+                  <a class="btn button-personalizado" (click)="refreshPage()"><strong><small>Actualizar</small></strong></a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn button-personalizado" [routerLink]="['/materias/grado']"><strong><small>Volver</small></strong></a>
                 </li>
                 <li class="nav-item">
                   <!-- <a class="navbar-brand text-white radius-inicio" [routerLink]="['/home']">Volver</a> -->
