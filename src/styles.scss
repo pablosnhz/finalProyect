@@ -35,3 +35,15 @@ body {
     height: auto;
   }
 }
+
+@media (max-width: 576px) {
+  .letra-custom {
+    font-size: 1.7rem;
+  }
+  .text-md-left {
+    text-align: left !important;
+  }
+  .strong {
+    font-weight: 600;
+  }
+}
