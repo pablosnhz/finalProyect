@@ -27,26 +27,32 @@ const routes: Routes = [
   },
   {
     path: 'materias/iniciar/matematica',
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./components/original/pages/razonamientoLogico/matematica.module').then(m => m.MatematicaModule),
   },
   {
     path: 'materias/iniciar/lecturacritica',
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./components/original/pages/lecturaCritica/lecturacritica.module').then(m => m.LecturacriticaModule),
   },
   {
     path: 'materias/iniciar/socialesciudadanas',
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./components/original/pages/socialesCiudadanas/sociales.module').then(m => m.SocialesModule),
   },
   {
     path: 'materias/iniciar/cienciasnaturales',
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./components/original/pages/cienciasNaturales/naturales.module').then(m => m.NaturalesModule),
   },
   {
     path: 'materias/iniciar/ingles',
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./components/original/pages/ingles/ingles.module').then(m => m.InglesModule),
   },
   {
     path: 'materias/iniciar/progreso',
+    // canActivate: [AuthGuard],
     component: ProgresoComponent
   },
   // Materias para "grado"
@@ -57,26 +63,32 @@ const routes: Routes = [
   },
   {
     path: 'materias/grado/matematica',
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./components/grado/pages/razonamientoLogico/matematica-grado.module').then(m => m.MatematicaGradoModule),
   },
   {
     path: 'materias/grado/lecturacritica',
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./components/grado/pages/lecturaCritica/lecturacritica-grado.module').then(m => m.LecturacriticaGradoModule),
   },
   {
     path: 'materias/grado/socialesciudadanas',
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./components/grado/pages/socialesCiudadanas/sociales-grado.module').then(m => m.SocialesGradoModule),
   },
   {
     path: 'materias/grado/cienciasnaturales',
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./components/grado/pages/cienciasNaturales/naturales-grado.module').then(m => m.NaturalesGradoModule),
   },
   {
     path: 'materias/grado/ingles',
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./components/grado/pages/ingles/ingles-grado.module').then(m => m.InglesGradoModule),
   },
   {
     path: 'materias/grado/progreso',
+    // canActivate: [AuthGuard],
     component: ProgresoGradoComponent
   },
   {
