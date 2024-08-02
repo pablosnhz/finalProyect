@@ -26,7 +26,12 @@
 </header>
 
   <div id="inicio" class="container mt-6">
-      <h1 class="display-2 font-weight-bold text-center">Lectura Critica</h1>
+    <div class="mt-2 text-center">
+        <h1 class="display-2 font-weight-bold text-center">Lectura Critica</h1>
+        <a [routerLink]="['/materias/iniciar/cienciasnaturales/niveles']">
+            <button class="btn btn-warning mb-3"><strong>INICIAR</strong></button>
+        </a>
+    </div>
       <div class="row mt-5">
           <div class="col-md-6 text-center">
               <div>
@@ -57,19 +62,6 @@
               <p  class="letra-custom text-custom">La prueba consta de <strong>41 preguntas</strong> y utiliza dos tipos de textos para evaluar estas competencias. Además, el diseño de la prueba propone una serie de pasos que permiten desagregar y generar un puente entre lo que se quiere evaluar (las competencias) y las tareas que debería desarrollar un estudiante para dar cuenta de ello.
               </p>
               </div>
-      </div>
-  </div>
-
-  <div class="container mt-5">
-      <div class="row justify-content-center">
-          <div class="col-md-4 col-sm-12 text-center">
-              <img src="./../../../../assets/images/lecturacritica.png" class="img-fluid" style="max-width: 20vh;">
-              <div class="mt-2">
-                  <a [routerLink]="['/materias/iniciar/lecturacritica/niveles']">
-                      <button class="btn btn-warning mb-3"><strong>INICIAR</strong></button>
-                  </a>
-              </div>
-          </div>
       </div>
   </div>
 

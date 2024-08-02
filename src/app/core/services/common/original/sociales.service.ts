@@ -12,10 +12,10 @@ export class SocialesService {
   constructor(private httpClient: HttpClient) {}
 
   private sheetUrls: string[] = [
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQnLo9WtkRQPYa_qKkZ2X55CYvb2lVFIQYRjdQxdgNe0GabeLGH3sT6JbVBCbQhh6idvXVcw8V27rdG/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vT9VwDPY6G2UPMqZWzuZSUJHWOaZDJObDUxru-2TbnZFcdUSwGmXisQ3rOUQJ5HQg40UpPI7w18eTWp/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6U-I-S_0zDiPCHuBlb-iEVmCDStf6VkpfetUykjgL8Ij3gZaQHiOLql6eOmN4kUrv2ZoWFBRU14yt/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTGSt4KJhADgzrhrp97HCpmHEBBt00Ic7Z3vHse4w2JgXHL3k0JpjXLDsgS42Iu1YNNksrSh1E8vSBg/pub?output=csv'
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQyp3lvNQcMEDzOUHikoE9lkAxdzcoL7k4iBDEyHgO416fc4KyccFTsD0Su7L3lCIzJuc_SRZR8iyUo/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vRLNKw9ql6TfTJgtIWp35ZE6epImQOTozvKzXetDi66p7R5nfwhbmtH5dW9Vxxe5vSEM3nUCq9e_boE/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQWj2HPkMwTdh75n1pyt1CTze65Bg9HvRxcX-WpuwOrq9Lw26xThXpXFG9HwR3NID9btjJcd4vU_WtA/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQGP3g9M6jMc0ELOc1OOCYOfMubTL7SpdIcNqByouzSZOxm0OVvmbf-u0rcProPTePi4UHAfdh8JT-e/pub?output=csv'
   ];
 
   getSheets(): Observable<any[]> {
@@ -38,7 +38,9 @@ export class SocialesService {
             explicacion: row.explicacion,
             titulo: row.titulo,
             teoria: row.teoria,
-            imagen: row.imagen
+            imagen: row.imagen,
+            imagendos: row.imagendos,
+            imagentres: row.imagentres
           }));
         }),
         catchError((error) => {

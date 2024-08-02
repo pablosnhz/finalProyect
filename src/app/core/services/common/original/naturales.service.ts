@@ -12,10 +12,10 @@ export class NaturalesService {
   constructor(private httpClient: HttpClient) {}
 
   private sheetUrls: string[] = [
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQEC6SFKPOLXv8P-cis2GYYJZPdOv0UqdYHldeOyiq1A3CwimR3kKkkTjZGNu2p2V23en3vuOcSkPEz/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQTdpeH1WZMl4YQnnF-2jrpxCGraoCIUfgZoTO8ZM_nPjrnJY4MK84U-f3tMK8EclgoNWQhBCxIH5Dq/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQlF9UjYk9bwN7JDPtwC6IGvf01ps8MiWnMaxX5kRIED4iDy1sWIOGH0EDW7ArUO5Kgjq_oV2UKh8qb/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMSWmySKO_-YlLDIm_Ufb3i_lKNgTM5dffxPUEk2YJKPG9ASJxzIJucRAhbsuXAvPonNabCOWGkmIG/pub?output=csv'
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vScqkZScocD-Qqx6ZWX9kudyoUGzMYGeeHtrlx8r9xMT_QnfADqvlP9Ra-jTF_T1x87nYlXRusYCKLJ/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDKP7ntYyO0ZIZlNEMf7URRA40fT0-c1mAX8kwLYVe3SsEqpqraUsNNXdUKA_fOwlQ0eDYxVgHbmoG/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vSYVNgrLNryXdLhs1IGv3DIgQ1yz394qGVsSpX_BnwLhFE2q3XB1yPqRdnxeWRuboetgtAc_RaHWn8i/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTeY8WryIMJiSxVFOo-8l4MDhzZsyINP6yXGsjXl4dALhf7MWjyLGW1mtc2531rdaP3qtzfLu0i3y8c/pub?output=csv'
   ];
 
   getSheets(): Observable<any[]> {
@@ -38,7 +38,9 @@ export class NaturalesService {
             explicacion: row.explicacion,
             titulo: row.titulo,
             teoria: row.teoria,
-            imagen: row.imagen
+            imagen: row.imagen,
+            imagendos: row.imagendos,
+            imagentres: row.imagentres
           }));
         }),
         catchError((error) => {

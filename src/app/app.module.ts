@@ -70,11 +70,11 @@ imports: [
   ],
   providers: [
     provideAuth0({
-      domain: 'dev-mfuhxwtsa6qnfcwb.us.auth0.com',
-      clientId: 'gzAhbZn4ROfbNUkM90ykh6cxgibKVVhW',
+      domain: 'dev-i028zku74qwt4h5q.us.auth0.com',
+      clientId: 'x8JjWw8RKcXcdJB5Yzc0cc1th2lVwI0C',
       cacheLocation: 'localstorage',
       authorizationParams: {
-        redirect_uri: "http://localhost:4200/",
+        redirect_uri: "https://makete.netlify.app/",
       },
     }),
   ],

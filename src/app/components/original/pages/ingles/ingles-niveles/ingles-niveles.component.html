@@ -1,7 +1,7 @@
 <header id="header">
   <nav class="navbar navbar-expand-md bg-white">
       <div class="container">
-          <a href="./../../../home/home.html" class="navbar-brand fs-2 text-black">Ingles</a>
+          <a href="./../../../home/home.html" class="navbar-brand fs-2 text-black">Inglés</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
               <span class="navbar-toggler-icon"></span>
           </button>
@@ -38,6 +38,8 @@
           <div class="overflow-auto" style="max-height: 400px;">
             <p class="me-2 mt-3" style="white-space: pre-line;"> {{ pregunta.teoria }}</p>
             <img [src]="pregunta.imagen" alt="">
+            <img [src]="pregunta.imagendos" alt="">
+            <img [src]="pregunta.imagentres" alt="">
           </div>
           <style>
             .overflow-auto::-webkit-scrollbar {
@@ -159,7 +161,7 @@
       </div>
       <div class="modal-footer text-nowrap">
         <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
-        <button type="button" class="btn btn-warning" *ngIf="currentLevelIndex === totalLevels - 1" [routerLink]="['/materias']" ><small><strong>Volver a Materias</strong></small></button>
+        <button type="button" class="btn btn-warning" *ngIf="currentLevelIndex === totalLevels - 1" [routerLink]="['/materias/iniciar']" ><small><strong>Volver a Materias</strong></small></button>
         <button type="button" class="btn btn-warning" (click)="nextLevel()" *ngIf="currentLevelIndex < totalLevels - 1"><strong><small>Siguiente Nivel</small></strong></button>
       </div>
     </div>

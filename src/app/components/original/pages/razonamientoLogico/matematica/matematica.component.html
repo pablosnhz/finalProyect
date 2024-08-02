@@ -26,7 +26,12 @@
 </header>
 
   <div id="inicio" class="container mt-6">
-      <h1 class="display-2 font-weight-bold text-center">Razonamiento logico</h1>
+    <div class="mt-2 text-center">
+        <h1 class="display-2 font-weight-bold text-center">Razonamiento lógico</h1>
+        <a [routerLink]="['/materias/iniciar/matematica/niveles']">
+            <button class="btn btn-warning mb-3"><strong>INICIAR</strong></button>
+        </a>
+    </div>
       <div class="row mt-5">
           <div class="col-md-6 text-center text-md-left">
             <h3 class="strong">CONTENIDO A EVALUAR DE RAZONAMIENTO LÓGICO</h3>
@@ -59,19 +64,6 @@
               <p class="letra-custom text-custom">La prueba consta de preguntas de selección múltiple con única respuesta y está diseñada para evaluar diferentes niveles de complejidad, desde lo más básico hasta lo más avanzado. Además, se utilizan contextos variados para asegurar que las preguntas sean representativas de situaciones reales y relevantes para los estudiantes.
               </p>
               </div>
-      </div>
-  </div>
-
-  <div class="container mt-5">
-      <div class="row justify-content-center">
-          <div class="col-md-4 col-sm-12 text-center">
-              <img src="./../../../../assets/images/matematica.png" class="img-fluid" style="max-width: 20vh;">
-              <div class="mt-2">
-                  <a [routerLink]="['/materias/iniciar/matematica/niveles']">
-                      <button class="btn btn-warning mb-3"><strong>INICIAR</strong></button>
-                  </a>
-              </div>
-          </div>
       </div>
   </div>
 

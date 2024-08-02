@@ -30,7 +30,7 @@ export class MainPageGradoComponent implements OnInit {
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     window.OneSignalDeferred.push(async function(OneSignal) {
       await OneSignal.init({
-        appId: 'cee476c5-443f-41df-b1ac-f524d5948b65',
+        appId: '2d315793-a122-4c4a-a42a-6468922edf35',
         notifyButton: {
           enable: true
         },

@@ -22,7 +22,6 @@ body {
   padding: 1em;
   max-width: $max-width;
 
-
   // desactivo copia de textos
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -38,7 +37,7 @@ body {
 
 @media (max-width: 576px) {
   .letra-custom {
-    font-size: 1.7rem;
+    font-size: 1rem;
   }
   .text-md-left {
     text-align: left !important;
@@ -50,7 +49,6 @@ body {
 
 .text-custom {
   color: #000000;
-  font-size: larger;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 0.99611133em;
   list-style-type: disc;

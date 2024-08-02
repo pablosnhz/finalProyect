@@ -13,10 +13,10 @@ export class LecturaCriticaService {
   constructor(private httpClient: HttpClient) {}
 
   private sheetUrls: string[] = [
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTHXjndsNy2zYvbvrFJiw_43WRmRgVPdGdK9Ik6nSW57xI9Irb4V6O_s-GWzeZRHLJ661Mdae0wzsfx/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vT1eF-SIebqzqd3qZDvWHeWXwvBaVproyBO9X4SOY0R-Iq4415Zxn0wTK5lpQIdGthieeaJwWMM25R-/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vR7h6tjabVXT7K8AAhjQzWyXGzue5GLP7aTkQXx86v5G2Z5ZAectFEWM5zTRdiDrmw1Jk9am9-UgySt/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vT_ZxsjoC3RWSaCFD9JwAOAtddq0zlPXVNOq4NgpIstXXsEcWSK-hWmvzc_Rhp8Tpq2rntw7yYspGlm/pub?output=csv'
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQbcJaD5iUWVXfHOx9VZkKrFAdz_7puxUJtC1j-qpx3aZFeIPu_FU_tzXNbsr4dnTX4s_bjANjL0Te1/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vRbvZSwjWetX3hOcnqgX7ui27OnTxV7qpc-csOspmXD_iKVcBy5xTc6u_us4aWaiRPD5ofLqxgUfd7e/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTbtd4cg5BAxxLu0tgPMs54NBfsLIr-QM5uh0pbOvItkN8k64AucC1YCngDwCAov0WpSSD9QOw5odJo/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vSfc0sopM0dlTxAg2cVirlTVEqAIR1kMnECnP8viVmxXaMHWwn2pmSx6sqpPE-ycyeglFsFCQfIODGw/pub?output=csv'
   ];
 
   getSheets(): Observable<any[]> {
@@ -39,7 +39,9 @@ export class LecturaCriticaService {
             explicacion: row.explicacion,
             titulo: row.titulo,
             teoria: row.teoria,
-            imagen: row.imagen
+            imagen: row.imagen,
+            imagendos: row.imagendos,
+            imagentres: row.imagentres
           }));
         }),
         catchError((error) => {

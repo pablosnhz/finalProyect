@@ -26,7 +26,12 @@
 </header>
 
   <div id="inicio" class="container mt-6">
-      <h1 class="display-2 font-weight-bold text-center">Ciencias Naturales</h1>
+    <div class="mt-2 text-center">
+        <h1 class="display-2 font-weight-bold text-center">Ciencias Naturales</h1>
+        <a [routerLink]="['/materias/grado/cienciasnaturales/niveles']">
+            <button class="btn button-personalizado mb-3"><strong>INICIAR</strong></button>
+        </a>
+    </div>
       <div class="row mt-5">
           <div class="col-md-6 text-center">
               <div>
@@ -56,19 +61,6 @@
                 El sistema de evaluación de la prueba de Ciencias Naturales en las Pruebas Saber 11 incluye una serie de preguntas que evalúan competencias en el uso comprensivo del conocimiento, la explicación de fenómenos y la indagación científica. La prueba se compone de preguntas sobre temáticas biológicas, físicas, químicas y de ciencia, tecnología y sociedad. La distribución de preguntas se realiza de acuerdo con las competencias y los componentes evaluados, y se presenta en una tabla de especificaciones que detalla la cantidad de preguntas por competencia y componente.
               </p>
               </div>
-      </div>
-  </div>
-
-  <div class="container mt-5">
-      <div class="row justify-content-center">
-          <div class="col-md-4 col-sm-12 text-center">
-              <img src="./../../../../assets/images/cienciasnaturales.png" class="img-fluid" style="max-width: 20vh;">
-              <div class="mt-2">
-                  <a [routerLink]="['/materias/grado/cienciasnaturales/niveles']">
-                      <button class="btn button-personalizado mb-3"><strong>INICIAR</strong></button>
-                  </a>
-              </div>
-          </div>
       </div>
   </div>
 

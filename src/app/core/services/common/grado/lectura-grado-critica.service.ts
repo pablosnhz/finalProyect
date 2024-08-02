@@ -13,10 +13,10 @@ export class LecturaCriticaGradoService {
   constructor(private httpClient: HttpClient) {}
 
   private sheetUrls: string[] = [
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTlC-yTmjkiZMtHS-9lIlcQM4Lkp4HZ-BpYFplBa8kktoGFj0NRETIOEF7C4-NRbrpcULjj_WJoa2UL/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vSmXOmC_9f6rr07in1hawpSqDrDS-vdBLGTyKwm0RhfYfN76FOfUI6_BJNga1S7gc5Charin_xgZyEK/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQAWFbpeEVFUTNnibJcYa-RNGcetffIEiyv7s2JqFgqs6Z77b4mIWbm0Nj2xDkZ1iT0ccLf4JgD_arq/pub?output=csv',
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQTnPkAfcbSBgLjUYJwPl7nHENz2kogNOs9ersDNL7AsQlz13dBnYnAsSPztYN6BxeT2GI0BH828_Ze/pub?output=csv'
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vRPhABJzSW64wpmACuEXf7XnqIpHoY1fuooyCpVggyzaykZBJzZxKOLXam8Tt4ozYak_ddZHzhAv0uT/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vSZyLz_66DSinPGrGW-Z-92ewPPsZsLXj4KKhR2RneEZsMum2xVjGgCnywIMCK3jYr9EEKR3ycTs-rV/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vSN7SHRzRZbxM0XCAUTixektwFEJzXDhMIp2oDO2M29z89Bf8c6aEM6iqrUCzZWxBAKIAN4UMTeyUsH/pub?output=csv',
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQF8JBwDmPNJhnnfTJ7_B3MkZjFzwRNORGioGFsI5IOE_nYHqyQiwHW6JiMD4CFrRI0kB652EnKHNdI/pub?output=csv'
   ];
 
   getGradoSheets(): Observable<any[]> {
@@ -39,7 +39,9 @@ export class LecturaCriticaGradoService {
             explicacion: row.explicacion,
             titulo: row.titulo,
             teoria: row.teoria,
-            imagen: row.imagen
+            imagen: row.imagen,
+            imagendos: row.imagendos,
+            imagentres: row.imagentres
           }));
         }),
         catchError((error) => {
