@@ -67,7 +67,7 @@
 
   <div id="services" class="container py-5 mt-5">
     <div class="text-center">
-      <h2 class="mb-4 mt-3">Servicios</h2>
+      <h6 class="fs-3 fw-bold mb-4"><strong>Servicios</strong></h6>
       <hr class="w-25 mx-auto">
     </div>
     <div class="row">
@@ -317,156 +317,327 @@
     </div>
   </section>
 
-  <!-- INSTRUCCIONES -->
-  <section id="instrucciones" class="py-5 bg-white">
-    <div class="container">
-      <h2 class="text-center fs-4 text-secondary-emphasis fw-bold mb-4">Conoce las Instrucciones de: </h2>
-      <div class="row d-flex align-items-start justify-content-center py-3 mb-5">
-        <div class="col-md-6">
-          <h6 class="fs-4 fw-bold mb-2"><strong>Cómo Usar <strong class="text-primary">Genius</strong> Sin Necesidad de Internet</strong></h6>
-          <h6 class="fs-6 fw-bold mb-2 text-center"><strong>Sigue estos pasos:</strong></h6>
-          <br>
-          <strong>Instalar la PWA desde Chrome</strong>:
-          <ul class="letra-custom text-custom">
-            <small>
-              <li>
-              En la barra de direcciones de Chrome, busca el ícono de opciones (tres puntos verticales) ubicado en la esquina superior derecha de la ventana del navegador.
-              </li>
-              <li>
-                En el menú, busca y selecciona la opción "Instalar proyectogenius.org" o "Instalar esta aplicación".
-              </li>
-              <li>
-                Si la PWA es compatible, verás una ventana emergente que te permite instalar la aplicación en tu dispositivo.
-              </li>
-            </small>
-          </ul>
-          <strong>Completa la instalación</strong>:
-          <ul class="letra-custom text-custom">
-            <small>
-              <li>
-                Después de hacer clic en "Instalar", se te pedirá que confirmes la instalación.
-              </li>
-              <li>
-                La aplicación se agregará a tu lista de aplicaciones instaladas en Chrome y en tu dispositivo.
-              </li>
-            </small>
-          </ul>
-            <strong class="text-center">Accede a la aplicación web progresiva instalada</strong>:
-            <ul class="letra-custom text-custom">
-              <small>
-                <li>
-                  Una vez instalada, podrás acceder a la aplicación web progresiva desde tu dispositivo como una aplicación independiente.
-                </li>
-                <li>
-                  En Chrome, puedes encontrar la PWA en la sección de aplicaciones al hacer clic en el menú de aplicaciones del navegador.
-                </li>
-              </small>
-            </ul>
-          </div>
+  <!-- carrusel -->
+  <div class="container mt-5 visible-slider-carrousel-mobile">
+    <h6 class="fs-3 text-center fw-bold mb-4"><strong>Conoce las Instrucciones para Android y iOS:</strong></h6>
+    <h2 class="text-center fs-4 text-secondary-emphasis fw-bold mb-4"> </h2>
+    <p class="text-center">Aqui se muestran las instrucciones para instalar la aplicación en tu dispositivo, a continuacion seleccione la imagen de su dispositivo.</p>
+    <!-- carrusel de android -->
+    <div id="androidCarousel" class="carousel slide" data-bs-ride="false" [ngClass]="{'d-none': !isAndroidVisible}" data-bs-ride="carrusel">
+      <div class="carousel-inner img-carrousel">
+        <div class="carousel-item active">
+          <img src="../../../assets/images/dispositivos/unoandroid.jpg" type="image/webp" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../../../assets/images/dispositivos/dosandroid.jpg" type="image/webp" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../../../assets/images/dispositivos/tresandroid.jpg" type="image/webp" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../../../assets/images/dispositivos/cuatroandroid.jpg" type="image/webp" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../../../assets/images/dispositivos/cincoandroid.jpg" type="image/webp" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../../../assets/images/dispositivos/seisandroid.jpg" type="image/webp" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#androidCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#androidCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
 
-        <div class="col-md-6">
-          <h6 class="fs-4 fw-bold text-center"><strong>Pruebas SABER 11</strong></h6>
-          <p class="letra-custom text-custom">
-            <small>
-              El Examen de Estado de la Educación Media, conocido como Saber 11°, es una evaluación estandarizada que se aplica en Colombia para medir la calidad de la educación media. El examen está compuesto por cinco áreas: Lectura Crítica, Matemáticas, Sociales y Ciudadanas, Ciencias Naturales e Inglés.
-              <br>
-              Desde el año 2021, el ICFES publica un nuevo reporte de resultados para el examen Saber 11, con el fin de ofrecer una interpretación más completa de los resultados. Este reporte incluye el puntaje global, los percentiles, guías de interpretación, y para cada área evaluada, el nivel de desempeño del estudiante junto con las habilidades y destrezas que representan.
-              <br>
-              Para más detalles sobre orientarte en la prueba, saber los niveles de desempeño y cómo interpretar los resultados y utilizarlos, puedes consultar la guía proporcionada por el ICFES, <strong>descargala aqui.</strong>
-            </small>
-          </p>
-          <ol class="list-group list-group-numbered text-center">
-            <li class="list-group-item border-0">Enlace a descargar</li>
-            <li class="list-group-item border-0">Ver documento en linea</li>
-            <li class="list-group-item border-0">Infografias</li>
-          </ol>
-          <div class="dropdown mt-2 text-center">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Descarga los documentos PDF's.
-            </button>
-            <ul class="dropdown-menu">
-              <li class="mb-2"><a class="dropdown-item"
-                href="./../assets/documents/GuiadeOrientaciónSaber.pdf" download>Guia de orientacion Saber</a>
-              </li>
-              <li class="mb-2"><a class="dropdown-item"
-                href="./../assets/documents/MatemáticasSaber11.pdf" download>Razonamiento Logico</a>
-              </li>
-              <li class="mb-2"><a class="dropdown-item"
-                href="./../assets/documents/LecturaCríticaSaber11.pdf" download>Lectura Critica</a>
-              </li>
-              <li class="mb-2"><a class="dropdown-item"
-                href="./../assets/documents/SocialesyCiudadanasSaber11.pdf" download>Sociales y ciudadanas</a>
-              </li>
-              <li class="mb-2"><a class="dropdown-item"
-                href="./../assets/documents/CienciasNaturalesSaber11.pdf" download>Ciencias Naturales</a>
-              </li>
-              <li><a class="dropdown-item"
-                href="./../assets/documents/InglesSaber11.pdf" download>Ingles</a>
-              </li>
-            </ul>
+    <!-- carrusel de ios -->
+    <div id="iosCarousel" class="carousel slide" data-bs-ride="false" [ngClass]="{'d-none': !isIosVisible}" data-bs-ride="carrusel">
+      <div class="carousel-inner img-carrousel">
+        <div class="carousel-item active">
+          <img src="../../../assets/images/dispositivos/unoios.jpg" type="image/webp" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../../../assets/images/dispositivos/dosios.jpg" type="image/webp" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../../../assets/images/dispositivos/tresios.jpg" type="image/webp" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../../../assets/images/dispositivos/cuatroios.jpg" type="image/webp" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../../../assets/images/dispositivos/cincoios.jpg" type="image/webp" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#iosCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#iosCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <div class="text-center mt-4 d-flex">
+      <a (click)="showAndroidCarousel()">
+        <img src="../../../assets/images/androidicon.png" alt="" class="h-full w-50">
+      </a>
+      <a (click)="showIosCarousel()">
+        <img src="../../../assets/images/iosicon.png" alt="" class="h-full w-50">
+      </a>
+    </div>
+  </div>
+
+  <div class="col-md-12 visible-slider-carrousel-text-custom mt-5">
+    <h3 class="fs-6 fw-bold text-center"><strong>¿QUÉ SON LAS PRUEBAS DE SABER 11?</strong></h3>
+    <img src="./../../../assets/images/pruebassaberwep.webp" type="image/webp" class="d-block w-100 img-fluid" alt="...">
+    <p class="letra-custom text-custom">
+      <small>
+        El Examen de Estado de la Educación Media, conocido como Saber 11°, es una evaluación estandarizada que se aplica en Colombia para medir la calidad de la educación media. El examen está compuesto por cinco áreas: Lectura Crítica, Matemáticas, Sociales y Ciudadanas, Ciencias Naturales e Inglés.
+        <br>
+        Desde el año 2021, el ICFES publica un nuevo reporte de resultados para el examen Saber 11, con el fin de ofrecer una interpretación más completa de los resultados. Este reporte incluye el puntaje global, los percentiles, guías de interpretación, y para cada área evaluada, el nivel de desempeño del estudiante junto con las habilidades y destrezas que representan.
+        <br>
+        Para más detalles sobre orientarte en la prueba, saber los niveles de desempeño y cómo interpretar los resultados y utilizarlos, puedes consultar la guía proporcionada por el ICFES, <strong>descargala aqui.</strong>
+      </small>
+    </p>
+    <ol class="list-group list-group-numbered text-center">
+      <li class="list-group-item border-0">Enlace a descargar</li>
+      <li class="list-group-item border-0">Ver documento en linea</li>
+      <li class="list-group-item border-0">Infografias</li>
+    </ol>
+    <div class="dropdown mt-2 text-center">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Descarga los documentos PDF's.
+      </button>
+      <ul class="dropdown-menu">
+        <li class="mb-2"><a class="dropdown-item"
+          href="./../assets/documents/GuiadeOrientaciónSaber.pdf" download>Guia de orientacion Saber</a>
+        </li>
+        <li class="mb-2"><a class="dropdown-item"
+          href="./../assets/documents/MatemáticasSaber11.pdf" download>Razonamiento Logico</a>
+        </li>
+        <li class="mb-2"><a class="dropdown-item"
+          href="./../assets/documents/LecturaCríticaSaber11.pdf" download>Lectura Critica</a>
+        </li>
+        <li class="mb-2"><a class="dropdown-item"
+          href="./../assets/documents/SocialesyCiudadanasSaber11.pdf" download>Sociales y ciudadanas</a>
+        </li>
+        <li class="mb-2"><a class="dropdown-item"
+          href="./../assets/documents/CienciasNaturalesSaber11.pdf" download>Ciencias Naturales</a>
+        </li>
+        <li><a class="dropdown-item"
+          href="./../assets/documents/InglesSaber11.pdf" download>Ingles</a>
+        </li>
+      </ul>
+    </div>
+    <div class="dropdown mt-2 text-center">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Ver documentos en linea
+      </button>
+      <ul class="dropdown-menu">
+        <li class="mb-2">
+          <a class="dropdown-item" href="https://drive.google.com/file/d/1G2VqxDbKQXSmOOumr0c8RX_N94a6vdcT/view">Guia de orientacion Saber</a>
+        </li>
+        <li class="mb-2">
+          <a class="dropdown-item" href="https://drive.google.com/file/d/1VvDh20sQZJKiK9hOisKGIHCnvUiSmtqN/view">Razonamiento Logico</a>
+        </li>
+        <li class="mb-2">
+          <a class="dropdown-item" href="https://drive.google.com/file/d/1lKHMnaXLZeV7pCmqZPYx0X8it7pVkKYi/view">Lectura Critica</a>
+        </li>
+        <li class="mb-2">
+          <a class="dropdown-item" href="https://drive.google.com/file/d/1xDwi5r0Qoqr3jwikmNL347fFey_zN7my/view">Sociales y ciudadanas</a>
+        </li>
+        <li class="mb-2">
+          <a class="dropdown-item" href="https://drive.google.com/file/d/1U8J7OYuc5dE3TPYk4wUQ81yTCvKgDbmQ/view">Ciencias Naturales</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="https://drive.google.com/file/d/1CVyII7fQWFquBlaWZQXoxPZuSiDgYdzF/view">Ingles</a>
+        </li>
+      </ul>
+    </div>
+    <div class="dropdown mt-2 text-center">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Infografias
+      </button>
+      <ul class="dropdown-menu">
+        <li class="mb-2"><a class="dropdown-item"
+          href="./../assets/documents/infografiaGeneralidadessaber.pdf" download>Generalidades de Saber</a>
+        </li>
+        <li class="mb-2"><a class="dropdown-item"
+          href="./../assets/documents/infograficaRazonamientologico.pdf" download>Razonamiento Logico</a>
+        </li>
+        <li class="mb-2"><a class="dropdown-item"
+          href="./../assets/documents/InfografiaLecturacritica.pdf" download>Lectura Critica</a>
+        </li>
+        <li class="mb-2"><a class="dropdown-item"
+          href="./../assets/documents/infografiaSocialesyciudadanas.pdf" download>Sociales y ciudadanas</a>
+        </li>
+        <li class="mb-2"><a class="dropdown-item"
+          href="./../assets/documents/infografiaCienciasnaturales.pdf" download>Ciencias Naturales</a>
+        </li>
+        <li><a class="dropdown-item"
+          href="./../assets/documents/infografiaIngles.pdf" download>Ingles</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+  <!-- INSTRUCCIONES -->
+  <section id="instrucciones" class="py-2 mt-5 bg-white visible-slider-carrousel">
+    <div class="container">
+      <h6 class="fs-3 text-center fw-bold mb-4"><strong>Conoce las Instrucciones para Android y iOS: </strong></h6>
+      <div class="row d-flex align-items-start justify-content-center py-3 mb-5">
+        <div class="col-md-12">
+            <!-- SLIDER -->
+            <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="true" data-bs-interval="false">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="../../../assets/images/androidwebp.webp" type="image/webp" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="./../../../assets/images/ioswebp.webp" type="image/webp" class="d-block w-100" alt="...">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
           </div>
-          <div class="dropdown mt-2 text-center">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Ver documentos en linea
-            </button>
-            <ul class="dropdown-menu">
-              <li class="mb-2">
-                <a class="dropdown-item" href="https://drive.google.com/file/d/1G2VqxDbKQXSmOOumr0c8RX_N94a6vdcT/view">Guia de orientacion Saber</a>
-              </li>
-              <li class="mb-2">
-                <a class="dropdown-item" href="https://drive.google.com/file/d/1VvDh20sQZJKiK9hOisKGIHCnvUiSmtqN/view">Razonamiento Logico</a>
-              </li>
-              <li class="mb-2">
-                <a class="dropdown-item" href="https://drive.google.com/file/d/1lKHMnaXLZeV7pCmqZPYx0X8it7pVkKYi/view">Lectura Critica</a>
-              </li>
-              <li class="mb-2">
-                <a class="dropdown-item" href="https://drive.google.com/file/d/1xDwi5r0Qoqr3jwikmNL347fFey_zN7my/view">Sociales y ciudadanas</a>
-              </li>
-              <li class="mb-2">
-                <a class="dropdown-item" href="https://drive.google.com/file/d/1U8J7OYuc5dE3TPYk4wUQ81yTCvKgDbmQ/view">Ciencias Naturales</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="https://drive.google.com/file/d/1CVyII7fQWFquBlaWZQXoxPZuSiDgYdzF/view">Ingles</a>
-              </li>
-            </ul>
+      </div>
+    </div>
+  </section>
+<!-- visible-slider-carrousel-text -->
+
+  <section id="pwa" class="py-5 visible-slider-carrousel">
+    <div class="container">
+      <div class="text-center">
+        <h6 class="fs-3 fw-bold mb-4"><strong>¿Qué son las pruebas saber 11?</strong></h6>
+      </div>
+      <div class="row d-flex align-items-center justify-content-center py-3 mb-5">
+        <div class="col-md-7 text-center"><p class="fs-6">
+          <div class="col-md-12">
+            <p class="">
+              <small>
+                El Examen de Estado de la Educación Media, conocido como Saber 11°, es una evaluación estandarizada que se aplica en Colombia para medir la calidad de la educación media. El examen está compuesto por cinco áreas: Lectura Crítica, Matemáticas, Sociales y Ciudadanas, Ciencias Naturales e Inglés.
+                <br>
+                Desde el año 2021, el ICFES publica un nuevo reporte de resultados para el examen Saber 11, con el fin de ofrecer una interpretación más completa de los resultados. Este reporte incluye el puntaje global, los percentiles, guías de interpretación, y para cada área evaluada, el nivel de desempeño del estudiante junto con las habilidades y destrezas que representan.
+                <br>
+                Para más detalles sobre orientarte en la prueba, saber los niveles de desempeño y cómo interpretar los resultados y utilizarlos, puedes consultar la guía proporcionada por el ICFES, <strong>descargala aqui.</strong>
+              </small>
+            </p>
+            <ol class="list-group list-group-numbered text-center">
+              <li class="list-group-item border-0">Enlace a descargar</li>
+              <li class="list-group-item border-0">Ver documento en linea</li>
+              <li class="list-group-item border-0">Infografias</li>
+            </ol>
+            <div class="dropdown mt-2 text-center">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Descarga los documentos PDF's.
+              </button>
+              <ul class="dropdown-menu">
+                <li class="mb-2"><a class="dropdown-item"
+                  href="./../assets/documents/GuiadeOrientaciónSaber.pdf" download>Guia de orientacion Saber</a>
+                </li>
+                <li class="mb-2"><a class="dropdown-item"
+                  href="./../assets/documents/MatemáticasSaber11.pdf" download>Razonamiento Logico</a>
+                </li>
+                <li class="mb-2"><a class="dropdown-item"
+                  href="./../assets/documents/LecturaCríticaSaber11.pdf" download>Lectura Critica</a>
+                </li>
+                <li class="mb-2"><a class="dropdown-item"
+                  href="./../assets/documents/SocialesyCiudadanasSaber11.pdf" download>Sociales y ciudadanas</a>
+                </li>
+                <li class="mb-2"><a class="dropdown-item"
+                  href="./../assets/documents/CienciasNaturalesSaber11.pdf" download>Ciencias Naturales</a>
+                </li>
+                <li><a class="dropdown-item"
+                  href="./../assets/documents/InglesSaber11.pdf" download>Ingles</a>
+                </li>
+              </ul>
+            </div>
+            <div class="dropdown mt-2 text-center">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Ver documentos en linea
+              </button>
+              <ul class="dropdown-menu">
+                <li class="mb-2">
+                  <a class="dropdown-item" href="https://drive.google.com/file/d/1G2VqxDbKQXSmOOumr0c8RX_N94a6vdcT/view">Guia de orientacion Saber</a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item" href="https://drive.google.com/file/d/1VvDh20sQZJKiK9hOisKGIHCnvUiSmtqN/view">Razonamiento Logico</a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item" href="https://drive.google.com/file/d/1lKHMnaXLZeV7pCmqZPYx0X8it7pVkKYi/view">Lectura Critica</a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item" href="https://drive.google.com/file/d/1xDwi5r0Qoqr3jwikmNL347fFey_zN7my/view">Sociales y ciudadanas</a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item" href="https://drive.google.com/file/d/1U8J7OYuc5dE3TPYk4wUQ81yTCvKgDbmQ/view">Ciencias Naturales</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://drive.google.com/file/d/1CVyII7fQWFquBlaWZQXoxPZuSiDgYdzF/view">Ingles</a>
+                </li>
+              </ul>
+            </div>
+            <div class="dropdown mt-2 text-center">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Infografias
+              </button>
+              <ul class="dropdown-menu">
+                <li class="mb-2"><a class="dropdown-item"
+                  href="./../assets/documents/infografiaGeneralidadessaber.pdf" download>Generalidades de Saber</a>
+                </li>
+                <li class="mb-2"><a class="dropdown-item"
+                  href="./../assets/documents/infograficaRazonamientologico.pdf" download>Razonamiento Logico</a>
+                </li>
+                <li class="mb-2"><a class="dropdown-item"
+                  href="./../assets/documents/InfografiaLecturacritica.pdf" download>Lectura Critica</a>
+                </li>
+                <li class="mb-2"><a class="dropdown-item"
+                  href="./../assets/documents/infografiaSocialesyciudadanas.pdf" download>Sociales y ciudadanas</a>
+                </li>
+                <li class="mb-2"><a class="dropdown-item"
+                  href="./../assets/documents/infografiaCienciasnaturales.pdf" download>Ciencias Naturales</a>
+                </li>
+                <li><a class="dropdown-item"
+                  href="./../assets/documents/infografiaIngles.pdf" download>Ingles</a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="dropdown mt-2 text-center">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Infografias
-            </button>
-            <ul class="dropdown-menu">
-              <li class="mb-2"><a class="dropdown-item"
-                href="./../assets/documents/infografiaGeneralidadessaber.pdf" download>Generalidades de Saber</a>
-              </li>
-              <li class="mb-2"><a class="dropdown-item"
-                href="./../assets/documents/infograficaRazonamientologico.pdf" download>Razonamiento Logico</a>
-              </li>
-              <li class="mb-2"><a class="dropdown-item"
-                href="./../assets/documents/InfografiaLecturacritica.pdf" download>Lectura Critica</a>
-              </li>
-              <li class="mb-2"><a class="dropdown-item"
-                href="./../assets/documents/infografiaSocialesyciudadanas.pdf" download>Sociales y ciudadanas</a>
-              </li>
-              <li class="mb-2"><a class="dropdown-item"
-                href="./../assets/documents/infografiaCienciasnaturales.pdf" download>Ciencias Naturales</a>
-              </li>
-              <li><a class="dropdown-item"
-                href="./../assets/documents/infografiaIngles.pdf" download>Ingles</a>
-              </li>
-            </ul>
+          </div>
+        <div class="col-md-5 d-flex justify-content-center">
+          <div class="col-md-9 text-center">
+            <img src="../../../assets/images/pruebassaberwep.webp" type="image/webp" class="d-block w-100 img-fluid mt-4" alt="...">
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="pwa" class="py-5">
+  <section id="pwa" class="py-1">
     <div class="container">
-      <div class="text-center">
-        <h2>Monitoreo y Evaluación por instituciones</h2>
+      <div class="text-center mt-4">
+        <h6 class="fs-3 fw-bold mb-4"><strong>Monitoreo y Evaluación por instituciones</strong></h6>
         <hr class="w-24 mx-auto">
       </div>
       <div class="row d-flex align-items-center justify-content-center py-3 mb-5">
@@ -496,7 +667,8 @@
   <section id="pwa" class="py-5">
     <div class="container">
       <div class="text-center">
-        <h2>¡Haz Click y Sé el Cambio! Apoya la Educación en el Caribe Colombiano</h2>
+        <h6 class="fs-3 fw-bold mb-4"><strong>¡Haz Click y Sé el Cambio! Apoya la Educación en el Caribe Colombiano</strong></h6>
+        <h2></h2>
         <hr class="w-24 mx-auto">
       </div>
       <div class="row d-flex align-items-center justify-content-center py-3 mb-5">
@@ -518,6 +690,34 @@
       </div>
     </div>
   </section>
+
+    <!-- INTRUCCIONES DONACIONES -->
+    <section id="pwa" class="py-5">
+      <div class="container">
+        <div class="text-center">
+          <h6 class="fs-3 fw-bold"><strong>Confían en Nosotros</strong></h6>
+          <h2></h2>
+          <hr class="w-24 mx-auto">
+        </div>
+        <div class="row d-flex align-items-center justify-content-center ">
+          <!-- <div class="col-md-6 text-center"><p class="fs-6">
+            <small class="text-justify">¿Quieres ser parte del cambio? <strong>Caribe Enseña y proyecto Genius</strong> estan comprometidos a brindar oportunidades a estudiantes rurales en todo el Caribe colombiano.<br><br>
+              <strong>¿Cómo puedes ayudar?</strong>
+               <br>¡Con tu generosa donación! Al contribuir con nuestro proyecto, estás abriendo las puertas de la educación superior para jóvenes talentosos que merecen brillar. ¡Únete a nuestra causa y sé el héroe que transforma vidas! Para mayor información:
+               <strong>donaciones&#64;proyectogenius.org</strong></small></p>
+               <button class="btn btn-warning"><a class="text-black link-underline-warning" href="https://www.paypal.com/paypalme/caribeensena?country.x=CO&amp;locale.x=es_XC" target="_blank">
+                <strong>¡Haz tu donación aqui!</strong></a>
+              </button>
+            </div> -->
+          <div class="col-md-6 d-flex justify-content-center">
+            <div class="col-md-6 text-center">
+              <img class="img-fluid logocard p-4"
+                src="../../../assets/images/logoscheiderweb.webp">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
 
   <!-- Footer -->

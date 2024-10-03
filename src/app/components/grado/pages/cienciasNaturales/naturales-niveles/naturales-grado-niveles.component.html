@@ -37,9 +37,22 @@
           <h1 class="text-center fw-bold fs-1">{{ pregunta.titulo }}</h1>
           <div class="overflow-auto" style="max-height: 400px;">
             <p class="me-2 mt-3" style="white-space: pre-line;"> {{ pregunta.teoria }}</p>
-            <img [src]="pregunta.imagen" alt="">
-            <img [src]="pregunta.imagendos" alt="">
-            <img [src]="pregunta.imagentres" alt="">
+            <div class="d-flex img-imagen">
+              <p>A)
+                <img [src]="pregunta.imagen" alt="">
+              </p>
+              <p>B)
+                <img [src]="pregunta.imagendos" alt="">
+              </p>
+            </div>
+            <div class="d-flex img-imagen">
+              <p>C)
+                <img [src]="pregunta.imagentres" alt="">
+              </p>
+              <p>D)
+                <img [src]="pregunta.imagencuatro" alt="">
+              </p>
+            </div>
           </div>
           <style>
             .overflow-auto::-webkit-scrollbar {

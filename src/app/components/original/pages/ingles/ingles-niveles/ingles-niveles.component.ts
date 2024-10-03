@@ -113,7 +113,7 @@ if (this.allLevelsCompleted()) {
 
 // logica de niveles
 iniciarLevels() {
-  const numQuestionsPorLevel = 5;
+  const numQuestionsPorLevel = 15;
 
   for (let i = 0; i < this.questionsData.length; i += numQuestionsPorLevel) {
     this.levels.push(this.questionsData.slice(i, i + numQuestionsPorLevel));

@@ -22,73 +22,73 @@ const routes: Routes = [
   // Materias para "iniciar"
   {
     path: 'materias/iniciar',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     component: MainPageComponent,
   },
   {
     path: 'materias/iniciar/matematica',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./components/original/pages/razonamientoLogico/matematica.module').then(m => m.MatematicaModule),
   },
   {
     path: 'materias/iniciar/lecturacritica',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./components/original/pages/lecturaCritica/lecturacritica.module').then(m => m.LecturacriticaModule),
   },
   {
     path: 'materias/iniciar/socialesciudadanas',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./components/original/pages/socialesCiudadanas/sociales.module').then(m => m.SocialesModule),
   },
   {
     path: 'materias/iniciar/cienciasnaturales',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./components/original/pages/cienciasNaturales/naturales.module').then(m => m.NaturalesModule),
   },
   {
     path: 'materias/iniciar/ingles',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./components/original/pages/ingles/ingles.module').then(m => m.InglesModule),
   },
   {
     path: 'materias/iniciar/progreso',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     component: ProgresoComponent
   },
   // Materias para "grado"
   {
     path: 'materias/grado',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     component: MainPageGradoComponent,
   },
   {
     path: 'materias/grado/matematica',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./components/grado/pages/razonamientoLogico/matematica-grado.module').then(m => m.MatematicaGradoModule),
   },
   {
     path: 'materias/grado/lecturacritica',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./components/grado/pages/lecturaCritica/lecturacritica-grado.module').then(m => m.LecturacriticaGradoModule),
   },
   {
     path: 'materias/grado/socialesciudadanas',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./components/grado/pages/socialesCiudadanas/sociales-grado.module').then(m => m.SocialesGradoModule),
   },
   {
     path: 'materias/grado/cienciasnaturales',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./components/grado/pages/cienciasNaturales/naturales-grado.module').then(m => m.NaturalesGradoModule),
   },
   {
     path: 'materias/grado/ingles',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./components/grado/pages/ingles/ingles-grado.module').then(m => m.InglesGradoModule),
   },
   {
     path: 'materias/grado/progreso',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     component: ProgresoGradoComponent
   },
   {

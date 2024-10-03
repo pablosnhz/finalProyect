@@ -41,7 +41,8 @@ export class LecturaCriticaGradoService {
             teoria: row.teoria,
             imagen: row.imagen,
             imagendos: row.imagendos,
-            imagentres: row.imagentres
+            imagentres: row.imagentres,
+            imagencuatro: row.imagencuatro
           }));
         }),
         catchError((error) => {

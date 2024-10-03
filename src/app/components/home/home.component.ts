@@ -14,6 +14,10 @@ export class HomeComponent implements OnInit{
   deferredPrompt: any;
   isAuthenticated = false;
 
+  // android ios buttons carrusel
+  isAndroidVisible: boolean = false;
+  isIosVisible: boolean = false;
+
   constructor(private router: Router, private auth: AuthService) {
     window.addEventListener('beforeinstallprompt', (event) => {
       event.preventDefault();
@@ -107,4 +111,15 @@ export class HomeComponent implements OnInit{
     }
   }
 
+
+  // botones carrusel slider img
+  showAndroidCarousel(): void {
+    this.isAndroidVisible = true;
+    this.isIosVisible = false;
+  }
+
+  showIosCarousel(): void {
+    this.isIosVisible = true;
+    this.isAndroidVisible = false;
+  }
 }

@@ -42,3 +42,11 @@ $primary-color: #27775C;
     }
   }
 }
+
+
+@media (max-width: 576px) {
+  .img-imagen img {
+    width: 100%;
+    height: 170px;
+  }
+}
