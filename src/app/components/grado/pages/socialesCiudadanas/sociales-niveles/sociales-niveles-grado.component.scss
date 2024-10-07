@@ -34,6 +34,7 @@ $primary-color: #27775C;
         background-color: #fff;
         width: 1.3em;
         height: 1.3em;
+        min-width: 1.3em;
         border-radius: 50%;
         margin-right: 0.375em;
         transition: 0.25s ease;
@@ -45,4 +46,18 @@ $primary-color: #27775C;
 .button-personalizado {
   background-color: #415da3f5;
   color: white;
+}
+
+// modal for zoom image
+.img-thumbnail {
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.modal-body img {
+  width: 100%;
+  height: auto;
 }

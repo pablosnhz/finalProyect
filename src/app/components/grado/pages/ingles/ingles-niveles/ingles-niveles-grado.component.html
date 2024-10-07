@@ -31,28 +31,67 @@
 
 <div class="container d-flex align-items-center justify-content-center" >
   <div class="row justify-content-center px-0">
-
       <!-- SEGUNDA COLUMNA -->
       <div class="col-md-6 col-sm-12 order-md-2 order-2" *ngFor="let pregunta of questionsData; let index = index" [class.d-none]="index !== currentQuestionIndex">
           <h1 class="text-center fw-bold fs-1">{{ pregunta.titulo }}</h1>
           <div class="overflow-auto" style="max-height: 400px;">
             <p class="me-2 mt-3" style="white-space: pre-line;"> {{ pregunta.teoria }}</p>
             <div class="d-flex img-imagen">
-              <p>A)
-                <img [src]="pregunta.imagen" alt="">
+              <p>
+                <img [src]="pregunta.imagen" class="img-thumbnail" alt="Imagen pequeña" data-bs-toggle="modal" [attr.data-bs-target]="'#imageModalUno' + index">
               </p>
-              <p>B)
-                <img [src]="pregunta.imagendos" alt="">
+              <div class="modal fade" [id]="'imageModalUno' + index" tabindex="-1" aria-labelledby="imageModalLabelUno" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <img [src]="pregunta.imagen" class="img-fluid" alt="Imagen ampliada">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p>
+                <img [src]="pregunta.imagendos" class="img-thumbnail" alt="Imagen pequeña" data-bs-toggle="modal" [attr.data-bs-target]="'#imageModalDos' + index">
               </p>
+              <div class="modal fade" [id]="'imageModalDos' + index" tabindex="-1" aria-labelledby="imageModalLabelDos" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <img [src]="pregunta.imagendos" class="img-fluid" alt="Imagen ampliada">
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+
             <div class="d-flex img-imagen">
-              <p>C)
-                <img [src]="pregunta.imagentres" alt="">
+              <p>
+                <img [src]="pregunta.imagentres" class="img-thumbnail" alt="Imagen pequeña" data-bs-toggle="modal" [attr.data-bs-target]="'#imageModalTres' + index">
               </p>
-              <p>D)
-                <img [src]="pregunta.imagencuatro" alt="">
+              <div class="modal fade" [id]="'imageModalTres' + index" tabindex="-1" aria-labelledby="imageModalLabelTres" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <img [src]="pregunta.imagentres" class="img-fluid" alt="Imagen ampliada">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p>
+                <img [src]="pregunta.imagencuatro" class="img-thumbnail" alt="Imagen pequeña" data-bs-toggle="modal" [attr.data-bs-target]="'#imageModalCuatro' + index">
               </p>
+              <div class="modal fade" [id]="'imageModalCuatro' + index" tabindex="-1" aria-labelledby="imageModalLabelCuatro" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <img [src]="pregunta.imagencuatro" class="img-fluid" alt="Imagen ampliada">
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+
           </div>
           <style>
             .overflow-auto::-webkit-scrollbar {
@@ -85,24 +124,28 @@
       </label>
     </div>
 
-    <div class="alert alert-success alert-dismissible fade show text-center"
-        [class.d-none]="!isAnswerCorrect(currentLevelIndex, index) || selectedOptions[currentLevelIndex][index] === null"
-        id="alertCorrect{{ index }}" role="alert">
-        <strong>¡Respuesta correcta!</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
 
     <div class="alert alert-danger alert-dismissible fade show text-center"
-        [class.d-none]="isAnswerCorrect(currentLevelIndex, index) || selectedOptions[currentLevelIndex][index] === null"
-        id="alertIncorrect{{ index }}" role="alert">
-        <strong>La respuesta correcta era: {{ pregunta.respuestas }}</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          <br>
-        <a href="#" class="bg-transparent border-0 justification-link"
-          data-bs-toggle="modal" [attr.data-bs-target]="'#' + modalIds[index]" *ngIf="!isAnswerCorrect(currentLevelIndex, index)">
-          <strong>Conocé la justificación. Haz Click aquí.</strong>
-        </a>
+      [class.d-none]="isAnswerCorrect(currentLevelIndex, index) || selectedOptions[currentLevelIndex][index] === null"
+      id="alertIncorrect{{ index }}" role="alert">
+    <strong *ngIf="!showAnswer[index]">La respuesta correcta era:
+      <img src="./../../../../../../assets/images/eye.webp" width="24px" height="24px" class="mb-1"
+         alt="eye" (click)="toggleAnswer(index)">
+    </strong>
+    <strong *ngIf="showAnswer[index]">La respuesta correcta era: {{ pregunta.respuestas }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+        (click)="resetAnswer(index)"></button>
+
+      <br>
+
+      <a href="#" class="bg-transparent border-0 justification-link"
+        data-bs-toggle="modal" [attr.data-bs-target]="'#' + modalIds[index]"
+        *ngIf="!isAnswerCorrect(currentLevelIndex, index)">
+        <strong>Conoce la justificación. Haz Click aquí.</strong>
+      </a>
     </div>
+
+
 
       <!-- Modal -->
       <div class="modal fade" [id]="modalIds[index]" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

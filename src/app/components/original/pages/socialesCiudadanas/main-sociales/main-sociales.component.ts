@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-main-sociales',
   templateUrl: './main-sociales.component.html',
   styleUrls: ['./main-sociales.component.scss']
 })
-export class MainSocialesComponent {
+export class MainSocialesComponent implements OnInit{
+
+ngOnInit(): void {
+  this.scrollToTop();
+}
+
 
 
 scrollToTop() {

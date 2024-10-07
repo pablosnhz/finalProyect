@@ -114,7 +114,7 @@ export class SocialesNivelesComponent {
 
   // logica de niveles
   iniciarLevels() {
-    const numQuestionsPorLevel = 5;
+    const numQuestionsPorLevel = 20;
 
     for (let i = 0; i < this.questionsData.length; i += numQuestionsPorLevel) {
       this.levels.push(this.questionsData.slice(i, i + numQuestionsPorLevel));
@@ -452,5 +452,12 @@ export class SocialesNivelesComponent {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-
+// gestion de boton para la img eye
+showAnswer: { [key: number]: boolean } = {};
+toggleAnswer(index: number) {
+  this.showAnswer[index] = !this.showAnswer[index];
+}
+resetAnswer(index: number) {
+  this.showAnswer[index] = false;
+}
   }
